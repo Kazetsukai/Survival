@@ -22,18 +22,36 @@ public class TerrainBehaviour : MonoBehaviour {
 		const int Width = 50;
 		const int Height = 50;
 
-		var heightMap = new int[Width,Height];
+		var heightMap = new float[Width,Height];
 
 		for (int x = 0; x < Width; x++) 
 		{
 			for (int y = 0; y < Height; y++) 
 			{
-				if (Random.Range (0,3) == 0)
-					heightMap[x,y] = Random.Range(0, 2);
+				//if (Random.Range (0,3) == 0)
+				heightMap[x,y] = Random.Range(0, 10);
+
+				var iters = Random.Range (0,20);
+				for (int i = 0; i < iters; i++)
+				{
+					if (x != 0)
+						heightMap[x,y] = (heightMap[x-1,y] + heightMap[x,y]) / 2;
+					if (y != 0)
+						heightMap[x,y] = (heightMap[x,y-1] + heightMap[x,y]) / 2;
+				}
+
 			}
 		}
 
-
+		
+		for (int x = 0; x < Width; x++) 
+		{
+			for (int y = 0; y < Height; y++) 
+			{
+				heightMap[x,y] = (int)heightMap[x,y];
+			}
+		}
+		
 
 		int squares = (Width - 1) * (Height - 1);
 		int totalVertices = squares * 6;
