@@ -86,7 +86,7 @@ public class TerrainBehaviour : MonoBehaviour {
 		mesh.RecalculateNormals ();
 		mesh.RecalculateBounds ();
 
-		mesh.UploadMeshData (true);
+		mesh.UploadMeshData (false);
 
 		return mesh;
 	}
