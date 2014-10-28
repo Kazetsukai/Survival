@@ -19,8 +19,8 @@ public class TerrainBehaviour : MonoBehaviour {
 
 	Mesh GenerateMesh()
 	{
-		const int Width = 50;
-		const int Height = 50;
+		const int Width = 100;
+		const int Height = 100;
 
 		var heightMap = new float[Width,Height];
 
