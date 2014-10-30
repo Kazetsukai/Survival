@@ -3,10 +3,9 @@ using System.Collections;
 
 public class limbs_rig_test_anim_behaviour : MonoBehaviour 
 {
-	int walkingHash = Animator.StringToHash("Base Layer.run");
-
 	Animator anim;
-	void Start () {
+	void Start () 
+	{
 		anim = GetComponent<Animator> ();
 	}
 
@@ -14,6 +13,8 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 	{
 		//Rough code to change animation state for debug legs. Makes them run if the player presses forward button.
 		float move = Input.GetAxis ("Vertical");
+		float jump = Input.GetAxis ("Jump");
+
 		if (move != 0) 
 		{
 			anim.SetBool("run", true);
@@ -21,6 +22,15 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 		else
 		{
 			anim.SetBool("run", false);
+		}
+	
+		if (jump != 0) 
+		{
+			anim.SetBool("jump", true);
+		}
+		else
+		{
+			anim.SetBool("jump", false);
 		}
 	}
 }

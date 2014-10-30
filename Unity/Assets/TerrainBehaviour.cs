@@ -103,7 +103,7 @@ public class TerrainBehaviour : MonoBehaviour {
 		mesh.SetIndices (indices, MeshTopology.Triangles, 0);
 		mesh.RecalculateNormals ();
 		mesh.RecalculateBounds ();
-
+	
 		mesh.UploadMeshData (false);
 
 		return mesh;
