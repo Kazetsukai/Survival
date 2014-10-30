@@ -2683,4 +2683,18 @@ AnimationClip:
     path: Armature/b_torso/b_thigh_l/b_shin_l
     classID: 4
     script: {fileID: 0}
-  m_Events: []
+  m_Events:
+  - time: .0833333358
+    functionName: PlayFootstep
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: .25
+    functionName: PlayFootstep
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

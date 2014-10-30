@@ -3,6 +3,8 @@ using System.Collections;
 
 public class limbs_rig_test_anim_behaviour : MonoBehaviour 
 {
+	public AudioClip footstepSound;
+
 	Animator anim;
 	void Start () 
 	{
@@ -32,5 +34,13 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 		{
 			anim.SetBool("jump", false);
 		}
+	}
+
+	public void PlayFootstep()
+	{
+		var audioSource = GetComponentInChildren<AudioSource> ();
+		audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
+		audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
+		audioSource.PlayOneShot(footstepSound);
 	}
 }
