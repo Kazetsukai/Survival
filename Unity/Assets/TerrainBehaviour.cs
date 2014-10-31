@@ -31,7 +31,7 @@ public class TerrainBehaviour : MonoBehaviour {
 			for (int y = 0; y < Height; y++) 
 			{
 				//if (Random.Range (0,3) == 0)
-				heightMap[x,y] = (int)(Mathf.PerlinNoise((basis + x) * ((x / (Width * 5000f))), (basis + y) * ((y / (Height * 5000f)))) * (20 + x / 2f + y / 2f));
+				heightMap[x,y] = (int)(Mathf.PerlinNoise((basis + x) * ((x / (Width * 10000f))), (basis + y) * ((y / (Height * 10000f)))) * (20 + x / 2f + y / 2f));
 			}
 		}
 
