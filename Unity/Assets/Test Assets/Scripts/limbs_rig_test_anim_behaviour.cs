@@ -4,6 +4,8 @@ using System.Collections;
 public class limbs_rig_test_anim_behaviour : MonoBehaviour 
 {
 	public AudioClip footstepSound;
+	public AudioClip stumbleSound;
+	public float StumbleChanceOneIn;
 
 	Animator anim;
 	void Start () 
@@ -39,8 +41,20 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 	public void PlayFootstep()
 	{
 		var audioSource = GetComponentInChildren<AudioSource> ();
-		audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
-		audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
-		audioSource.PlayOneShot(footstepSound);
+
+		var grassChanceToStumble = 1.0f / StumbleChanceOneIn;
+
+		if (Random.Range (0.0f, 1.0f) < grassChanceToStumble) 
+		{
+			audioSource.pitch = 1.0f;
+			audioSource.volume = 1.0f;
+			audioSource.PlayOneShot(stumbleSound);
+		} 
+		else
+		{
+			audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
+			audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
+			audioSource.PlayOneShot(footstepSound);
+		}
 	}
 }
