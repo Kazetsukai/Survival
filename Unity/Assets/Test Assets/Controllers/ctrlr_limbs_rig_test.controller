@@ -179,7 +179,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: anim_limbs_rig_test_run
-  m_Speed: .850000024
+  m_Speed: .300000012
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 2f5c8d91c01f36c40ba3163e528b73a4, type: 2}
@@ -214,7 +214,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: e51cd76895b6d5d4fbff4e33fcd49580, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -840, y: -120, z: 0}
+  m_Position: {x: -840, y: -108, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -237,14 +237,6 @@ StateMachine:
       first: {fileID: 0}
       second: []
     data:
-      first: {fileID: 110278934}
-      second:
-      - {fileID: 110118892}
-      - {fileID: 110118801}
-    data:
-      first: {fileID: 0}
-      second: []
-    data:
       first: {fileID: 110279840}
       second:
       - {fileID: 110100000}
@@ -254,6 +246,11 @@ StateMachine:
       second:
       - {fileID: 110101848}
       - {fileID: 110147725}
+    data:
+      first: {fileID: 110278934}
+      second:
+      - {fileID: 110118892}
+      - {fileID: 110118801}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -636, y: -228, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

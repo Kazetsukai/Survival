@@ -6,6 +6,7 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 	public AudioClip footstepSound;
 	public AudioClip stumbleSound;
 	public float StumbleChanceOneIn;
+	public float AngleMultiplier;
 
 	Animator anim;
 	void Start () 
@@ -16,10 +17,10 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 	void Update () 
 	{
 		//Rough code to change animation state for debug legs. Makes them run if the player presses forward button.
-		float move = Input.GetAxis ("Vertical");
+		bool move = Input.GetAxis ("Vertical") != 0 || Input.GetAxis ("Horizontal") != 0;
 		float jump = Input.GetAxis ("Jump");
 
-		if (move != 0) 
+		if (move) 
 		{
 			anim.SetBool("run", true);
 		}
@@ -42,7 +43,9 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 	{
 		var audioSource = GetComponentInChildren<AudioSource> ();
 
-		var grassChanceToStumble = 1.0f / StumbleChanceOneIn;
+		var angle = GetComponentInParent<CharacterController> ().velocity.y;
+		Debug.Log (angle);
+		var grassChanceToStumble = 1.0f / (StumbleChanceOneIn / Mathf.Max (AngleMultiplier * Mathf.Abs(angle), 1));
 
 		if (Random.Range (0.0f, 1.0f) < grassChanceToStumble) 
 		{

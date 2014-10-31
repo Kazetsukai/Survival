@@ -326,9 +326,9 @@ MonoBehaviour:
   canControl: 1
   useFixedUpdate: 1
   movement:
-    maxForwardSpeed: 6
-    maxSidewaysSpeed: 6
-    maxBackwardsSpeed: 6
+    maxForwardSpeed: 5
+    maxSidewaysSpeed: 3
+    maxBackwardsSpeed: 3
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
@@ -349,14 +349,14 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    maxGroundAcceleration: 20
-    maxAirAcceleration: 15
-    gravity: 20
+    maxGroundAcceleration: 5
+    maxAirAcceleration: 0
+    gravity: 10
     maxFallSpeed: 20
   jumping:
     enabled: 1
     baseHeight: 1
-    extraHeight: 1
+    extraHeight: 4.0999999
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
@@ -364,7 +364,7 @@ MonoBehaviour:
     movementTransfer: 2
   sliding:
     enabled: 1
-    slidingSpeed: 10
+    slidingSpeed: 15
     sidewaysControl: 1
     speedControl: .400000006
 --- !u!114 &409825686
@@ -1092,6 +1092,26 @@ Prefab:
       propertyPath: m_HDR
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+      propertyPath: movement.maxForwardSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+      propertyPath: movement.maxSidewaysSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+      propertyPath: movement.maxBackwardsSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+      propertyPath: movement.maxGroundAcceleration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+      propertyPath: movement.maxAirAcceleration
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
   m_RootGameObject: {fileID: 409825682}
@@ -1166,6 +1186,7 @@ MonoBehaviour:
   footstepSound: {fileID: 8300000, guid: daf8a34d8c47b70489f0a775f3a8bd1c, type: 3}
   stumbleSound: {fileID: 8300000, guid: 0696ee3e5263873428a89c09d70a8d45, type: 3}
   StumbleChanceOneIn: 900
+  AngleMultiplier: 0
 --- !u!1 &1452516267
 GameObject:
   m_ObjectHideFlags: 0
