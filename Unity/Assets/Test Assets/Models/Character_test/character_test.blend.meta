@@ -1,0 +1,2316 @@
+fileFormatVersion: 2
+guid: 7d10cce448d64f141a18b9876a90555a
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: EyeLeft
+    100004: EyeRight
+    100006: Head
+    100008: Hips
+    100010: LeftArm
+    100012: LeftFoot
+    100014: LeftForeArm
+    100016: LeftHand
+    100018: LeftHandIndex1
+    100020: LeftHandIndex2
+    100022: LeftHandIndex3
+    100024: LeftHandMiddle1
+    100026: LeftHandMiddle2
+    100028: LeftHandMiddle3
+    100030: LeftHandPinky1
+    100032: LeftHandPinky2
+    100034: LeftHandPinky3
+    100036: LeftHandRing1
+    100038: LeftHandRing2
+    100040: LeftHandRing3
+    100042: LeftHandThumb1
+    100044: LeftHandThumb2
+    100046: LeftHandThumb3
+    100048: LeftInHandIndex
+    100050: LeftInHandMiddle
+    100052: LeftInHandPinky
+    100054: LeftInHandRing
+    100056: LeftLeg
+    100058: LeftShoulder
+    100060: LeftShoulderExtra
+    100062: LeftToeBase
+    100064: LeftUpLeg
+    100066: male_1
+    100068: male_1_Body
+    100070: male_1_Eyebrow008
+    100072: male_1_HighPolyEyes
+    100074: male_1_jeans01
+    100076: male_1_mhair02
+    100078: male_1_shoes02
+    100080: male_1_Teeth_Base
+    100082: male_1_tongue01
+    100084: male_1_Tshirt_short
+    100086: Neck
+    100088: RightArm
+    100090: RightFoot
+    100092: RightForeArm
+    100094: RightHand
+    100096: RightHandIndex1
+    100098: RightHandIndex2
+    100100: RightHandIndex3
+    100102: RightHandMiddle1
+    100104: RightHandMiddle2
+    100106: RightHandMiddle3
+    100108: RightHandPinky1
+    100110: RightHandPinky2
+    100112: RightHandPinky3
+    100114: RightHandRing1
+    100116: RightHandRing2
+    100118: RightHandRing3
+    100120: RightHandThumb1
+    100122: RightHandThumb2
+    100124: RightHandThumb3
+    100126: RightInHandIndex
+    100128: RightInHandMiddle
+    100130: RightInHandPinky
+    100132: RightInHandRing
+    100134: RightLeg
+    100136: RightShoulder
+    100138: RightShoulderExtra
+    100140: RightToeBase
+    100142: RightUpLeg
+    100144: Spine
+    100146: Spine1
+    100148: Spine2
+    100150: Spine3
+    100152: animTest
+    100154: Character_test_Body
+    100156: Character_test_HighPolyEyes
+    100158: DEF-breast_L
+    100160: DEF-breast_R
+    100162: DEF-chest
+    100164: DEF-chest-1
+    100166: DEF-elbow_fan_L
+    100168: DEF-elbow_fan_R
+    100170: DEF-eye_L
+    100172: DEF-eye_R
+    100174: DEF-f_index_01_L_01
+    100176: DEF-f_index_01_L_02
+    100178: DEF-f_index_01_R_01
+    100180: DEF-f_index_01_R_02
+    100182: DEF-f_index_02_L
+    100184: DEF-f_index_02_R
+    100186: DEF-f_index_03_L
+    100188: DEF-f_index_03_R
+    100190: DEF-f_middle_01_L_01
+    100192: DEF-f_middle_01_L_02
+    100194: DEF-f_middle_01_R_01
+    100196: DEF-f_middle_01_R_02
+    100198: DEF-f_middle_02_L
+    100200: DEF-f_middle_02_R
+    100202: DEF-f_middle_03_L
+    100204: DEF-f_middle_03_R
+    100206: DEF-f_pinky_01_L_01
+    100208: DEF-f_pinky_01_L_02
+    100210: DEF-f_pinky_01_R_01
+    100212: DEF-f_pinky_01_R_02
+    100214: DEF-f_pinky_02_L
+    100216: DEF-f_pinky_02_R
+    100218: DEF-f_pinky_03_L
+    100220: DEF-f_pinky_03_R
+    100222: DEF-f_ring_01_L_01
+    100224: DEF-f_ring_01_L_02
+    100226: DEF-f_ring_01_R_01
+    100228: DEF-f_ring_01_R_02
+    100230: DEF-f_ring_02_L
+    100232: DEF-f_ring_02_R
+    100234: DEF-f_ring_03_L
+    100236: DEF-f_ring_03_R
+    100238: DEF-femoris_L
+    100240: DEF-femoris_R
+    100242: DEF-foot_L
+    100244: DEF-foot_R
+    100246: DEF-forearm_01_L
+    100248: DEF-forearm_01_R
+    100250: DEF-forearm_02_L
+    100252: DEF-forearm_02_R
+    100254: DEF-gluteus_L
+    100256: DEF-gluteus_R
+    100258: DEF-hand_L
+    100260: DEF-hand_R
+    100262: DEF-head
+    100264: DEF-hips
+    100266: DEF-jaw
+    100268: DEF-knee_fan_L
+    100270: DEF-knee_fan_R
+    100272: DEF-lat_dorsi_L
+    100274: DEF-lat_dorsi_R
+    100276: DEF-lolid_L
+    100278: DEF-lolid_R
+    100280: DEF-neck
+    100282: DEF-palm_01_L
+    100284: DEF-palm_01_R
+    100286: DEF-palm_02_L
+    100288: DEF-palm_02_R
+    100290: DEF-palm_03_L
+    100292: DEF-palm_03_R
+    100294: DEF-palm_04_L
+    100296: DEF-palm_04_R
+    100298: DEF-pectoralis_L
+    100300: DEF-pectoralis_R
+    100302: DEF-platysma_L
+    100304: DEF-platysma_R
+    100306: DEF-quadriceps_L
+    100308: DEF-quadriceps_R
+    100310: DEF-scapula_L
+    100312: DEF-scapula_R
+    100314: DEF-shin_01_L
+    100316: DEF-shin_01_R
+    100318: DEF-shin_02_L
+    100320: DEF-shin_02_R
+    100322: DEF-shoulder_L
+    100324: DEF-shoulder_R
+    100326: DEF-soleus_L
+    100328: DEF-soleus_R
+    100330: DEF-spine
+    100332: DEF-spine-1
+    100334: DEF-stomach
+    100336: DEF-thigh_01_L
+    100338: DEF-thigh_01_R
+    100340: DEF-thigh_02_L
+    100342: DEF-thigh_02_R
+    100344: DEF-thumb_01_L_01
+    100346: DEF-thumb_01_L_02
+    100348: DEF-thumb_01_R_01
+    100350: DEF-thumb_01_R_02
+    100352: DEF-thumb_02_L
+    100354: DEF-thumb_02_R
+    100356: DEF-thumb_03_L
+    100358: DEF-thumb_03_R
+    100360: DEF-toe_L
+    100362: DEF-toe_R
+    100364: DEF-tongue_base
+    100366: DEF-tongue_mid
+    100368: DEF-tongue_tip
+    100370: DEF-trapezius1_L
+    100372: DEF-trapezius1_R
+    100374: DEF-trapezius2_L
+    100376: DEF-trapezius2_R
+    100378: DEF-uplid_L
+    100380: DEF-uplid_R
+    100382: DEF-upper_arm_01_L
+    100384: DEF-upper_arm_01_R
+    100386: DEF-upper_arm_02_L
+    100388: DEF-upper_arm_02_R
+    100390: MCH-forearm_01_L
+    100392: MCH-forearm_01_R
+    100394: MCH-forearm_smth_01_L
+    100396: MCH-forearm_smth_01_R
+    100398: MCH-hips_rh_ns_ch
+    100400: MCH-hips_rh_ns_ch_001
+    100402: MCH-shin_01_L
+    100404: MCH-shin_01_R
+    100406: MCH-shin_smth_01_L
+    100408: MCH-shin_smth_01_R
+    100410: MCH-shoulder_rh_ns_ch_L
+    100412: MCH-shoulder_rh_ns_ch_R
+    100414: ORG-chest
+    100416: ORG-f_index_01_L
+    100418: ORG-f_index_01_R
+    100420: ORG-f_index_02_L
+    100422: ORG-f_index_02_R
+    100424: ORG-f_index_03_L
+    100426: ORG-f_index_03_R
+    100428: ORG-f_middle_01_L
+    100430: ORG-f_middle_01_R
+    100432: ORG-f_middle_02_L
+    100434: ORG-f_middle_02_R
+    100436: ORG-f_middle_03_L
+    100438: ORG-f_middle_03_R
+    100440: ORG-f_pinky_01_L
+    100442: ORG-f_pinky_01_R
+    100444: ORG-f_pinky_02_L
+    100446: ORG-f_pinky_02_R
+    100448: ORG-f_pinky_03_L
+    100450: ORG-f_pinky_03_R
+    100452: ORG-f_ring_01_L
+    100454: ORG-f_ring_01_R
+    100456: ORG-f_ring_02_L
+    100458: ORG-f_ring_02_R
+    100460: ORG-f_ring_03_L
+    100462: ORG-f_ring_03_R
+    100464: ORG-foot_L
+    100466: ORG-foot_R
+    100468: ORG-forearm_L
+    100470: ORG-forearm_R
+    100472: ORG-hand_L
+    100474: ORG-hand_R
+    100476: ORG-hips
+    100478: ORG-neck
+    100480: ORG-palm_01_L
+    100482: ORG-palm_01_R
+    100484: ORG-palm_02_L
+    100486: ORG-palm_02_R
+    100488: ORG-palm_03_L
+    100490: ORG-palm_03_R
+    100492: ORG-palm_04_L
+    100494: ORG-palm_04_R
+    100496: ORG-shin_L
+    100498: ORG-shin_R
+    100500: ORG-shoulder_L
+    100502: ORG-shoulder_R
+    100504: ORG-spine
+    100506: ORG-spine-1
+    100508: ORG-thigh_L
+    100510: ORG-thigh_R
+    100512: ORG-thumb_01_L
+    100514: ORG-thumb_01_R
+    100516: ORG-thumb_02_L
+    100518: ORG-thumb_02_R
+    100520: ORG-thumb_03_L
+    100522: ORG-thumb_03_R
+    100524: ORG-toe_L
+    100526: ORG-toe_R
+    100528: ORG-upper_arm_L
+    100530: ORG-upper_arm_R
+    100532: root
+    100534: WGT-chest
+    100536: WGT-elbow_hose_L
+    100538: WGT-elbow_hose_R
+    100540: WGT-elbow_target_ik_L
+    100542: WGT-elbow_target_ik_R
+    100544: WGT-f_index_01_L
+    100546: WGT-f_index_01_R
+    100548: WGT-f_index_02_L
+    100550: WGT-f_index_02_R
+    100552: WGT-f_index_03_L
+    100554: WGT-f_index_03_R
+    100556: WGT-f_index_L
+    100558: WGT-f_index_R
+    100560: WGT-f_middle_01_L
+    100562: WGT-f_middle_01_R
+    100564: WGT-f_middle_02_L
+    100566: WGT-f_middle_02_R
+    100568: WGT-f_middle_03_L
+    100570: WGT-f_middle_03_R
+    100572: WGT-f_middle_L
+    100574: WGT-f_middle_R
+    100576: WGT-f_pinky_01_L
+    100578: WGT-f_pinky_01_R
+    100580: WGT-f_pinky_02_L
+    100582: WGT-f_pinky_02_R
+    100584: WGT-f_pinky_03_L
+    100586: WGT-f_pinky_03_R
+    100588: WGT-f_pinky_L
+    100590: WGT-f_pinky_R
+    100592: WGT-f_ring_01_L
+    100594: WGT-f_ring_01_R
+    100596: WGT-f_ring_02_L
+    100598: WGT-f_ring_02_R
+    100600: WGT-f_ring_03_L
+    100602: WGT-f_ring_03_R
+    100604: WGT-f_ring_L
+    100606: WGT-f_ring_R
+    100608: WGT-foot_fk_L
+    100610: WGT-foot_fk_R
+    100612: WGT-foot_ik_L
+    100614: WGT-foot_ik_R
+    100616: WGT-foot_roll_ik_L
+    100618: WGT-foot_roll_ik_R
+    100620: WGT-forearm_fk_L
+    100622: WGT-forearm_fk_R
+    100624: WGT-forearm_hose_end_L
+    100626: WGT-forearm_hose_end_R
+    100628: WGT-forearm_hose_L
+    100630: WGT-forearm_hose_R
+    100632: WGT-hand_fk_L
+    100634: WGT-hand_fk_R
+    100636: WGT-hand_ik_L
+    100638: WGT-hand_ik_R
+    100640: WGT-head
+    100642: WGT-hips
+    100644: WGT-knee_hose_L
+    100646: WGT-knee_hose_R
+    100648: WGT-knee_target_ik_L
+    100650: WGT-knee_target_ik_R
+    100652: WGT-neck
+    100654: WGT-palm_L
+    100656: WGT-palm_R
+    100658: WGT-root
+    100660: WGT-shin_fk_L
+    100662: WGT-shin_fk_R
+    100664: WGT-shin_hose_end_L
+    100666: WGT-shin_hose_end_R
+    100668: WGT-shin_hose_L
+    100670: WGT-shin_hose_R
+    100672: WGT-shoulder_L
+    100674: WGT-shoulder_R
+    100676: WGT-spine
+    100678: WGT-spine-1
+    100680: WGT-thigh_fk_L
+    100682: WGT-thigh_fk_R
+    100684: WGT-thigh_hose_end_L
+    100686: WGT-thigh_hose_end_R
+    100688: WGT-thigh_hose_L
+    100690: WGT-thigh_hose_R
+    100692: WGT-thumb_01_L
+    100694: WGT-thumb_01_R
+    100696: WGT-thumb_02_L
+    100698: WGT-thumb_02_R
+    100700: WGT-thumb_03_L
+    100702: WGT-thumb_03_R
+    100704: WGT-thumb_L
+    100706: WGT-thumb_R
+    100708: WGT-toe_L
+    100710: WGT-toe_R
+    100712: WGT-torso
+    100714: WGT-upper_arm_fk_L
+    100716: WGT-upper_arm_fk_R
+    100718: WGT-upper_arm_hose_end_L
+    100720: WGT-upper_arm_hose_end_R
+    100722: WGT-upper_arm_hose_L
+    100724: WGT-upper_arm_hose_R
+    100726: WGT-VIS-foot_ik_L
+    100728: WGT-VIS-foot_ik_R
+    100730: WGT-VIS-hand_ik_L
+    100732: WGT-VIS-hand_ik_R
+    100734: WGT-VIS-thigh_pole_ik_L
+    100736: WGT-VIS-thigh_pole_ik_R
+    100738: WGT-VIS-upper_arm_pole_ik_L
+    100740: WGT-VIS-upper_arm_pole_ik_R
+    100742: Widgets
+    400000: //RootNode
+    400002: EyeLeft
+    400004: EyeRight
+    400006: Head
+    400008: Hips
+    400010: LeftArm
+    400012: LeftFoot
+    400014: LeftForeArm
+    400016: LeftHand
+    400018: LeftHandIndex1
+    400020: LeftHandIndex2
+    400022: LeftHandIndex3
+    400024: LeftHandMiddle1
+    400026: LeftHandMiddle2
+    400028: LeftHandMiddle3
+    400030: LeftHandPinky1
+    400032: LeftHandPinky2
+    400034: LeftHandPinky3
+    400036: LeftHandRing1
+    400038: LeftHandRing2
+    400040: LeftHandRing3
+    400042: LeftHandThumb1
+    400044: LeftHandThumb2
+    400046: LeftHandThumb3
+    400048: LeftInHandIndex
+    400050: LeftInHandMiddle
+    400052: LeftInHandPinky
+    400054: LeftInHandRing
+    400056: LeftLeg
+    400058: LeftShoulder
+    400060: LeftShoulderExtra
+    400062: LeftToeBase
+    400064: LeftUpLeg
+    400066: male_1
+    400068: male_1_Body
+    400070: male_1_Eyebrow008
+    400072: male_1_HighPolyEyes
+    400074: male_1_jeans01
+    400076: male_1_mhair02
+    400078: male_1_shoes02
+    400080: male_1_Teeth_Base
+    400082: male_1_tongue01
+    400084: male_1_Tshirt_short
+    400086: Neck
+    400088: RightArm
+    400090: RightFoot
+    400092: RightForeArm
+    400094: RightHand
+    400096: RightHandIndex1
+    400098: RightHandIndex2
+    400100: RightHandIndex3
+    400102: RightHandMiddle1
+    400104: RightHandMiddle2
+    400106: RightHandMiddle3
+    400108: RightHandPinky1
+    400110: RightHandPinky2
+    400112: RightHandPinky3
+    400114: RightHandRing1
+    400116: RightHandRing2
+    400118: RightHandRing3
+    400120: RightHandThumb1
+    400122: RightHandThumb2
+    400124: RightHandThumb3
+    400126: RightInHandIndex
+    400128: RightInHandMiddle
+    400130: RightInHandPinky
+    400132: RightInHandRing
+    400134: RightLeg
+    400136: RightShoulder
+    400138: RightShoulderExtra
+    400140: RightToeBase
+    400142: RightUpLeg
+    400144: Spine
+    400146: Spine1
+    400148: Spine2
+    400150: Spine3
+    400152: animTest
+    400154: Character_test_Body
+    400156: Character_test_HighPolyEyes
+    400158: DEF-breast_L
+    400160: DEF-breast_R
+    400162: DEF-chest
+    400164: DEF-chest-1
+    400166: DEF-elbow_fan_L
+    400168: DEF-elbow_fan_R
+    400170: DEF-eye_L
+    400172: DEF-eye_R
+    400174: DEF-f_index_01_L_01
+    400176: DEF-f_index_01_L_02
+    400178: DEF-f_index_01_R_01
+    400180: DEF-f_index_01_R_02
+    400182: DEF-f_index_02_L
+    400184: DEF-f_index_02_R
+    400186: DEF-f_index_03_L
+    400188: DEF-f_index_03_R
+    400190: DEF-f_middle_01_L_01
+    400192: DEF-f_middle_01_L_02
+    400194: DEF-f_middle_01_R_01
+    400196: DEF-f_middle_01_R_02
+    400198: DEF-f_middle_02_L
+    400200: DEF-f_middle_02_R
+    400202: DEF-f_middle_03_L
+    400204: DEF-f_middle_03_R
+    400206: DEF-f_pinky_01_L_01
+    400208: DEF-f_pinky_01_L_02
+    400210: DEF-f_pinky_01_R_01
+    400212: DEF-f_pinky_01_R_02
+    400214: DEF-f_pinky_02_L
+    400216: DEF-f_pinky_02_R
+    400218: DEF-f_pinky_03_L
+    400220: DEF-f_pinky_03_R
+    400222: DEF-f_ring_01_L_01
+    400224: DEF-f_ring_01_L_02
+    400226: DEF-f_ring_01_R_01
+    400228: DEF-f_ring_01_R_02
+    400230: DEF-f_ring_02_L
+    400232: DEF-f_ring_02_R
+    400234: DEF-f_ring_03_L
+    400236: DEF-f_ring_03_R
+    400238: DEF-femoris_L
+    400240: DEF-femoris_R
+    400242: DEF-foot_L
+    400244: DEF-foot_R
+    400246: DEF-forearm_01_L
+    400248: DEF-forearm_01_R
+    400250: DEF-forearm_02_L
+    400252: DEF-forearm_02_R
+    400254: DEF-gluteus_L
+    400256: DEF-gluteus_R
+    400258: DEF-hand_L
+    400260: DEF-hand_R
+    400262: DEF-head
+    400264: DEF-hips
+    400266: DEF-jaw
+    400268: DEF-knee_fan_L
+    400270: DEF-knee_fan_R
+    400272: DEF-lat_dorsi_L
+    400274: DEF-lat_dorsi_R
+    400276: DEF-lolid_L
+    400278: DEF-lolid_R
+    400280: DEF-neck
+    400282: DEF-palm_01_L
+    400284: DEF-palm_01_R
+    400286: DEF-palm_02_L
+    400288: DEF-palm_02_R
+    400290: DEF-palm_03_L
+    400292: DEF-palm_03_R
+    400294: DEF-palm_04_L
+    400296: DEF-palm_04_R
+    400298: DEF-pectoralis_L
+    400300: DEF-pectoralis_R
+    400302: DEF-platysma_L
+    400304: DEF-platysma_R
+    400306: DEF-quadriceps_L
+    400308: DEF-quadriceps_R
+    400310: DEF-scapula_L
+    400312: DEF-scapula_R
+    400314: DEF-shin_01_L
+    400316: DEF-shin_01_R
+    400318: DEF-shin_02_L
+    400320: DEF-shin_02_R
+    400322: DEF-shoulder_L
+    400324: DEF-shoulder_R
+    400326: DEF-soleus_L
+    400328: DEF-soleus_R
+    400330: DEF-spine
+    400332: DEF-spine-1
+    400334: DEF-stomach
+    400336: DEF-thigh_01_L
+    400338: DEF-thigh_01_R
+    400340: DEF-thigh_02_L
+    400342: DEF-thigh_02_R
+    400344: DEF-thumb_01_L_01
+    400346: DEF-thumb_01_L_02
+    400348: DEF-thumb_01_R_01
+    400350: DEF-thumb_01_R_02
+    400352: DEF-thumb_02_L
+    400354: DEF-thumb_02_R
+    400356: DEF-thumb_03_L
+    400358: DEF-thumb_03_R
+    400360: DEF-toe_L
+    400362: DEF-toe_R
+    400364: DEF-tongue_base
+    400366: DEF-tongue_mid
+    400368: DEF-tongue_tip
+    400370: DEF-trapezius1_L
+    400372: DEF-trapezius1_R
+    400374: DEF-trapezius2_L
+    400376: DEF-trapezius2_R
+    400378: DEF-uplid_L
+    400380: DEF-uplid_R
+    400382: DEF-upper_arm_01_L
+    400384: DEF-upper_arm_01_R
+    400386: DEF-upper_arm_02_L
+    400388: DEF-upper_arm_02_R
+    400390: MCH-forearm_01_L
+    400392: MCH-forearm_01_R
+    400394: MCH-forearm_smth_01_L
+    400396: MCH-forearm_smth_01_R
+    400398: MCH-hips_rh_ns_ch
+    400400: MCH-hips_rh_ns_ch_001
+    400402: MCH-shin_01_L
+    400404: MCH-shin_01_R
+    400406: MCH-shin_smth_01_L
+    400408: MCH-shin_smth_01_R
+    400410: MCH-shoulder_rh_ns_ch_L
+    400412: MCH-shoulder_rh_ns_ch_R
+    400414: ORG-chest
+    400416: ORG-f_index_01_L
+    400418: ORG-f_index_01_R
+    400420: ORG-f_index_02_L
+    400422: ORG-f_index_02_R
+    400424: ORG-f_index_03_L
+    400426: ORG-f_index_03_R
+    400428: ORG-f_middle_01_L
+    400430: ORG-f_middle_01_R
+    400432: ORG-f_middle_02_L
+    400434: ORG-f_middle_02_R
+    400436: ORG-f_middle_03_L
+    400438: ORG-f_middle_03_R
+    400440: ORG-f_pinky_01_L
+    400442: ORG-f_pinky_01_R
+    400444: ORG-f_pinky_02_L
+    400446: ORG-f_pinky_02_R
+    400448: ORG-f_pinky_03_L
+    400450: ORG-f_pinky_03_R
+    400452: ORG-f_ring_01_L
+    400454: ORG-f_ring_01_R
+    400456: ORG-f_ring_02_L
+    400458: ORG-f_ring_02_R
+    400460: ORG-f_ring_03_L
+    400462: ORG-f_ring_03_R
+    400464: ORG-foot_L
+    400466: ORG-foot_R
+    400468: ORG-forearm_L
+    400470: ORG-forearm_R
+    400472: ORG-hand_L
+    400474: ORG-hand_R
+    400476: ORG-hips
+    400478: ORG-neck
+    400480: ORG-palm_01_L
+    400482: ORG-palm_01_R
+    400484: ORG-palm_02_L
+    400486: ORG-palm_02_R
+    400488: ORG-palm_03_L
+    400490: ORG-palm_03_R
+    400492: ORG-palm_04_L
+    400494: ORG-palm_04_R
+    400496: ORG-shin_L
+    400498: ORG-shin_R
+    400500: ORG-shoulder_L
+    400502: ORG-shoulder_R
+    400504: ORG-spine
+    400506: ORG-spine-1
+    400508: ORG-thigh_L
+    400510: ORG-thigh_R
+    400512: ORG-thumb_01_L
+    400514: ORG-thumb_01_R
+    400516: ORG-thumb_02_L
+    400518: ORG-thumb_02_R
+    400520: ORG-thumb_03_L
+    400522: ORG-thumb_03_R
+    400524: ORG-toe_L
+    400526: ORG-toe_R
+    400528: ORG-upper_arm_L
+    400530: ORG-upper_arm_R
+    400532: root
+    400534: WGT-chest
+    400536: WGT-elbow_hose_L
+    400538: WGT-elbow_hose_R
+    400540: WGT-elbow_target_ik_L
+    400542: WGT-elbow_target_ik_R
+    400544: WGT-f_index_01_L
+    400546: WGT-f_index_01_R
+    400548: WGT-f_index_02_L
+    400550: WGT-f_index_02_R
+    400552: WGT-f_index_03_L
+    400554: WGT-f_index_03_R
+    400556: WGT-f_index_L
+    400558: WGT-f_index_R
+    400560: WGT-f_middle_01_L
+    400562: WGT-f_middle_01_R
+    400564: WGT-f_middle_02_L
+    400566: WGT-f_middle_02_R
+    400568: WGT-f_middle_03_L
+    400570: WGT-f_middle_03_R
+    400572: WGT-f_middle_L
+    400574: WGT-f_middle_R
+    400576: WGT-f_pinky_01_L
+    400578: WGT-f_pinky_01_R
+    400580: WGT-f_pinky_02_L
+    400582: WGT-f_pinky_02_R
+    400584: WGT-f_pinky_03_L
+    400586: WGT-f_pinky_03_R
+    400588: WGT-f_pinky_L
+    400590: WGT-f_pinky_R
+    400592: WGT-f_ring_01_L
+    400594: WGT-f_ring_01_R
+    400596: WGT-f_ring_02_L
+    400598: WGT-f_ring_02_R
+    400600: WGT-f_ring_03_L
+    400602: WGT-f_ring_03_R
+    400604: WGT-f_ring_L
+    400606: WGT-f_ring_R
+    400608: WGT-foot_fk_L
+    400610: WGT-foot_fk_R
+    400612: WGT-foot_ik_L
+    400614: WGT-foot_ik_R
+    400616: WGT-foot_roll_ik_L
+    400618: WGT-foot_roll_ik_R
+    400620: WGT-forearm_fk_L
+    400622: WGT-forearm_fk_R
+    400624: WGT-forearm_hose_end_L
+    400626: WGT-forearm_hose_end_R
+    400628: WGT-forearm_hose_L
+    400630: WGT-forearm_hose_R
+    400632: WGT-hand_fk_L
+    400634: WGT-hand_fk_R
+    400636: WGT-hand_ik_L
+    400638: WGT-hand_ik_R
+    400640: WGT-head
+    400642: WGT-hips
+    400644: WGT-knee_hose_L
+    400646: WGT-knee_hose_R
+    400648: WGT-knee_target_ik_L
+    400650: WGT-knee_target_ik_R
+    400652: WGT-neck
+    400654: WGT-palm_L
+    400656: WGT-palm_R
+    400658: WGT-root
+    400660: WGT-shin_fk_L
+    400662: WGT-shin_fk_R
+    400664: WGT-shin_hose_end_L
+    400666: WGT-shin_hose_end_R
+    400668: WGT-shin_hose_L
+    400670: WGT-shin_hose_R
+    400672: WGT-shoulder_L
+    400674: WGT-shoulder_R
+    400676: WGT-spine
+    400678: WGT-spine-1
+    400680: WGT-thigh_fk_L
+    400682: WGT-thigh_fk_R
+    400684: WGT-thigh_hose_end_L
+    400686: WGT-thigh_hose_end_R
+    400688: WGT-thigh_hose_L
+    400690: WGT-thigh_hose_R
+    400692: WGT-thumb_01_L
+    400694: WGT-thumb_01_R
+    400696: WGT-thumb_02_L
+    400698: WGT-thumb_02_R
+    400700: WGT-thumb_03_L
+    400702: WGT-thumb_03_R
+    400704: WGT-thumb_L
+    400706: WGT-thumb_R
+    400708: WGT-toe_L
+    400710: WGT-toe_R
+    400712: WGT-torso
+    400714: WGT-upper_arm_fk_L
+    400716: WGT-upper_arm_fk_R
+    400718: WGT-upper_arm_hose_end_L
+    400720: WGT-upper_arm_hose_end_R
+    400722: WGT-upper_arm_hose_L
+    400724: WGT-upper_arm_hose_R
+    400726: WGT-VIS-foot_ik_L
+    400728: WGT-VIS-foot_ik_R
+    400730: WGT-VIS-hand_ik_L
+    400732: WGT-VIS-hand_ik_R
+    400734: WGT-VIS-thigh_pole_ik_L
+    400736: WGT-VIS-thigh_pole_ik_R
+    400738: WGT-VIS-upper_arm_pole_ik_L
+    400740: WGT-VIS-upper_arm_pole_ik_R
+    400742: Widgets
+    2300000: WGT-chest
+    2300002: WGT-elbow_hose_L
+    2300004: WGT-elbow_hose_R
+    2300006: WGT-elbow_target_ik_L
+    2300008: WGT-elbow_target_ik_R
+    2300010: WGT-f_index_01_L
+    2300012: WGT-f_index_01_R
+    2300014: WGT-f_index_02_L
+    2300016: WGT-f_index_02_R
+    2300018: WGT-f_index_03_L
+    2300020: WGT-f_index_03_R
+    2300022: WGT-f_index_L
+    2300024: WGT-f_index_R
+    2300026: WGT-f_middle_01_L
+    2300028: WGT-f_middle_01_R
+    2300030: WGT-f_middle_02_L
+    2300032: WGT-f_middle_02_R
+    2300034: WGT-f_middle_03_L
+    2300036: WGT-f_middle_03_R
+    2300038: WGT-f_middle_L
+    2300040: WGT-f_middle_R
+    2300042: WGT-f_pinky_01_L
+    2300044: WGT-f_pinky_01_R
+    2300046: WGT-f_pinky_02_L
+    2300048: WGT-f_pinky_02_R
+    2300050: WGT-f_pinky_03_L
+    2300052: WGT-f_pinky_03_R
+    2300054: WGT-f_pinky_L
+    2300056: WGT-f_pinky_R
+    2300058: WGT-f_ring_01_L
+    2300060: WGT-f_ring_01_R
+    2300062: WGT-f_ring_02_L
+    2300064: WGT-f_ring_02_R
+    2300066: WGT-f_ring_03_L
+    2300068: WGT-f_ring_03_R
+    2300070: WGT-f_ring_L
+    2300072: WGT-f_ring_R
+    2300074: WGT-foot_fk_L
+    2300076: WGT-foot_fk_R
+    2300078: WGT-foot_ik_L
+    2300080: WGT-foot_ik_R
+    2300082: WGT-foot_roll_ik_L
+    2300084: WGT-foot_roll_ik_R
+    2300086: WGT-forearm_fk_L
+    2300088: WGT-forearm_fk_R
+    2300090: WGT-forearm_hose_end_L
+    2300092: WGT-forearm_hose_end_R
+    2300094: WGT-forearm_hose_L
+    2300096: WGT-forearm_hose_R
+    2300098: WGT-hand_fk_L
+    2300100: WGT-hand_fk_R
+    2300102: WGT-hand_ik_L
+    2300104: WGT-hand_ik_R
+    2300106: WGT-head
+    2300108: WGT-hips
+    2300110: WGT-knee_hose_L
+    2300112: WGT-knee_hose_R
+    2300114: WGT-knee_target_ik_L
+    2300116: WGT-knee_target_ik_R
+    2300118: WGT-neck
+    2300120: WGT-palm_L
+    2300122: WGT-palm_R
+    2300124: WGT-root
+    2300126: WGT-shin_fk_L
+    2300128: WGT-shin_fk_R
+    2300130: WGT-shin_hose_end_L
+    2300132: WGT-shin_hose_end_R
+    2300134: WGT-shin_hose_L
+    2300136: WGT-shin_hose_R
+    2300138: WGT-shoulder_L
+    2300140: WGT-shoulder_R
+    2300142: WGT-spine
+    2300144: WGT-spine-1
+    2300146: WGT-thigh_fk_L
+    2300148: WGT-thigh_fk_R
+    2300150: WGT-thigh_hose_end_L
+    2300152: WGT-thigh_hose_end_R
+    2300154: WGT-thigh_hose_L
+    2300156: WGT-thigh_hose_R
+    2300158: WGT-thumb_01_L
+    2300160: WGT-thumb_01_R
+    2300162: WGT-thumb_02_L
+    2300164: WGT-thumb_02_R
+    2300166: WGT-thumb_03_L
+    2300168: WGT-thumb_03_R
+    2300170: WGT-thumb_L
+    2300172: WGT-thumb_R
+    2300174: WGT-toe_L
+    2300176: WGT-toe_R
+    2300178: WGT-torso
+    2300180: WGT-upper_arm_fk_L
+    2300182: WGT-upper_arm_fk_R
+    2300184: WGT-upper_arm_hose_end_L
+    2300186: WGT-upper_arm_hose_end_R
+    2300188: WGT-upper_arm_hose_L
+    2300190: WGT-upper_arm_hose_R
+    2300192: WGT-VIS-foot_ik_L
+    2300194: WGT-VIS-foot_ik_R
+    2300196: WGT-VIS-hand_ik_L
+    2300198: WGT-VIS-hand_ik_R
+    2300200: WGT-VIS-thigh_pole_ik_L
+    2300202: WGT-VIS-thigh_pole_ik_R
+    2300204: WGT-VIS-upper_arm_pole_ik_L
+    2300206: WGT-VIS-upper_arm_pole_ik_R
+    3300000: WGT-chest
+    3300002: WGT-elbow_hose_L
+    3300004: WGT-elbow_hose_R
+    3300006: WGT-elbow_target_ik_L
+    3300008: WGT-elbow_target_ik_R
+    3300010: WGT-f_index_01_L
+    3300012: WGT-f_index_01_R
+    3300014: WGT-f_index_02_L
+    3300016: WGT-f_index_02_R
+    3300018: WGT-f_index_03_L
+    3300020: WGT-f_index_03_R
+    3300022: WGT-f_index_L
+    3300024: WGT-f_index_R
+    3300026: WGT-f_middle_01_L
+    3300028: WGT-f_middle_01_R
+    3300030: WGT-f_middle_02_L
+    3300032: WGT-f_middle_02_R
+    3300034: WGT-f_middle_03_L
+    3300036: WGT-f_middle_03_R
+    3300038: WGT-f_middle_L
+    3300040: WGT-f_middle_R
+    3300042: WGT-f_pinky_01_L
+    3300044: WGT-f_pinky_01_R
+    3300046: WGT-f_pinky_02_L
+    3300048: WGT-f_pinky_02_R
+    3300050: WGT-f_pinky_03_L
+    3300052: WGT-f_pinky_03_R
+    3300054: WGT-f_pinky_L
+    3300056: WGT-f_pinky_R
+    3300058: WGT-f_ring_01_L
+    3300060: WGT-f_ring_01_R
+    3300062: WGT-f_ring_02_L
+    3300064: WGT-f_ring_02_R
+    3300066: WGT-f_ring_03_L
+    3300068: WGT-f_ring_03_R
+    3300070: WGT-f_ring_L
+    3300072: WGT-f_ring_R
+    3300074: WGT-foot_fk_L
+    3300076: WGT-foot_fk_R
+    3300078: WGT-foot_ik_L
+    3300080: WGT-foot_ik_R
+    3300082: WGT-foot_roll_ik_L
+    3300084: WGT-foot_roll_ik_R
+    3300086: WGT-forearm_fk_L
+    3300088: WGT-forearm_fk_R
+    3300090: WGT-forearm_hose_end_L
+    3300092: WGT-forearm_hose_end_R
+    3300094: WGT-forearm_hose_L
+    3300096: WGT-forearm_hose_R
+    3300098: WGT-hand_fk_L
+    3300100: WGT-hand_fk_R
+    3300102: WGT-hand_ik_L
+    3300104: WGT-hand_ik_R
+    3300106: WGT-head
+    3300108: WGT-hips
+    3300110: WGT-knee_hose_L
+    3300112: WGT-knee_hose_R
+    3300114: WGT-knee_target_ik_L
+    3300116: WGT-knee_target_ik_R
+    3300118: WGT-neck
+    3300120: WGT-palm_L
+    3300122: WGT-palm_R
+    3300124: WGT-root
+    3300126: WGT-shin_fk_L
+    3300128: WGT-shin_fk_R
+    3300130: WGT-shin_hose_end_L
+    3300132: WGT-shin_hose_end_R
+    3300134: WGT-shin_hose_L
+    3300136: WGT-shin_hose_R
+    3300138: WGT-shoulder_L
+    3300140: WGT-shoulder_R
+    3300142: WGT-spine
+    3300144: WGT-spine-1
+    3300146: WGT-thigh_fk_L
+    3300148: WGT-thigh_fk_R
+    3300150: WGT-thigh_hose_end_L
+    3300152: WGT-thigh_hose_end_R
+    3300154: WGT-thigh_hose_L
+    3300156: WGT-thigh_hose_R
+    3300158: WGT-thumb_01_L
+    3300160: WGT-thumb_01_R
+    3300162: WGT-thumb_02_L
+    3300164: WGT-thumb_02_R
+    3300166: WGT-thumb_03_L
+    3300168: WGT-thumb_03_R
+    3300170: WGT-thumb_L
+    3300172: WGT-thumb_R
+    3300174: WGT-toe_L
+    3300176: WGT-toe_R
+    3300178: WGT-torso
+    3300180: WGT-upper_arm_fk_L
+    3300182: WGT-upper_arm_fk_R
+    3300184: WGT-upper_arm_hose_end_L
+    3300186: WGT-upper_arm_hose_end_R
+    3300188: WGT-upper_arm_hose_L
+    3300190: WGT-upper_arm_hose_R
+    3300192: WGT-VIS-foot_ik_L
+    3300194: WGT-VIS-foot_ik_R
+    3300196: WGT-VIS-hand_ik_L
+    3300198: WGT-VIS-hand_ik_R
+    3300200: WGT-VIS-thigh_pole_ik_L
+    3300202: WGT-VIS-thigh_pole_ik_R
+    3300204: WGT-VIS-upper_arm_pole_ik_L
+    3300206: WGT-VIS-upper_arm_pole_ik_R
+    4300000: male_1_tongue01
+    4300002: male_1_Teeth_Base
+    4300004: male_1_Eyebrow008
+    4300006: male_1_HighPolyEyes
+    4300008: male_1_mhair02
+    4300010: male_1_Tshirt_short
+    4300012: male_1_jeans01
+    4300014: male_1_shoes02
+    4300016: male_1_Body
+    4300018: Character_test_HighPolyEyes
+    4300020: Character_test_Body
+    4300104: WGT-palm_R
+    4300106: WGT-palm_L
+    4300108: WGT-hand_ik_R
+    4300116: WGT-hand_fk_R
+    4300132: WGT-hand_ik_L
+    4300140: WGT-hand_fk_L
+    4300164: WGT-foot_roll_ik_R
+    4300168: WGT-foot_ik_R
+    4300176: WGT-foot_fk_R
+    4300192: WGT-foot_roll_ik_L
+    4300196: WGT-foot_ik_L
+    4300204: WGT-foot_fk_L
+    7400000: run
+    7400002: idle
+    9500000: //RootNode
+    13700000: male_1_Body
+    13700002: male_1_Eyebrow008
+    13700004: male_1_HighPolyEyes
+    13700006: male_1_jeans01
+    13700008: male_1_mhair02
+    13700010: male_1_shoes02
+    13700012: male_1_Teeth_Base
+    13700014: male_1_tongue01
+    13700016: male_1_Tshirt_short
+    13700018: Character_test_Body
+    13700020: Character_test_HighPolyEyes
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: run
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 18
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: male_1
+        weight: 1
+      - path: male_1/root
+        weight: 1
+      - path: male_1/root/DEF-hips
+        weight: 1
+      - path: male_1/root/DEF-hips/DEF-gluteus_L
+        weight: 1
+      - path: male_1/root/DEF-hips/DEF-gluteus_R
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch/DEF-thigh_01_L
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch/DEF-thigh_01_L/DEF-femoris_L
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch/DEF-thigh_01_L/DEF-knee_fan_L
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch/DEF-thigh_01_L/DEF-quadriceps_L
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001/DEF-thigh_01_R
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001/DEF-thigh_01_R/DEF-femoris_R
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001/DEF-thigh_01_R/DEF-knee_fan_R
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001/DEF-thigh_01_R/DEF-quadriceps_R
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_L
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_L/DEF-upper_arm_01_L
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_L/DEF-upper_arm_01_L/DEF-elbow_fan_L
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_L/DEF-upper_arm_01_L/DEF-lat_dorsi_L
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_R
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_R/DEF-upper_arm_01_R
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_R/DEF-upper_arm_01_R/DEF-elbow_fan_R
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_R/DEF-upper_arm_01_R/DEF-lat_dorsi_R
+        weight: 1
+      - path: male_1/root/ORG-hips
+        weight: 1
+      - path: male_1/root/ORG-hips/DEF-spine
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/DEF-spine-1
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-breast_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-breast_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-pectoralis_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-pectoralis_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-stomach
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-trapezius2_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-trapezius2_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck/DEF-platysma_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck/DEF-platysma_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck/DEF-trapezius1_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck/DEF-trapezius1_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-eye_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-eye_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-jaw
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-jaw/DEF-tongue_base
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-jaw/DEF-tongue_base/DEF-tongue_mid
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-jaw/DEF-tongue_base/DEF-tongue_mid/DEF-tongue_tip
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-lolid_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-lolid_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-uplid_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-uplid_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/DEF-shoulder_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/DEF-shoulder_L/DEF-scapula_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/DEF-upper_arm_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/DEF-forearm_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/MCH-forearm_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/MCH-forearm_01_L/MCH-forearm_smth_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/MCH-forearm_01_L/MCH-forearm_smth_01_L/DEF-forearm_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/DEF-hand_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/DEF-f_index_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/DEF-palm_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/DEF-thumb_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/DEF-f_index_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/ORG-f_index_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/ORG-f_index_02_L/DEF-f_index_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/ORG-f_index_02_L/ORG-f_index_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/ORG-f_index_02_L/ORG-f_index_03_L/DEF-f_index_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/DEF-thumb_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/ORG-thumb_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/ORG-thumb_02_L/DEF-thumb_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/ORG-thumb_02_L/ORG-thumb_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/ORG-thumb_02_L/ORG-thumb_03_L/DEF-thumb_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/DEF-f_middle_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/DEF-palm_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/DEF-f_middle_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/ORG-f_middle_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/ORG-f_middle_02_L/DEF-f_middle_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/ORG-f_middle_02_L/ORG-f_middle_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/ORG-f_middle_02_L/ORG-f_middle_03_L/DEF-f_middle_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/DEF-f_ring_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/DEF-palm_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/DEF-f_ring_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/ORG-f_ring_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/ORG-f_ring_02_L/DEF-f_ring_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/ORG-f_ring_02_L/ORG-f_ring_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/ORG-f_ring_02_L/ORG-f_ring_03_L/DEF-f_ring_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/DEF-f_pinky_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/DEF-palm_04_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/DEF-f_pinky_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/ORG-f_pinky_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/ORG-f_pinky_02_L/DEF-f_pinky_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/ORG-f_pinky_02_L/ORG-f_pinky_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/ORG-f_pinky_02_L/ORG-f_pinky_03_L/DEF-f_pinky_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/DEF-shoulder_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/DEF-shoulder_R/DEF-scapula_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/DEF-upper_arm_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/DEF-forearm_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/MCH-forearm_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/MCH-forearm_01_R/MCH-forearm_smth_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/MCH-forearm_01_R/MCH-forearm_smth_01_R/DEF-forearm_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/DEF-hand_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/DEF-f_index_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/DEF-palm_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/DEF-thumb_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/DEF-f_index_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/ORG-f_index_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/ORG-f_index_02_R/DEF-f_index_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/ORG-f_index_02_R/ORG-f_index_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/ORG-f_index_02_R/ORG-f_index_03_R/DEF-f_index_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/DEF-thumb_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/ORG-thumb_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/ORG-thumb_02_R/DEF-thumb_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/ORG-thumb_02_R/ORG-thumb_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/ORG-thumb_02_R/ORG-thumb_03_R/DEF-thumb_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/DEF-f_middle_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/DEF-palm_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/DEF-f_middle_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/ORG-f_middle_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/ORG-f_middle_02_R/DEF-f_middle_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/ORG-f_middle_02_R/ORG-f_middle_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/ORG-f_middle_02_R/ORG-f_middle_03_R/DEF-f_middle_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/DEF-f_ring_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/DEF-palm_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/DEF-f_ring_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/ORG-f_ring_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/ORG-f_ring_02_R/DEF-f_ring_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/ORG-f_ring_02_R/ORG-f_ring_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/ORG-f_ring_02_R/ORG-f_ring_03_R/DEF-f_ring_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/DEF-f_pinky_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/DEF-palm_04_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/DEF-f_pinky_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/ORG-f_pinky_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/ORG-f_pinky_02_R/DEF-f_pinky_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/ORG-f_pinky_02_R/ORG-f_pinky_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/ORG-f_pinky_02_R/ORG-f_pinky_03_R/DEF-f_pinky_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/DEF-thigh_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/DEF-shin_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/MCH-shin_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/MCH-shin_01_L/MCH-shin_smth_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/MCH-shin_01_L/MCH-shin_smth_01_L/DEF-shin_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/MCH-shin_01_L/MCH-shin_smth_01_L/DEF-shin_01_L/DEF-soleus_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/ORG-foot_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/ORG-foot_L/DEF-foot_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/ORG-foot_L/ORG-toe_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/ORG-foot_L/ORG-toe_L/DEF-toe_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/DEF-thigh_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/DEF-shin_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/MCH-shin_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/MCH-shin_01_R/MCH-shin_smth_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/MCH-shin_01_R/MCH-shin_smth_01_R/DEF-shin_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/MCH-shin_01_R/MCH-shin_smth_01_R/DEF-shin_01_R/DEF-soleus_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/ORG-foot_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/ORG-foot_R/DEF-foot_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/ORG-foot_R/ORG-toe_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/ORG-foot_R/ORG-toe_R/DEF-toe_R
+        weight: 1
+      - path: male_1/Widgets
+        weight: 1
+      - path: male_1/Widgets/WGT-chest
+        weight: 1
+      - path: male_1/Widgets/WGT-elbow_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-elbow_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-elbow_target_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-elbow_target_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_R
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_roll_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_roll_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_hose_end_L
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_hose_end_R
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-hand_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-hand_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-hand_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-hand_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-head
+        weight: 1
+      - path: male_1/Widgets/WGT-hips
+        weight: 1
+      - path: male_1/Widgets/WGT-knee_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-knee_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-knee_target_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-knee_target_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-neck
+        weight: 1
+      - path: male_1/Widgets/WGT-palm_L
+        weight: 1
+      - path: male_1/Widgets/WGT-palm_R
+        weight: 1
+      - path: male_1/Widgets/WGT-root
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_hose_end_L
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_hose_end_R
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-shoulder_L
+        weight: 1
+      - path: male_1/Widgets/WGT-shoulder_R
+        weight: 1
+      - path: male_1/Widgets/WGT-spine
+        weight: 1
+      - path: male_1/Widgets/WGT-spine-1
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_hose_end_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_hose_end_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_R
+        weight: 1
+      - path: male_1/Widgets/WGT-toe_L
+        weight: 1
+      - path: male_1/Widgets/WGT-toe_R
+        weight: 1
+      - path: male_1/Widgets/WGT-torso
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_hose_end_L
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_hose_end_R
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-foot_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-foot_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-hand_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-hand_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-thigh_pole_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-thigh_pole_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-upper_arm_pole_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-upper_arm_pole_ik_R
+        weight: 1
+      - path: male_1_Body
+        weight: 1
+      - path: male_1_Eyebrow008
+        weight: 1
+      - path: male_1_HighPolyEyes
+        weight: 1
+      - path: male_1_jeans01
+        weight: 1
+      - path: male_1_mhair02
+        weight: 1
+      - path: male_1_shoes02
+        weight: 1
+      - path: male_1_Teeth_Base
+        weight: 1
+      - path: male_1_tongue01
+        weight: 1
+      - path: male_1_Tshirt_short
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle
+      takeName: Default Take
+      firstFrame: 18
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: male_1
+        weight: 1
+      - path: male_1/root
+        weight: 1
+      - path: male_1/root/DEF-hips
+        weight: 1
+      - path: male_1/root/DEF-hips/DEF-gluteus_L
+        weight: 1
+      - path: male_1/root/DEF-hips/DEF-gluteus_R
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch/DEF-thigh_01_L
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch/DEF-thigh_01_L/DEF-femoris_L
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch/DEF-thigh_01_L/DEF-knee_fan_L
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch/DEF-thigh_01_L/DEF-quadriceps_L
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001/DEF-thigh_01_R
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001/DEF-thigh_01_R/DEF-femoris_R
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001/DEF-thigh_01_R/DEF-knee_fan_R
+        weight: 1
+      - path: male_1/root/MCH-hips_rh_ns_ch_001/DEF-thigh_01_R/DEF-quadriceps_R
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_L
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_L/DEF-upper_arm_01_L
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_L/DEF-upper_arm_01_L/DEF-elbow_fan_L
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_L/DEF-upper_arm_01_L/DEF-lat_dorsi_L
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_R
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_R/DEF-upper_arm_01_R
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_R/DEF-upper_arm_01_R/DEF-elbow_fan_R
+        weight: 1
+      - path: male_1/root/MCH-shoulder_rh_ns_ch_R/DEF-upper_arm_01_R/DEF-lat_dorsi_R
+        weight: 1
+      - path: male_1/root/ORG-hips
+        weight: 1
+      - path: male_1/root/ORG-hips/DEF-spine
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/DEF-spine-1
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-breast_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-breast_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-pectoralis_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-pectoralis_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-stomach
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-trapezius2_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/DEF-chest/DEF-chest-1/DEF-trapezius2_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck/DEF-platysma_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck/DEF-platysma_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck/DEF-trapezius1_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/DEF-neck/DEF-trapezius1_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-eye_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-eye_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-jaw
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-jaw/DEF-tongue_base
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-jaw/DEF-tongue_base/DEF-tongue_mid
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-jaw/DEF-tongue_base/DEF-tongue_mid/DEF-tongue_tip
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-lolid_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-lolid_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-uplid_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-neck/DEF-head/DEF-uplid_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/DEF-shoulder_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/DEF-shoulder_L/DEF-scapula_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/DEF-upper_arm_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/DEF-forearm_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/MCH-forearm_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/MCH-forearm_01_L/MCH-forearm_smth_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/MCH-forearm_01_L/MCH-forearm_smth_01_L/DEF-forearm_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/DEF-hand_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/DEF-f_index_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/DEF-palm_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/DEF-thumb_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/DEF-f_index_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/ORG-f_index_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/ORG-f_index_02_L/DEF-f_index_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/ORG-f_index_02_L/ORG-f_index_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-f_index_01_L/ORG-f_index_02_L/ORG-f_index_03_L/DEF-f_index_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/DEF-thumb_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/ORG-thumb_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/ORG-thumb_02_L/DEF-thumb_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/ORG-thumb_02_L/ORG-thumb_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_01_L/ORG-thumb_01_L/ORG-thumb_02_L/ORG-thumb_03_L/DEF-thumb_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/DEF-f_middle_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/DEF-palm_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/DEF-f_middle_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/ORG-f_middle_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/ORG-f_middle_02_L/DEF-f_middle_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/ORG-f_middle_02_L/ORG-f_middle_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_02_L/ORG-f_middle_01_L/ORG-f_middle_02_L/ORG-f_middle_03_L/DEF-f_middle_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/DEF-f_ring_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/DEF-palm_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/DEF-f_ring_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/ORG-f_ring_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/ORG-f_ring_02_L/DEF-f_ring_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/ORG-f_ring_02_L/ORG-f_ring_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_03_L/ORG-f_ring_01_L/ORG-f_ring_02_L/ORG-f_ring_03_L/DEF-f_ring_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/DEF-f_pinky_01_L_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/DEF-palm_04_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/DEF-f_pinky_01_L_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/ORG-f_pinky_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/ORG-f_pinky_02_L/DEF-f_pinky_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/ORG-f_pinky_02_L/ORG-f_pinky_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_L/ORG-upper_arm_L/ORG-forearm_L/ORG-hand_L/ORG-palm_04_L/ORG-f_pinky_01_L/ORG-f_pinky_02_L/ORG-f_pinky_03_L/DEF-f_pinky_03_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/DEF-shoulder_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/DEF-shoulder_R/DEF-scapula_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/DEF-upper_arm_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/DEF-forearm_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/MCH-forearm_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/MCH-forearm_01_R/MCH-forearm_smth_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/MCH-forearm_01_R/MCH-forearm_smth_01_R/DEF-forearm_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/DEF-hand_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/DEF-f_index_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/DEF-palm_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/DEF-thumb_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/DEF-f_index_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/ORG-f_index_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/ORG-f_index_02_R/DEF-f_index_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/ORG-f_index_02_R/ORG-f_index_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-f_index_01_R/ORG-f_index_02_R/ORG-f_index_03_R/DEF-f_index_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/DEF-thumb_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/ORG-thumb_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/ORG-thumb_02_R/DEF-thumb_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/ORG-thumb_02_R/ORG-thumb_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_01_R/ORG-thumb_01_R/ORG-thumb_02_R/ORG-thumb_03_R/DEF-thumb_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/DEF-f_middle_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/DEF-palm_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/DEF-f_middle_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/ORG-f_middle_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/ORG-f_middle_02_R/DEF-f_middle_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/ORG-f_middle_02_R/ORG-f_middle_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_02_R/ORG-f_middle_01_R/ORG-f_middle_02_R/ORG-f_middle_03_R/DEF-f_middle_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/DEF-f_ring_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/DEF-palm_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/DEF-f_ring_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/ORG-f_ring_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/ORG-f_ring_02_R/DEF-f_ring_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/ORG-f_ring_02_R/ORG-f_ring_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_03_R/ORG-f_ring_01_R/ORG-f_ring_02_R/ORG-f_ring_03_R/DEF-f_ring_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/DEF-f_pinky_01_R_01
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/DEF-palm_04_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/DEF-f_pinky_01_R_02
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/ORG-f_pinky_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/ORG-f_pinky_02_R/DEF-f_pinky_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/ORG-f_pinky_02_R/ORG-f_pinky_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-spine/ORG-spine-1/ORG-chest/ORG-shoulder_R/ORG-upper_arm_R/ORG-forearm_R/ORG-hand_R/ORG-palm_04_R/ORG-f_pinky_01_R/ORG-f_pinky_02_R/ORG-f_pinky_03_R/DEF-f_pinky_03_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/DEF-thigh_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/DEF-shin_02_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/MCH-shin_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/MCH-shin_01_L/MCH-shin_smth_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/MCH-shin_01_L/MCH-shin_smth_01_L/DEF-shin_01_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/MCH-shin_01_L/MCH-shin_smth_01_L/DEF-shin_01_L/DEF-soleus_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/ORG-foot_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/ORG-foot_L/DEF-foot_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/ORG-foot_L/ORG-toe_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_L/ORG-shin_L/ORG-foot_L/ORG-toe_L/DEF-toe_L
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/DEF-thigh_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/DEF-shin_02_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/MCH-shin_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/MCH-shin_01_R/MCH-shin_smth_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/MCH-shin_01_R/MCH-shin_smth_01_R/DEF-shin_01_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/MCH-shin_01_R/MCH-shin_smth_01_R/DEF-shin_01_R/DEF-soleus_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/ORG-foot_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/ORG-foot_R/DEF-foot_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/ORG-foot_R/ORG-toe_R
+        weight: 1
+      - path: male_1/root/ORG-hips/ORG-thigh_R/ORG-shin_R/ORG-foot_R/ORG-toe_R/DEF-toe_R
+        weight: 1
+      - path: male_1/Widgets
+        weight: 1
+      - path: male_1/Widgets/WGT-chest
+        weight: 1
+      - path: male_1/Widgets/WGT-elbow_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-elbow_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-elbow_target_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-elbow_target_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_index_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_middle_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_pinky_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_L
+        weight: 1
+      - path: male_1/Widgets/WGT-f_ring_R
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_roll_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-foot_roll_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_hose_end_L
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_hose_end_R
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-forearm_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-hand_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-hand_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-hand_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-hand_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-head
+        weight: 1
+      - path: male_1/Widgets/WGT-hips
+        weight: 1
+      - path: male_1/Widgets/WGT-knee_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-knee_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-knee_target_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-knee_target_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-neck
+        weight: 1
+      - path: male_1/Widgets/WGT-palm_L
+        weight: 1
+      - path: male_1/Widgets/WGT-palm_R
+        weight: 1
+      - path: male_1/Widgets/WGT-root
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_hose_end_L
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_hose_end_R
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-shin_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-shoulder_L
+        weight: 1
+      - path: male_1/Widgets/WGT-shoulder_R
+        weight: 1
+      - path: male_1/Widgets/WGT-spine
+        weight: 1
+      - path: male_1/Widgets/WGT-spine-1
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_hose_end_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_hose_end_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thigh_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_01_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_01_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_02_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_02_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_03_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_03_R
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_L
+        weight: 1
+      - path: male_1/Widgets/WGT-thumb_R
+        weight: 1
+      - path: male_1/Widgets/WGT-toe_L
+        weight: 1
+      - path: male_1/Widgets/WGT-toe_R
+        weight: 1
+      - path: male_1/Widgets/WGT-torso
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_fk_L
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_fk_R
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_hose_end_L
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_hose_end_R
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_hose_L
+        weight: 1
+      - path: male_1/Widgets/WGT-upper_arm_hose_R
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-foot_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-foot_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-hand_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-hand_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-thigh_pole_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-thigh_pole_ik_R
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-upper_arm_pole_ik_L
+        weight: 1
+      - path: male_1/Widgets/WGT-VIS-upper_arm_pole_ik_R
+        weight: 1
+      - path: male_1_Body
+        weight: 1
+      - path: male_1_Eyebrow008
+        weight: 1
+      - path: male_1_HighPolyEyes
+        weight: 1
+      - path: male_1_jeans01
+        weight: 1
+      - path: male_1_mhair02
+        weight: 1
+      - path: male_1_shoes02
+        weight: 1
+      - path: male_1_Teeth_Base
+        weight: 1
+      - path: male_1_tongue01
+        weight: 1
+      - path: male_1_Tshirt_short
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
