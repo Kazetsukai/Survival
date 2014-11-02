@@ -9,6 +9,7 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 	public float AngleMultiplier;
 
 	Animator anim;
+
 	void Start () 
 	{
 		anim = GetComponent<Animator> ();
@@ -41,23 +42,33 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 
 	public void PlayFootstep()
 	{
-		var audioSource = GetComponentInChildren<AudioSource> ();
+		if (GetComponentInParent<CharacterController> ().isGrounded) {
+						var audioSource = GetComponentInChildren<AudioSource> ();
 
-		var angle = GetComponentInParent<CharacterController> ().velocity.y;
-		Debug.Log (angle);
-		var grassChanceToStumble = 1.0f / (StumbleChanceOneIn / Mathf.Max (AngleMultiplier * Mathf.Abs(angle), 1));
+						var angle = GetComponentInParent<CharacterController> ().velocity.y;
+						Debug.Log (GetVerticalMovementAngle ());
+						var grassChanceToStumble = 1.0f / (StumbleChanceOneIn / Mathf.Max (AngleMultiplier * Mathf.Abs (angle), 1));
 
-		if (Random.Range (0.0f, 1.0f) < grassChanceToStumble) 
+						if (Random.Range (0.0f, 1.0f) < grassChanceToStumble) {
+								audioSource.pitch = 1.0f;
+								audioSource.volume = 1.0f;
+								audioSource.PlayOneShot (stumbleSound);
+						} else {
+								audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
+								audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
+								audioSource.PlayOneShot (footstepSound);
+						}
+				}
+	}
+
+	public float GetVerticalMovementAngle()
+	{
+
+		var direction = GetComponentInParent<CharacterController> ().velocity.normalized;
+		if (Mathf.Abs(direction.y) <= 0.0001)
 		{
-			audioSource.pitch = 1.0f;
-			audioSource.volume = 1.0f;
-			audioSource.PlayOneShot(stumbleSound);
-		} 
-		else
-		{
-			audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
-			audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
-			audioSource.PlayOneShot(footstepSound);
+			return 0;
 		}
+		return Mathf.PI / 2 - Mathf.Acos (Vector3.Dot (Vector3.up, direction));
 	}
 }
