@@ -53,6 +53,7 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 								audioSource.pitch = 1.0f;
 								audioSource.volume = 1.0f;
 								audioSource.PlayOneShot (stumbleSound);
+								SendMessageUpwards("Die");
 						} else {
 								audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
 								audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
@@ -63,7 +64,6 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 
 	public float GetVerticalMovementAngle()
 	{
-
 		var direction = GetComponentInParent<CharacterController> ().velocity.normalized;
 		if (Mathf.Abs(direction.y) <= 0.0001)
 		{
