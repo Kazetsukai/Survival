@@ -4,117 +4,75 @@ using System.Collections.Generic;
 
 public class TerrainBehaviour : MonoBehaviour {
 
+	public GameObject TerrainPrototype;
+
 	// Use this for initialization
 	void Start () {
-		var mesh = GenerateMesh ();
+		var mesh = GenerateMesh (_maps[0]);
 
-		this.GetComponent<MeshFilter> ().mesh = mesh;
-		this.GetComponent<MeshCollider> ().sharedMesh = mesh;
+		var terrainPatch = (GameObject)Instantiate (TerrainPrototype);
+		terrainPatch.GetComponent<MeshFilter> ().mesh = mesh;
+		terrainPatch.GetComponent<MeshCollider> ().sharedMesh = mesh;
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-	Mesh GenerateMesh()
+	Mesh GenerateMesh(int[,,] map)
 	{
-		const int Width = 100;
-		const int Height = 100;
+		int Depth = map.GetLength(0);
+		int Height = map.GetLength(1);
+		int Width = map.GetLength(2);
 
-		int basis = Random.Range (0, 10000);
-
-		var heightMap = new int[Width,Height];
+		List<Vector3> vertices = new List<Vector3> ();
+		List<Vector2> uvs = new List<Vector2> ();
+		List<int> indices = new List<int> ();
 
 		for (int x = 0; x < Width; x++) 
 		{
-			for (int y = 0; y < Height; y++) 
-			{
-				//if (Random.Range (0,3) == 0)
-				heightMap[x,y] = (int)(Mathf.PerlinNoise((basis + x) * ((x / (Width * 5000f))), (basis + y) * ((y / (Height * 5000f)))) * (20 + x / 2f + y / 2f));
-			}
-		}
-
-		
-		/*for (int x = 0; x < Width; x++) 
-		{
-			for (int y = 0; y < Height; y++) 
-			{
-				heightMap[x,y] = (int)heightMap[x,y];
-			}
-		}*/
-		
-
-		int squares = (Width - 1) * (Height - 1);
-		int totalVertices = squares * 6;
-		var vertices = new Vector3[totalVertices];
-		var uvs = new Vector2[totalVertices];
-
-		var indices = new int[squares * 6];
-
-		for (int x = 0; x < Width-1; x++) 
-		{
-			for (int y = 0; y < Height-1; y++) 
+			for (int y = 0; y < Height; y++)
 			{
 				int xOffset = x;
 				int zOffset = y;
 
-				int i = (Width - 1) * y + x;
-				int vI = i * 6;
-
-
-				if (SwapCrease(x, y, heightMap))
+				if (map[0,y,x] == 1)
 				{
-					vertices[vI] = new Vector3 (0 + xOffset, heightMap[x, y+1], 1 + zOffset);
-					vertices[vI+1] = new Vector3 (1 + xOffset, heightMap[x+1, y+1], 1 + zOffset);
-					vertices[vI+2] = new Vector3 (0 + xOffset, heightMap[x, y], 0 + zOffset);
-					
-					vertices[vI+3] = new Vector3 (0 + xOffset, heightMap[x, y], 0 + zOffset);
-					vertices[vI+4] = new Vector3 (1 + xOffset, heightMap[x+1, y+1], 1 + zOffset);
-					vertices[vI+5] = new Vector3 (1 + xOffset, heightMap[x+1, y], 0 + zOffset);
+					vertices.Add (new Vector3 (0 + xOffset, 1, 1 + zOffset));
+					uvs.Add (new Vector2 (0, 1));
+					indices.Add (vertices.Count-1);
 
-					uvs[vI] = new Vector2 (0, 1);
-					uvs[vI+1] = new Vector2 (1, 1);
-					uvs[vI+2] = new Vector2 (0, 0);
-					
-					uvs[vI+3] = new Vector2 (0, 0);
-					uvs[vI+4] = new Vector2 (1, 1);
-					uvs[vI+5] = new Vector2 (1, 0);
+					vertices.Add (new Vector3 (1 + xOffset, 1, 1 + zOffset));
+					uvs.Add (new Vector2 (1, 1));
+					indices.Add (vertices.Count-1);
+
+					vertices.Add (new Vector3 (0 + xOffset, 1, 0 + zOffset));
+					uvs.Add (new Vector2 (0, 0));
+					indices.Add (vertices.Count-1);
+
+
+					vertices.Add (new Vector3 (0 + xOffset, 1, 0 + zOffset));
+					uvs.Add (new Vector2 (0, 0));
+					indices.Add (vertices.Count-1);
+
+					vertices.Add (new Vector3 (1 + xOffset, 1, 1 + zOffset));
+					uvs.Add (new Vector2 (1, 1));
+					indices.Add (vertices.Count-1);
+
+					vertices.Add (new Vector3 (1 + xOffset, 1, 0 + zOffset));
+					uvs.Add (new Vector2 (1, 0));
+					indices.Add (vertices.Count-1);
 				}
-				else
-				{
-					vertices[vI] = new Vector3 (0 + xOffset, heightMap[x, y], 0 + zOffset);
-					vertices[vI+1] = new Vector3 (0 + xOffset, heightMap[x, y+1], 1 + zOffset);
-					vertices[vI+2] = new Vector3 (1 + xOffset, heightMap[x+1, y], 0 + zOffset);
-					
-					vertices[vI+3] = new Vector3 (1 + xOffset, heightMap[x+1, y], 0 + zOffset);
-					vertices[vI+4] = new Vector3 (0 + xOffset, heightMap[x, y+1], 1 + zOffset);
-					vertices[vI+5] = new Vector3 (1 + xOffset, heightMap[x+1, y+1], 1 + zOffset);
-					
-					uvs[vI] = new Vector2 (0, 0);
-					uvs[vI+1] = new Vector2 (0, 1);
-					uvs[vI+2] = new Vector2 (1, 0);
-					
-					uvs[vI+3] = new Vector2 (1, 0);
-					uvs[vI+4] = new Vector2 (0, 1);
-					uvs[vI+5] = new Vector2 (1, 1);
-				}
-				
-				indices[vI] = vI;
-				indices[vI+1] = vI+1;
-				indices[vI+2] = vI+2;
-				
-				indices[vI+3] = vI+3;
-				indices[vI+4] = vI+4;
-				indices[vI+5] = vI+5;
 			}
 		}
 
 		var mesh = new Mesh ();
 
-		mesh.vertices = vertices;
-		mesh.uv = uvs;
-		mesh.SetIndices (indices, MeshTopology.Triangles, 0);
+		mesh.vertices = vertices.ToArray();
+		mesh.uv = uvs.ToArray();
+		mesh.SetIndices (indices.ToArray(), MeshTopology.Triangles, 0);
 		mesh.RecalculateNormals ();
 		mesh.RecalculateBounds ();
 	
@@ -122,13 +80,53 @@ public class TerrainBehaviour : MonoBehaviour {
 
 		return mesh;
 	}
-
-	bool SwapCrease (int x, int y, int[,] heightMap)
-	{
-		return (heightMap[x,y+1] > heightMap[x,y] && heightMap[x,y+1] > heightMap[x+1,y+1] && heightMap[x,y+1] > heightMap[x+1,y]) ||
-			   (heightMap[x+1,y] > heightMap[x,y] && heightMap[x+1,y+1] > heightMap[x,y+1] && heightMap[x+1,y+1] > heightMap[x+1,y+1]) ||
-			   (heightMap[x,y+1] < heightMap[x,y] && heightMap[x,y+1] < heightMap[x+1,y+1] && heightMap[x,y+1] < heightMap[x+1,y]) ||
-			   (heightMap[x+1,y] < heightMap[x,y] && heightMap[x+1,y+1] < heightMap[x,y+1] && heightMap[x+1,y+1] < heightMap[x+1,y+1]) ||
-			   (heightMap[x,y] > heightMap[x,y+1] && heightMap[x,y] > heightMap[x+1,y] && heightMap[x+1,y+1] > heightMap[x+1,y] && heightMap[x+1,y+1] > heightMap[x,y+1]);
-	}
+	
+	int[][,,] _maps = new int[][,,] {
+		new int[,,] {{
+				{0,0,1,0,0},
+				{0,1,1,1,0},
+				{0,0,1,0,0}
+			}},		
+		
+		new int[,,] {{
+				{1,0,0,0,0},
+				{1,0,1,1,0},
+				{1,0,0,0,0}
+			}},
+		
+		new int[,,] {
+			{
+				{0,1,0},
+				{1,1,0},
+				{0,0,0}
+			},{
+				{0,0,0},
+				{0,1,0},
+				{0,1,0}
+			},
+		},
+		
+		new int[,,] {
+			{
+				{1},
+			},{
+				{1},
+			},{
+				{1},
+			}
+		},
+		
+		new int[,,] {
+			{
+				{1,0},
+				{0,0},
+			},{
+				{0,1},
+				{0,0},
+			},{
+				{0,0},
+				{1,1},
+			}
+		},
+	};
 }
