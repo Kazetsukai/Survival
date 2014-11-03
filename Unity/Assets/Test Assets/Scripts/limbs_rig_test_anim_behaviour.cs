@@ -43,23 +43,23 @@ public class limbs_rig_test_anim_behaviour : MonoBehaviour
 	public void PlayFootstep()
 	{
 		if (GetComponentInParent<CharacterController> ().isGrounded) {
-						var audioSource = GetComponentInChildren<AudioSource> ();
+			var audioSource = GetComponentInChildren<AudioSource> ();
 
-						var angle = GetComponentInParent<CharacterController> ().velocity.y;
-						Debug.Log (GetVerticalMovementAngle ());
-						var grassChanceToStumble = 1.0f / (StumbleChanceOneIn / Mathf.Max (AngleMultiplier * Mathf.Abs (angle), 1));
+			var angle = GetComponentInParent<CharacterController> ().velocity.y;
+			Debug.Log (GetVerticalMovementAngle ());
+			var grassChanceToStumble = 1.0f / (StumbleChanceOneIn / Mathf.Max (AngleMultiplier * Mathf.Abs (angle), 1));
 
-						if (Random.Range (0.0f, 1.0f) < grassChanceToStumble) {
-								audioSource.pitch = 1.0f;
-								audioSource.volume = 1.0f;
-								audioSource.PlayOneShot (stumbleSound);
-								SendMessageUpwards("Die");
-						} else {
-								audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
-								audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
-								audioSource.PlayOneShot (footstepSound);
-						}
-				}
+			if (Random.Range (0.0f, 1.0f) < grassChanceToStumble) {
+				audioSource.pitch = 1.0f;
+				audioSource.volume = 1.0f;
+				audioSource.PlayOneShot (stumbleSound);
+				SendMessageUpwards("Die");
+			} else {
+				audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
+				audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
+				audioSource.PlayOneShot (footstepSound);
+			}
+		}
 	}
 
 	public float GetVerticalMovementAngle()
