@@ -42,7 +42,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 
 	public void PlayFootstep()
 	{
-		if (GetComponentInParent<CharacterController> ().isGrounded) {
+		if (GetComponentInParent<CustomCharacterController> ().IsGrounded()) {
 						var audioSource = GetComponentInChildren<AudioSource> ();
 
 						var angle = GetComponentInParent<CharacterController> ().velocity.y;
