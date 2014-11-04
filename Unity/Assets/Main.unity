@@ -1077,7 +1077,7 @@ GameObject:
   - 64: {fileID: 494294463}
   - 23: {fileID: 494294462}
   - 114: {fileID: 494294466}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3759,6 +3759,7 @@ GameObject:
   - 114: {fileID: 2057535966}
   - 136: {fileID: 2057535965}
   - 114: {fileID: 2057535964}
+  - 114: {fileID: 2057535968}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -3789,9 +3790,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2057535962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 692bb590840004a4d84f8f7896a025cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 39355f2847526c449a50e2d8e8d0e2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeedFactor: .699999988
+  jogSpeed: 30
+  sprintSpeedFactor: 1.39999998
+  acceleration: 10
+  stepDownTolerance: .5
 --- !u!136 &2057535965
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3838,6 +3844,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
+--- !u!114 &2057535968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2057535962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4692897839d6b474e84409de2697cb90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepSound: {fileID: 8300000, guid: daf8a34d8c47b70489f0a775f3a8bd1c, type: 3}
+  stumbleSound: {fileID: 8300000, guid: 0696ee3e5263873428a89c09d70a8d45, type: 3}
+  StumbleChanceOneIn: 1000
+  AngleMultiplier: 0
 --- !u!1 &2063765871
 GameObject:
   m_ObjectHideFlags: 0
