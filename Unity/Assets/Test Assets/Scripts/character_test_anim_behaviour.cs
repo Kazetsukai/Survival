@@ -45,7 +45,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 		if (GetComponentInParent<CustomCharacterController> ().IsGrounded()) {
 						var audioSource = GetComponentInChildren<AudioSource> ();
 
-						var angle = GetComponentInParent<CharacterController> ().velocity.y;
+						var angle = GetComponentInParent<Rigidbody>().velocity.y;
 						Debug.Log (GetVerticalMovementAngle ());
 						var grassChanceToStumble = 1.0f / (StumbleChanceOneIn / Mathf.Max (AngleMultiplier * Mathf.Abs (angle), 1));
 
@@ -63,7 +63,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 
 	public float GetVerticalMovementAngle()
 	{
-		var direction = GetComponentInParent<CharacterController> ().velocity.normalized;
+		var direction = GetComponentInParent<Rigidbody>().velocity.normalized;
 		if (Mathf.Abs(direction.y) <= 0.0001)
 		{
 			return 0;
