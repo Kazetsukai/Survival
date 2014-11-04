@@ -53,7 +53,6 @@ public class character_test_anim_behaviour : MonoBehaviour
 								audioSource.pitch = 1.0f;
 								audioSource.volume = 1.0f;
 								audioSource.PlayOneShot (stumbleSound);
-								SendMessageUpwards("Die");
 						} else {
 								audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
 								audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
