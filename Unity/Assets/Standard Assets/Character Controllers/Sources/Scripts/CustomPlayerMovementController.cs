@@ -3,11 +3,11 @@ using System.Collections;
 
 public class CustomPlayerMovementController : MonoBehaviour {
 
-	public float walkSpeed = 3F;
-	public float jogSpeed = 6F;
-	public float sprintSpeed = 10F;
-	public float backwardSpeed = 2F;
-	public float acceleration = 10F;
+	public float walkSpeedFactor = 0.5F;
+	public float jogSpeed = 30F;
+	public float sprintSpeedFactor = 1.5F;
+	//public float backwardSpeedFactor = 0.3F;
+	public float acceleration = 100F;
 	Rigidbody rb;
 
 	// Use this for initialization
@@ -17,11 +17,15 @@ public class CustomPlayerMovementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//float forwardSpeed = Input.GetAxis ("Vertical") * (1 - Input.GetAxis("Walk") * 0.5) * (1 + Input.GetAxis("Sprint"));
-		//float sideSpeed = Input.GetAxis ("Horizontal");
-		Vector3 movementVector = Vector3.forward * Input.GetAxis ("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
-		movementVector.Normalize ();
-		movementVector = movementVector * acceleration;
-		rb.AddRelativeForce (movementVector);
+	}
+
+	void FixedUpdate() {
+		Vector3 movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
+		Vector3 targetVector = movementVector.normalized * jogSpeed * (Input.GetAxis ("Vertical") > 0 ? (Input.GetAxis ("Walk") == 1F ? walkSpeedFactor : 1 * Input.GetAxis("Sprint") == 1 ? sprintSpeedFactor : 1) : walkSpeedFactor);
+		Vector3 currentVelocity = rigidbody.velocity;
+		currentVelocity.y = 0F;
+		Vector3 accelerationVector = (targetVector - currentVelocity);
+		accelerationVector = Vector3.ClampMagnitude (accelerationVector, acceleration);
+		rb.AddForce (accelerationVector);
 	}
 }
