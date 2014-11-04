@@ -6,10 +6,15 @@ public class CustomPlayerMovementController : MonoBehaviour {
 	public float walkSpeedFactor = 0.5F;
 	public float jogSpeed = 30F;
 	public float sprintSpeedFactor = 1.5F;
-	//public float backwardSpeedFactor = 0.3F;
 	public float acceleration = 100F;
+	public float stepDownTolerance = 0.5F;
+	float height = 1.0F;
+	float altitude = 0;
 	Rigidbody rb;
-	bool isGrounded = true;
+	bool isGrounded = false;
+	bool wasGrounded = true;
+	bool steppingDown = false;
+	int terrainCollisionCount = 0;
 	RaycastHit hit;
 
 	// Use this for initialization
@@ -22,8 +27,15 @@ public class CustomPlayerMovementController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		isGrounded = GroundedTest ();
+		int layerMask = 1 << 8;
+		Physics.Raycast(transform.position, Vector3.down, out hit, height, layerMask);
+		altitude = Mathf.Max(hit.distance - height, 0);
+
+		wasGrounded = isGrounded;
+		isGrounded = IsGrounded ();
+
 		if (isGrounded) {
+			//Debug.Log("Grounded");
 			Vector3 movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
 			Vector3 targetVector = movementVector.normalized * jogSpeed * (Input.GetAxis ("Vertical") > 0 ? (Input.GetAxis ("Walk") == 1F ? walkSpeedFactor : 1 * Input.GetAxis ("Sprint") == 1 ? sprintSpeedFactor : 1) : walkSpeedFactor);
 			Vector3 currentVelocity = rigidbody.velocity;
@@ -31,32 +43,45 @@ public class CustomPlayerMovementController : MonoBehaviour {
 			Vector3 accelerationVector = (targetVector - currentVelocity);
 			accelerationVector = Vector3.ClampMagnitude (accelerationVector, acceleration);
 
-			float theta = Vector3.Angle(hit.normal, Vector3.Cross (accelerationVector, Vector3.Cross(hit.normal, accelerationVector)));
+			float theta = Vector3.Angle (hit.normal, Vector3.Cross (accelerationVector, Vector3.Cross (hit.normal, accelerationVector)));
 			theta *= Mathf.Deg2Rad;
 
 			Vector3 v = accelerationVector;
 			Vector3 k = -transform.right;
 
-			Vector3 vRot = v * Mathf.Cos(theta) + (Vector3.Cross(k, v)) * Mathf.Sin(theta) + k * (Vector3.Dot(k, v)) * (1 - Mathf.Cos(theta));
+			Vector3 vRot = v * Mathf.Cos (theta) + (Vector3.Cross (k, v)) * Mathf.Sin (theta) + k * (Vector3.Dot (k, v)) * (1 - Mathf.Cos (theta));
 			rb.AddForce (vRot);
+			steppingDown = false;
 
-			//Debug.DrawRay (transform.position, accelerationVector, Color.red, 0, true);
-			//Debug.DrawRay (transform.position, currentVelocity, Color.green, 0, true);
-			//Debug.DrawRay (hit.point, hit.normal, Color.blue, 0, true);
-			//Debug.DrawRay (hit.point, Vector3.Cross(hit.normal, accelerationVector), Color.cyan, 0, true);
-			//Debug.DrawRay (hit.point, Vector3.Cross (accelerationVector, Vector3.Cross(hit.normal, accelerationVector)), Color.magenta, 0, true);
-			//Debug.Log(Vector3.Angle(hit.normal, Vector3.Cross (accelerationVector, Vector3.Cross(hit.normal, accelerationVector))));
-			//Debug.DrawRay(hit.point, vRot, Color.red, 0, true);
-
+		} else if ((wasGrounded && altitude < stepDownTolerance) || steppingDown && altitude < stepDownTolerance) {
+			//Debug.Log("Stepping down");
+			transform.Translate(Vector3.down * altitude);
+			rb.velocity += Vector3.down * altitude;
+			steppingDown = true;
+		} else {
+			//Debug.Log ("Not stepping down");
+			steppingDown = false;
 		}
 	}
 
 	public bool IsGrounded() {
-		return isGrounded;
+		return terrainCollisionCount > 0;
 	}
 
-	private bool GroundedTest() {
-		int layerMask = 1 << 8;
-		return Physics.Raycast (transform.position, Vector3.down, out hit, 2, layerMask);
+	void OnCollisionEnter(Collision collision) {
+		if (collision.gameObject.layer == 8) {
+			//Debug.Log("Hit the ground");
+			terrainCollisionCount += 1;
+		}
+	}
+
+	void OnCollisionExit(Collision collision) {
+		if (collision.gameObject.layer == 8) {
+			//Debug.Log("Left the ground");
+			terrainCollisionCount -= 1;
+		}
+
 	}
 }
+
+
