@@ -3688,7 +3688,7 @@ GameObject:
   - 33: {fileID: 1989865181}
   - 64: {fileID: 1989865180}
   - 23: {fileID: 1989865179}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3793,9 +3793,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeedFactor: .699999988
-  jogSpeed: 30
+  jogSpeed: 8
   sprintSpeedFactor: 1.39999998
-  acceleration: 10
+  acceleration: 100
   stepDownTolerance: .5
 --- !u!136 &2057535965
 CapsuleCollider:

@@ -28,20 +28,24 @@ public class CustomCharacterController : MonoBehaviour {
 	
 	void FixedUpdate() {
 		int layerMask = 1 << 8;
-		Physics.Raycast(transform.position, Vector3.down, out hit, height, layerMask);
+		Physics.Raycast(transform.position, Vector3.down, out hit, 15, layerMask);
 		altitude = Mathf.Max(hit.distance - height, 0);
 		
 		wasGrounded = isGrounded;
 		isGrounded = IsGrounded ();
-		
+
+		float slopeAngle = Vector3.Angle (hit.normal, transform.up) * Mathf.Deg2Rad;
+		float slopeModifier = 1F - Mathf.Tan((slopeAngle/64) * (slopeAngle/64));
+		//slopeModifier = 1;
+		Debug.Log (slopeModifier);
 		if (isGrounded) {
 			//Debug.Log("Grounded");
 			Vector3 movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
-			Vector3 targetVector = movementVector.normalized * jogSpeed * (Input.GetAxis ("Vertical") > 0 ? (Input.GetAxis ("Walk") == 1F ? walkSpeedFactor : 1 * Input.GetAxis ("Sprint") == 1 ? sprintSpeedFactor : 1) : walkSpeedFactor);
+			Vector3 targetVector = movementVector.normalized * jogSpeed * (Input.GetAxis ("Vertical") > 0 ? (Input.GetAxis ("Walk") == 1F ? walkSpeedFactor : 1 * Input.GetAxis ("Sprint") == 1 ? sprintSpeedFactor : 1) : walkSpeedFactor) * slopeModifier;
 			Vector3 currentVelocity = rigidbody.velocity;
 			currentVelocity.y = 0F;
 			Vector3 accelerationVector = (targetVector - currentVelocity);
-			accelerationVector = Vector3.ClampMagnitude (accelerationVector, acceleration);
+			accelerationVector = Vector3.ClampMagnitude (accelerationVector, acceleration) * (1 + slopeAngle / 90);
 			
 			float theta = Vector3.Angle (hit.normal, Vector3.Cross (accelerationVector, Vector3.Cross (hit.normal, accelerationVector)));
 			theta *= Mathf.Deg2Rad;
