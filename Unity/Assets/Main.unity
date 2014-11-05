@@ -3167,9 +3167,10 @@ MonoBehaviour:
   sprintSpeedFactor: 1.5
   acceleration: 4
   stepDownTolerance: .5
-  stumbleOneInBase: 900
+  stumbleOneInBase: 10
   stumbleDegAngleMultiplier: 15
   maximumSlope: 50
+  isStumbling: 0
 --- !u!136 &2057535965
 CapsuleCollider:
   m_ObjectHideFlags: 0

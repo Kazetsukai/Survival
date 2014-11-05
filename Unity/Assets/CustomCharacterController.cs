@@ -11,6 +11,7 @@ public class CustomCharacterController : MonoBehaviour {
 	public float stumbleOneInBase = 900F;
 	public float stumbleDegAngleMultiplier = 20F;
 	public float maximumSlope = 50F;
+	public bool isStumbling = false;
 	float altitude = 0;
 	float objectiveSlopeAngle = 0F;
 	float relativeSlopeAngle = 0F;
@@ -31,8 +32,15 @@ public class CustomCharacterController : MonoBehaviour {
 	void Update () {
 
 	}
-	
+
+	void OnGUI() {
+		if (isStumbling) {
+			GUI.Box (new Rect (Screen.width /2 - 35, Screen.height /2 - 10, 70, 20), "STUMBLE");
+		}
+	}
+
 	void FixedUpdate() {
+		//Debug.Log (isStumbling);
 		// work out the bottom of the player
 		Vector3 bottomOfCapsule = transform.position - Vector3.up * cc.height / 2;
 
@@ -125,16 +133,12 @@ public class CustomCharacterController : MonoBehaviour {
 
 			// we can't let people walk up slopes that are tpp steep just by walking sideways
 			if (ObjectiveSlopeAngleDeg() > maximumSlope) {
-				Debug.Log("walking up a cliff");
 				accelerationVector.y = Mathf.Min(0, accelerationVector.y);
 				if (rb.velocity.y > 0) {
 					Vector3 newVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 					rb.velocity = newVelocity;
 				}
-			} else {
-				Debug.Log(ObjectiveSlopeAngleDeg());
 			}
-
 			// and apply the accelerationVector as a force to the rigidbody or stop miniscule drift
 			if (movementVector == Vector3.zero && rb.velocity.magnitude < 0.1) {
 				rb.velocity = Vector3.zero;
