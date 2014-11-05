@@ -3163,9 +3163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeedFactor: .600000024
-  jogSpeed: 3
+  jogSpeed: 4
   sprintSpeedFactor: 1.5
-  acceleration: 3
+  acceleration: 4
   stepDownTolerance: .5
   stumbleOneInBase: 900
   stumbleDegAngleMultiplier: 15

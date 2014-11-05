@@ -29,6 +29,7 @@ public class CustomCharacterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 	}
 	
 	void FixedUpdate() {
@@ -37,14 +38,17 @@ public class CustomCharacterController : MonoBehaviour {
 
 		// raycast down to find the terrain below
 		int layerMask = 1 << 8; // terrain layer
-		Physics.Raycast(bottomOfCapsule, Vector3.down, out hit, 1000, layerMask);
+		Physics.Raycast(transform.position, Vector3.down, out hit, 1000, layerMask);
 
 		// now that we have the normal of the terrain, work out the point on the capsule collider that is closest to the terrain
-		Vector3 newRayCastOrigin = bottomOfCapsule + Vector3.up * cc.radius - hit.normal * cc.radius + Vector3.up * 0.05F; // a small amount up to ensure the raycast doesn't start below the terrain
+		Vector3 newRayCastOrigin = bottomOfCapsule + Vector3.up * cc.radius - hit.normal * cc.radius + Vector3.up * cc.radius; // a small amount up to ensure the raycast doesn't start below the terrain
 
 		// raycast from this new point down to find the altitude
-		Physics.Raycast(newRayCastOrigin, Vector3.down, out hit, 1000, layerMask);
-		altitude = hit.distance + 0.05F; // correcting for the offset added earlier
+		if (Physics.Raycast (newRayCastOrigin, Vector3.down, out hit, 1000, layerMask)) {
+			altitude = Mathf.Max (0, hit.distance - cc.radius); // correcting for the offset added earlier
+		} else {
+			altitude = 10000;
+		}
 
 		// remember the player's previous grounded state
 		wasGrounded = isGrounded;
@@ -64,6 +68,7 @@ public class CustomCharacterController : MonoBehaviour {
 			rb.velocity = newVelocityVector.normalized * rb.velocity.magnitude;
 			
 			// player is now still touching the ground
+
 			isGrounded = true;
 		}
 
@@ -93,18 +98,42 @@ public class CustomCharacterController : MonoBehaviour {
 
 				}
 				// scale the vector to the speed as determined by the player inputs and the relativeSlopeSpeedMultiplier
-				movementVector = movementVector.normalized * jogSpeed * (Input.GetAxis ("Vertical") > 0 ? (Input.GetAxis ("Walk") > 0 ? walkSpeedFactor : 1 * Input.GetAxis ("Sprint") > 0 ? sprintSpeedFactor : 1) : walkSpeedFactor) * relativeSlopeSpeedMultiplier;
+				movementVector = movementVector.normalized * jogSpeed;
+				if (Input.GetAxis ("Vertical") > 0) {
+					if (Input.GetAxis ("Walk") > 0) {
+						movementVector = movementVector * walkSpeedFactor;
+					}
+					if (Input.GetAxis ("Sprint") > 0) {
+						movementVector = movementVector * sprintSpeedFactor;
+					}
+				} else {
+					movementVector = movementVector * walkSpeedFactor;
+				}
+				if (movementVector.y > 0) {
+					movementVector = movementVector * relativeSlopeSpeedMultiplier;
+				} else {
+					movementVector = movementVector / relativeSlopeSpeedMultiplier;
+				}
 			}
 			
-			//Debug.DrawRay(bottomOfCapsule, movementVector, Color.green);
-			//Debug.Log(movementVector.magnitude);
-
 			// now we have the movementVector pointing in the right direction and at the right magnitude
 			// next is to work out the accelerationVector required to move the player in this new direction
 			Vector3 accelerationVector = (movementVector - rb.velocity);
 
 			// now we scale the accelerationVector to the acceleration value
 			accelerationVector = accelerationVector.normalized * acceleration;
+
+			// we can't let people walk up slopes that are tpp steep just by walking sideways
+			if (ObjectiveSlopeAngleDeg() > maximumSlope) {
+				Debug.Log("walking up a cliff");
+				accelerationVector.y = Mathf.Min(0, accelerationVector.y);
+				if (rb.velocity.y > 0) {
+					Vector3 newVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+					rb.velocity = newVelocity;
+				}
+			} else {
+				Debug.Log(ObjectiveSlopeAngleDeg());
+			}
 
 			// and apply the accelerationVector as a force to the rigidbody or stop miniscule drift
 			if (movementVector == Vector3.zero && rb.velocity.magnitude < 0.1) {
