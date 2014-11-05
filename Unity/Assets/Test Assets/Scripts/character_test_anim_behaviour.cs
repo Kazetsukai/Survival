@@ -46,7 +46,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 						var audioSource = GetComponentInChildren<AudioSource> ();
 
 						var angle = GetComponentInParent<Rigidbody>().velocity.y;
-						Debug.Log (GetVerticalMovementAngle ());
+						//Debug.Log (GetVerticalMovementAngle ());
 						var grassChanceToStumble = 1.0f / (StumbleChanceOneIn / Mathf.Max (AngleMultiplier * Mathf.Abs (angle), 1));
 
 						if (Random.Range (0.0f, 1.0f) < grassChanceToStumble) {
