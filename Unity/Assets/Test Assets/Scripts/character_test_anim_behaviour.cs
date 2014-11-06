@@ -19,6 +19,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 	{
 		anim = GetComponent<Animator> ();
 		cc = GetComponentInParent<CustomCharacterController> ();
+
 	}
 
 	float PlayerSpeed()
@@ -29,9 +30,11 @@ public class character_test_anim_behaviour : MonoBehaviour
 	void Update () 
 	{
 		//Rough code to change animation state for debug legs. Makes them run if the player presses forward button.
-		float jump = Input.GetAxis ("Jump");
+		//float jump = Input.GetAxis ("Jump");
 
-		Debug.Log ("Player speed: " + PlayerSpeed().ToString ());
+		//Debug.Log ("Player speed: " + PlayerSpeed().ToString ());
+		//anim.bodyRotation.SetLookRotation (cc.rigidbody.velocity, Vector3.up);
+
 
 		if (PlayerSpeed() > 0.1f)	//rather than != 0 (just to prevent noise triggering animations)
 		{
@@ -58,14 +61,14 @@ public class character_test_anim_behaviour : MonoBehaviour
 			//AnimSetIdle();
 		}
 	
-		if (jump != 0) 
-		{
-			anim.SetBool("jump", true);
-		}
-		else
-		{
-			anim.SetBool("jump", false);
-		}
+		//if (jump != 0) 
+		//{
+		//	anim.SetBool("jump", true);
+		//}
+		//else
+		//{
+		//	anim.SetBool("jump", false);
+		//}
 	}
 
 	void AnimSetIdle()
@@ -91,7 +94,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 
 	public void PlayFootstep()
 	{
-		if (GetComponentInParent<CustomCharacterController> ().IsGrounded()) {
+		if (cc.IsGrounded()) {
 			var audioSource = GetComponentInChildren<AudioSource> ();
 
 			if (Random.Range (0.0f, 1.0f) < 1 / cc.stumbleOneInBase) {

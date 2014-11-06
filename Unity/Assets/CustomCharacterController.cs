@@ -40,7 +40,8 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		//Debug.Log (isStumbling);
+		//Debug.Log ("Velocity normal");
+		//Debug.Log (terrainCollisionCount);
 		// work out the bottom of the player
 		Vector3 bottomOfCapsule = transform.position - Vector3.up * cc.height / 2;
 
@@ -67,17 +68,19 @@ public class CustomCharacterController : MonoBehaviour {
 		// if the player has just left the ground but only by a small amount, i.e. has gone over a crease
 		if (!isGrounded && wasGrounded && altitude < stepDownTolerance) {
 			// move the player down to the ground
-			transform.position -= Vector3.up * altitude;
+			transform.position -= Vector3.up * altitude * 1.1F;
 
 			// adjust the velocity direction to keep the player moving along the surface of the terrain
 			Vector3 newVelocityVector = -Vector3.Cross(hit.normal, transform.right);
 			
 			// adjust the velocity magnitude back to what it was
 			rb.velocity = newVelocityVector.normalized * rb.velocity.magnitude;
+			//Debug.Log("I am messing with the player's velocity");
 			
 			// player is now still touching the ground
 
 			isGrounded = true;
+			//rb.useGravity = true;
 		}
 
 		// work out the actual angle of the sloped terrain
@@ -96,10 +99,12 @@ public class CustomCharacterController : MonoBehaviour {
 				// if the player is standing on a slope, we need to re-orient the desired direction
 				if (objectiveSlopeAngle != 0) {
 					// manipulate the movementVector until it is pointing up or down the slope
-					movementVector = Vector3.Cross(Vector3.Cross (hit.normal, transform.forward), hit.normal);
+					movementVector = Vector3.Cross(Vector3.Cross (hit.normal, movementVector), hit.normal);
 
 					// calculate the relativeSlopeAngle
-					relativeSlopeAngle = Vector3.Angle(transform.forward, movementVector) * Mathf.Deg2Rad;
+					Vector3 lateralMovementVector =  movementVector;
+					lateralMovementVector.y = 0F;
+					relativeSlopeAngle = Vector3.Angle(lateralMovementVector, movementVector) * Mathf.Deg2Rad;
 
 					// use the relativeSlopeAngle to work out relativeSlopeSpeedMultiplier
 					relativeSlopeSpeedMultiplier = 1 - Mathf.Min(Mathf.Pow ((movementVector.y < 0 ? -RelativeSlopeAngleDeg() : RelativeSlopeAngleDeg()) / maximumSlope, 2), 1);
@@ -137,14 +142,21 @@ public class CustomCharacterController : MonoBehaviour {
 				if (rb.velocity.y > 0) {
 					Vector3 newVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 					rb.velocity = newVelocity;
+					//Debug.Log("I am stopping the player from walking up a cliff");
 				}
 			}
 			// and apply the accelerationVector as a force to the rigidbody or stop miniscule drift
 			if (movementVector == Vector3.zero && rb.velocity.magnitude < 0.1) {
 				rb.velocity = Vector3.zero;
+				//Debug.Log("I am stopping drift");
 			} else {
 				rb.AddForce(accelerationVector);
 			}
+
+			//Debug.DrawRay(transform.position, rb.velocity, Color.green);
+			//Debug.DrawRay(transform.position, movementVector, Color.red);
+			//Debug.DrawRay(transform.position + rb.velocity, accelerationVector, Color.blue);
+
 		} else {
 			// player is off the ground, so apply gravity
 			rb.useGravity = true;
