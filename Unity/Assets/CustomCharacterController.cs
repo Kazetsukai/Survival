@@ -32,7 +32,6 @@ public class CustomCharacterController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
-		Debug.Log (_movementVector);
 	}
 
 	void OnGUI() {
