@@ -21,6 +21,7 @@ public class CustomCharacterController : MonoBehaviour {
 	int terrainCollisionCount = 0;
 	RaycastHit hit;
 	CapsuleCollider cc;
+	Vector3 _movementVector = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +31,8 @@ public class CustomCharacterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
+		Debug.Log (_movementVector);
 	}
 
 	void OnGUI() {
@@ -91,50 +93,49 @@ public class CustomCharacterController : MonoBehaviour {
 			rb.useGravity = false;
 
 			// generate new desired direction based on player input
-			Vector3 movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
 			float relativeSlopeSpeedMultiplier = 1F;
 
-			if (movementVector != Vector3.zero) {
+			if (_movementVector != Vector3.zero) {
 
 				// if the player is standing on a slope, we need to re-orient the desired direction
 				if (objectiveSlopeAngle != 0) {
 					// manipulate the movementVector until it is pointing up or down the slope
-					movementVector = Vector3.Cross(Vector3.Cross (hit.normal, movementVector), hit.normal);
+					_movementVector = Vector3.Cross(Vector3.Cross (hit.normal, _movementVector), hit.normal);
 
 					// calculate the relativeSlopeAngle
-					Vector3 lateralMovementVector =  movementVector;
+					Vector3 lateralMovementVector =  _movementVector;
 					lateralMovementVector.y = 0F;
-					relativeSlopeAngle = Vector3.Angle(lateralMovementVector, movementVector) * Mathf.Deg2Rad;
+					relativeSlopeAngle = Vector3.Angle(lateralMovementVector, _movementVector) * Mathf.Deg2Rad;
 
 					// use the relativeSlopeAngle to work out relativeSlopeSpeedMultiplier
-					relativeSlopeSpeedMultiplier = 1 - Mathf.Min(Mathf.Pow ((movementVector.y < 0 ? -RelativeSlopeAngleDeg() : RelativeSlopeAngleDeg()) / maximumSlope, 2), 1);
+					relativeSlopeSpeedMultiplier = 1 - Mathf.Min(Mathf.Pow ((_movementVector.y < 0 ? -RelativeSlopeAngleDeg() : RelativeSlopeAngleDeg()) / maximumSlope, 2), 1);
 
 				}
 				// scale the vector to the speed as determined by the player inputs and the relativeSlopeSpeedMultiplier
-				movementVector = movementVector.normalized * jogSpeed;
+				_movementVector = _movementVector.normalized * jogSpeed;
 				if (Input.GetAxis ("Vertical") > 0) {
 					if (Input.GetAxis ("Walk") > 0) {
-						movementVector = movementVector * walkSpeedFactor;
+						_movementVector = _movementVector * walkSpeedFactor;
 					}
 					if (Input.GetAxis ("Sprint") > 0) {
-						movementVector = movementVector * sprintSpeedFactor;
+						_movementVector = _movementVector * sprintSpeedFactor;
 					}
 				} else {
-					movementVector = movementVector * walkSpeedFactor;
+					_movementVector = _movementVector * walkSpeedFactor;
 				}
-				if (movementVector.y > 0) {
-					movementVector = movementVector * relativeSlopeSpeedMultiplier;
+				if (_movementVector.y > 0) {
+					_movementVector = _movementVector * relativeSlopeSpeedMultiplier;
 				} else {
-					movementVector = movementVector / relativeSlopeSpeedMultiplier;
+					_movementVector = _movementVector / relativeSlopeSpeedMultiplier;
 				}
 			}
 			
 			// now we have the movementVector pointing in the right direction and at the right magnitude
 			// next is to work out the accelerationVector required to move the player in this new direction
-			Vector3 accelerationVector = (movementVector - rb.velocity);
+			Vector3 accelerationVector = (_movementVector - rb.velocity);
 
 			// now we scale the accelerationVector to the acceleration value
-			accelerationVector = accelerationVector.normalized * acceleration;
+			accelerationVector = Vector3.ClampMagnitude(accelerationVector, acceleration);
 
 			// we can't let people walk up slopes that are tpp steep just by walking sideways
 			if (ObjectiveSlopeAngleDeg() > maximumSlope) {
@@ -146,11 +147,11 @@ public class CustomCharacterController : MonoBehaviour {
 				}
 			}
 			// and apply the accelerationVector as a force to the rigidbody or stop miniscule drift
-			if (movementVector == Vector3.zero && rb.velocity.magnitude < 0.1) {
+			if (_movementVector == Vector3.zero && rb.velocity.magnitude < 0.1) {
 				rb.velocity = Vector3.zero;
 				//Debug.Log("I am stopping drift");
 			} else {
-				rb.AddForce(accelerationVector);
+				rb.AddForce(accelerationVector, ForceMode.VelocityChange);
 			}
 
 			//Debug.DrawRay(transform.position, rb.velocity, Color.green);
