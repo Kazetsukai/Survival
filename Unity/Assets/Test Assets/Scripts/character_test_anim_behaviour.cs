@@ -13,12 +13,18 @@ public class character_test_anim_behaviour : MonoBehaviour
 	public float animSpeedFactorWalking = 0.5f;
 	public float animSpeedFactorRunning = 0.3f;
 	public float speedThresholdRun = 2.5f;
+	public float framesBetweenStepsWalking = 10;
+	public float framesBetweenStepsRunning = 8;
+	foot_target_behaviour lf;
+	foot_target_behaviour rf;
 
 	void Start () 
 	{
 		anim = GetComponent<Animator> ();
 		cc = GetComponentInParent<CustomCharacterController> ();
         rb = GetComponentInParent<Rigidbody> ();
+		lf = cc.leftFoot.GetComponent<foot_target_behaviour> ();
+		rf = cc.rightFoot.GetComponent<foot_target_behaviour> ();
 	}
 
 	float PlayerSpeed()
@@ -134,7 +140,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 	}
 
 	public void Event_RightFootLift() {
-        cc.rightFoot.transform.position = rb.transform.position + rb.velocity / (Mathf.Pow(rb.velocity.magnitude + 0.3F, 2) / 3.6F) + Vector3.down * cc.GetComponentInParent<CapsuleCollider>().height / 2.2F + rb.transform.right / 20;
+		cc.rightFoot.transform.position = rb.transform.position + rb.transform.forward * rf.distanceInFrontWhenLandingRunning;
         //Debug.Log("Lifting right foot");
 	}
 
