@@ -6,8 +6,6 @@ public class character_test_anim_behaviour : MonoBehaviour
 	public AudioClip footstepSound;
 	public AudioClip stumbleSound;
 
-	public float stumbleChanceOneIn;
-	public float angleMultiplier;
 	CustomCharacterController cc;
 		
 	Animator anim;
@@ -94,7 +92,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 
 	public void PlayFootstep()
 	{
-		if (cc.IsGrounded()) {
+		/*if (cc.IsGrounded()) {
 			var audioSource = GetComponentInChildren<AudioSource> ();
 
 			if (Random.Range (0.0f, 1.0f) < 1 / cc.stumbleOneInBase) {
@@ -108,6 +106,43 @@ public class character_test_anim_behaviour : MonoBehaviour
 				audioSource.PlayOneShot (footstepSound);
 				cc.isStumbling = false;
 			}
+		}*/
+	}
+
+	void HandleFootStep() {
+		if (cc.IsGrounded()) {
+			var audioSource = GetComponentInChildren<AudioSource> ();
+			
+			if (Random.Range (0.0f, 1.0f) < 1 / cc.stumbleOneInBase) {
+				audioSource.pitch = 1.0f;
+				audioSource.volume = 1.0f;
+				audioSource.PlayOneShot (stumbleSound);
+				cc.isStumbling = true;
+			} else {
+				audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
+				audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
+				audioSource.PlayOneShot (footstepSound);
+				cc.isStumbling = false;
+			}
 		}
+	}
+
+	public void Event_LeftFootLift() {
+		//Debug.Log ("Lifting left foot");
+	}
+
+	public void Event_RightFootLift() {
+		//Debug.Log ("Lifting right foot");
+	}
+
+	public void Event_LeftFootLand() {
+		HandleFootStep ();
+	}
+	
+	public void Event_RightFootLand() {
+		HandleFootStep ();
+	}
+
+	public void NewEvent() {
 	}
 }

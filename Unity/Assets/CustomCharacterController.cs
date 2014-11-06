@@ -73,7 +73,8 @@ public class CustomCharacterController : MonoBehaviour {
 			transform.position -= Vector3.up * altitude * 1.1F;
 
 			// adjust the velocity direction to keep the player moving along the surface of the terrain
-			Vector3 newVelocityVector = -Vector3.Cross(hit.normal, transform.right);
+			Vector3 velocityRightVector = Vector3.Cross(hit.normal, rb.velocity);
+			Vector3 newVelocityVector = -Vector3.Cross(hit.normal, velocityRightVector);
 			
 			// adjust the velocity magnitude back to what it was
 			rb.velocity = newVelocityVector.normalized * rb.velocity.magnitude;
