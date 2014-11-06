@@ -379,7 +379,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 83860b20b725ed147b01d8f0dc012750, type: 2}
+  - {fileID: 2100000, guid: f69e93566cee23944a3993111348c8af, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -862,7 +862,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 71eaa9dfe89014740a06ce81cb324e99, type: 2}
+  - {fileID: 2100000, guid: f69e93566cee23944a3993111348c8af, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1741,6 +1741,7 @@ GameObject:
   - 95: {fileID: 1640423594}
   - 114: {fileID: 1640423595}
   - 82: {fileID: 1640423596}
+  - 114: {fileID: 1640423597}
   m_Layer: 0
   m_Name: character_test
   m_TagString: Untagged
@@ -1852,6 +1853,62 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1640423597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1640423592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db3c450680fd4c809d5ad90a2f24e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeStep: 0
+  fixTransforms: 1
+  solver:
+    IKPosition: {x: 26.8384724, y: 11.9292459, z: 13.3804741}
+    IKPositionWeight: 1
+    root: {fileID: 1640423593}
+    target: {fileID: 856757112}
+    IKRotationWeight: 0
+    IKRotation: {x: .591066122, y: .619945884, z: -.348873794, w: .380256981}
+    bendNormal: {x: .107260622, y: -.000562683621, z: .0147675108}
+    bone1:
+      transform: {fileID: 1222425964}
+      weight: 1
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 1}
+      defaultLocalPosition: {x: .161844864, y: 1.14321959, z: -.1366743}
+      defaultLocalRotation: {x: -.00593450433, y: .946682513, z: .00674844207, w: .322042674}
+      length: 0
+      axis: {x: -1, y: -0, z: -0}
+      sqrMag: 0
+    bone2:
+      transform: {fileID: 472697486}
+      weight: 1
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 1}
+      defaultLocalPosition: {x: -4.22522688, y: 1.90733795e-06, z: -2.08615418e-07}
+      defaultLocalRotation: {x: -.0259120557, y: .292457193, z: -.0332023799, w: .955350697}
+      length: 0
+      axis: {x: -1, y: -0, z: -0}
+      sqrMag: 0
+    bone3:
+      transform: {fileID: 1474761444}
+      weight: 1
+      solverPosition: {x: 0, y: 0, z: 0}
+      solverRotation: {x: 0, y: 0, z: 0, w: 1}
+      defaultLocalPosition: {x: -4.55488014, y: 1.90733817e-06, z: 5.96044032e-08}
+      defaultLocalRotation: {x: -.0057319724, y: -.471548647, z: -.0393101498, w: .880944788}
+      length: 0
+      axis: {x: -1, y: -0, z: -0}
+      sqrMag: 0
+    goal: 0
+    bendModifier: 0
+    maintainRotationWeight: 0
+    bendModifierWeight: 1
+    bendGoal: {fileID: 0}
 --- !u!1 &1666946516
 GameObject:
   m_ObjectHideFlags: 0
