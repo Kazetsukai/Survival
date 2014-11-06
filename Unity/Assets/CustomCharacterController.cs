@@ -136,8 +136,11 @@ public class CustomCharacterController : MonoBehaviour {
 			Vector3 accelerationVector = (_movementVector - rb.velocity);
 
 			// now we scale the accelerationVector to the acceleration value
-			accelerationVector = Vector3.ClampMagnitude(accelerationVector, acceleration);
+			accelerationVector = Vector3.ClampMagnitude(accelerationVector, acceleration * Time.fixedDeltaTime);
 
+			// and apply the accelerationVector
+			rb.AddForce(accelerationVector, ForceMode.VelocityChange);
+			
 			// we can't let people walk up slopes that are tpp steep just by walking sideways
 			if (ObjectiveSlopeAngleDeg() > maximumSlope) {
 				accelerationVector.y = Mathf.Min(0, accelerationVector.y);
@@ -147,14 +150,7 @@ public class CustomCharacterController : MonoBehaviour {
 					//Debug.Log("I am stopping the player from walking up a cliff");
 				}
 			}
-			// and apply the accelerationVector as a force to the rigidbody or stop miniscule drift
-			if (_movementVector == Vector3.zero && rb.velocity.magnitude < 0.1) {
-				rb.velocity = Vector3.zero;
-				//Debug.Log("I am stopping drift");
-			} else {
-				rb.AddForce(accelerationVector * Time.fixedDeltaTime, ForceMode.VelocityChange);
-			}
-
+			
 			//Debug.DrawRay(transform.position, rb.velocity, Color.green);
 			//Debug.DrawRay(transform.position, movementVector, Color.red);
 			//Debug.DrawRay(transform.position + rb.velocity, accelerationVector, Color.blue);
