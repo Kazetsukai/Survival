@@ -94,10 +94,6 @@ Transition:
   m_TransitionDuration: .317460328
   m_TransitionOffset: .275728226
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: walking
-    m_EventTreshold: 0
-    m_ExitTime: .682539701
   - m_ConditionMode: 2
     m_ConditionEvent: running
     m_EventTreshold: 0
