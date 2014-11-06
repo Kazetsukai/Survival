@@ -12,6 +12,10 @@ public class CustomCharacterController : MonoBehaviour {
 	public float stumbleDegAngleMultiplier = 20F;
 	public float maximumSlope = 50F;
 	public bool isStumbling = false;
+
+	public GameObject leftFoot;
+	public GameObject rightFoot;
+
 	float altitude = 0;
 	float objectiveSlopeAngle = 0F;
 	float relativeSlopeAngle = 0F;
@@ -116,8 +120,7 @@ public class CustomCharacterController : MonoBehaviour {
 				if (Input.GetAxis ("Vertical") > 0) {
 					if (Input.GetAxis ("Walk") > 0) {
 						_movementVector = _movementVector * walkSpeedFactor;
-					}
-					if (Input.GetAxis ("Sprint") > 0) {
+					} else if (Input.GetAxis ("Sprint") > 0) {
 						_movementVector = _movementVector * sprintSpeedFactor;
 					}
 				} else {

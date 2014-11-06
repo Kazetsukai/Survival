@@ -7,6 +7,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 	public AudioClip stumbleSound;
 
 	CustomCharacterController cc;
+    Rigidbody rb;
 		
 	Animator anim;
 	public float animSpeedFactorWalking = 0.5f;
@@ -17,17 +18,17 @@ public class character_test_anim_behaviour : MonoBehaviour
 	{
 		anim = GetComponent<Animator> ();
 		cc = GetComponentInParent<CustomCharacterController> ();
-
+        rb = GetComponentInParent<Rigidbody> ();
 	}
 
 	float PlayerSpeed()
 	{
-		return cc.rigidbody.velocity.magnitude;
+		return rb.velocity.magnitude;
 	}
 
 	void Update () 
 	{
-		//Rough code to change animation state for debug legs. Makes them run if the player presses forward button.
+        //Rough code to change animation state for debug legs. Makes them run if the player presses forward button.
 		//float jump = Input.GetAxis ("Jump");
 
 		//Debug.Log ("Player speed: " + PlayerSpeed().ToString ());
@@ -128,11 +129,13 @@ public class character_test_anim_behaviour : MonoBehaviour
 	}
 
 	public void Event_LeftFootLift() {
-		//Debug.Log ("Lifting left foot");
+		//cc.leftFoot.transform.position = rb.transform.position + rb.velocity / 7 + Vector3.down * cc.GetComponentInParent<CapsuleCollider>().height / 2.2F - rb.transform.right;
+        //Debug.Log("Lifting left foot");
 	}
 
 	public void Event_RightFootLift() {
-		//Debug.Log ("Lifting right foot");
+        cc.rightFoot.transform.position = rb.transform.position + rb.velocity / (Mathf.Pow(rb.velocity.magnitude + 0.3F, 2) / 3.6F) + Vector3.down * cc.GetComponentInParent<CapsuleCollider>().height / 2.2F + rb.transform.right / 20;
+        //Debug.Log("Lifting right foot");
 	}
 
 	public void Event_LeftFootLand() {
