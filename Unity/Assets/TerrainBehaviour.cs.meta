@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 1472c324b3ac0e3489ad612fe7483010
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - TerrainPrototype: {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
