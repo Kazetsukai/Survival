@@ -5,11 +5,15 @@ public class character_test_anim_behaviour : MonoBehaviour
 {
 	public AudioClip footstepSound;
 	public AudioClip stumbleSound;
-	public float StumbleChanceOneIn;
-	public float AngleMultiplier;
-	CustomCharacterController cc;
 
+	public float stumbleChanceOneIn;
+	public float angleMultiplier;
+	CustomCharacterController cc;
+		
 	Animator anim;
+	public float animSpeedFactorWalking = 0.5f;
+	public float animSpeedFactorRunning = 0.3f;
+	public float speedThresholdRun = 2.5f;
 
 	void Start () 
 	{
@@ -17,19 +21,41 @@ public class character_test_anim_behaviour : MonoBehaviour
 		cc = GetComponentInParent<CustomCharacterController> ();
 	}
 
+	float PlayerSpeed()
+	{
+		return cc.rigidbody.velocity.magnitude;
+	}
+
 	void Update () 
 	{
 		//Rough code to change animation state for debug legs. Makes them run if the player presses forward button.
-		bool move = Input.GetAxis ("Vertical") != 0 || Input.GetAxis ("Horizontal") != 0;
 		float jump = Input.GetAxis ("Jump");
 
-		if (move) 
+		Debug.Log ("Player speed: " + PlayerSpeed().ToString ());
+
+		if (PlayerSpeed() > 0.1f)	//rather than != 0 (just to prevent noise triggering animations)
 		{
-			anim.SetBool("run", true);
+			//Play walk animation when player speed is slow
+			if (PlayerSpeed() < speedThresholdRun) 
+			{
+				AnimSetWalking();
+			} 
+			//Play run animation when player speed is faster
+			else 
+			{
+				AnimSetRunning();
+			} 
 		}
-		else
+		//Play idle animation when not moving
+		else 
 		{
-			anim.SetBool("run", false);
+			AnimSetIdle();
+		}
+
+		//Prevent run animations while falling (maybe even play falling animation??)
+		if (!cc.IsGrounded ()) 
+		{
+			//AnimSetIdle();
 		}
 	
 		if (jump != 0) 
@@ -40,6 +66,27 @@ public class character_test_anim_behaviour : MonoBehaviour
 		{
 			anim.SetBool("jump", false);
 		}
+	}
+
+	void AnimSetIdle()
+	{
+		anim.SetBool ("walking", false);
+		anim.SetBool ("running", false);
+		anim.speed = 1.0f;
+	}
+
+	void AnimSetWalking()
+	{
+		anim.SetBool ("walking", true);
+		anim.SetBool ("running", false);
+		anim.speed = PlayerSpeed () * animSpeedFactorWalking;
+	}
+
+	void AnimSetRunning()
+	{
+		anim.SetBool ("walking", false);
+		anim.SetBool ("running", true);
+		anim.speed = PlayerSpeed () * animSpeedFactorRunning;
 	}
 
 	public void PlayFootstep()
