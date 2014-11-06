@@ -8,6 +8,23 @@ public class TerrainBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		_maps [0] = new int[10, 20, 20];
+		
+		for (int d = 0; d < 10; d++)
+		{
+			for (int x = 0; x < 20; x++) 
+			{
+				for (int y = 0; y < 20; y++) 
+				{
+					if (d == 0)
+					{
+						_maps [0][d, y, x] = 1;
+					}
+				}
+			}
+		}
+
 		int pos = 0;
 		foreach (var map in _maps) {
 			var mesh = GenerateMesh (map);
@@ -17,7 +34,7 @@ public class TerrainBehaviour : MonoBehaviour {
 			terrainPatch.GetComponent<MeshFilter> ().mesh = mesh;
 			terrainPatch.GetComponent<MeshCollider> ().sharedMesh = mesh;
 
-			pos += 20;
+			pos += 4 * map.GetLength(1);
 		}
 	}
 
