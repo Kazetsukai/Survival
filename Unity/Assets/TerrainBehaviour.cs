@@ -21,6 +21,11 @@ public class TerrainBehaviour : MonoBehaviour {
 					{
 						_maps [0][d, y, x] = 1;
 					}
+					else if (_maps[0][d-1,y,x] == 1 || Random.Range(0, 20) == 0)
+					{
+						if (Random.Range (0, d+1) == 0)
+							_maps[0][d,y,x] = 1;
+					}
 				}
 			}
 		}
