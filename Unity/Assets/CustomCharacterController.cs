@@ -151,7 +151,7 @@ public class CustomCharacterController : MonoBehaviour {
 				rb.velocity = Vector3.zero;
 				//Debug.Log("I am stopping drift");
 			} else {
-				rb.AddForce(accelerationVector, ForceMode.VelocityChange);
+				rb.AddForce(accelerationVector * Time.fixedDeltaTime, ForceMode.VelocityChange);
 			}
 
 			//Debug.DrawRay(transform.position, rb.velocity, Color.green);
