@@ -127,8 +127,9 @@ public class character_test_anim_behaviour : MonoBehaviour
 	void HandleFootStep() {
 		if (cc.IsGrounded()) {
 			var audioSource = GetComponentInChildren<AudioSource> ();
-			
-			if (Random.Range (0.0f, 1.0f) < 1 / cc.stumbleOneInBase) {
+			float speedStumbleMultiplier = 1 + Mathf.Pow((PlayerSpeed() / (cc.jogSpeed * cc.sprintSpeedFactor)), 5);
+			Debug.Log((1 / Mathf.Max (0, cc.stumbleOneInBase - cc.ObjectiveSlopeAngleDeg() * cc.stumbleDegAngleMultiplier)) * speedStumbleMultiplier * 100);
+			if (Random.Range (0.0f, 1.0f) < (1 / Mathf.Max (0, cc.stumbleOneInBase - cc.ObjectiveSlopeAngleDeg() * cc.stumbleDegAngleMultiplier)) * speedStumbleMultiplier) {
 				audioSource.pitch = 1.0f;
 				audioSource.volume = 1.0f;
 				audioSource.PlayOneShot (stumbleSound);

@@ -13,6 +13,8 @@ public class CustomCharacterController : MonoBehaviour {
 	public float stumbleDegAngleMultiplier = 20F;
 	public float maximumSlope = 50F;
 	public bool isStumbling = false;
+	public float stumbleSpeedFactor = 2F/3F;
+	public float stumbleSpeedExponent = 4F;
 
 	public GameObject leftFoot;
 	public GameObject rightFoot;
