@@ -10,7 +10,7 @@ public class character_test_anim_behaviour : MonoBehaviour
     Rigidbody rb;
 		
 	Animator anim;
-	public float animSpeedFactorWalking = 0.5f;
+	public float animSpeedFactorWalking = 0.8f;
 	public float animSpeedFactorRunning = 0.3f;
 	public float speedThresholdRun = 2.5f;
 	public float framesBetweenStepsWalking = 10;
@@ -27,7 +27,11 @@ public class character_test_anim_behaviour : MonoBehaviour
         rb = GetComponentInParent<Rigidbody> ();
 		lf = cc.leftFoot.GetComponent<foot_target_behaviour> ();
 		rf = cc.rightFoot.GetComponent<foot_target_behaviour> ();
-		vectorToGround = Vector3.down * cc.GetComponentInParent<CapsuleCollider> ().height / 2;
+		lf.stepUpTolerance = cc.stepUpTolerance;
+		lf.stepDownTolerance = cc.stepDownTolerance;
+		rf.stepUpTolerance = cc.stepUpTolerance;
+		rf.stepDownTolerance = cc.stepDownTolerance;
+		vectorToGround = Vector3.down * cc.GetComponentInParent<CapsuleCollider> ().height / 2F + Vector3.up * cc.stepUpTolerance;
 	}
 
 	float PlayerSpeed()
@@ -37,11 +41,6 @@ public class character_test_anim_behaviour : MonoBehaviour
 
 	void Update () 
 	{
-        //Rough code to change animation state for debug legs. Makes them run if the player presses forward button.
-		//float jump = Input.GetAxis ("Jump");
-
-		//Debug.Log ("Player speed: " + PlayerSpeed().ToString ());
-		//anim.bodyRotation.SetLookRotation (cc.rigidbody.velocity, Vector3.up);
 
 
 		if (PlayerSpeed() > 0.1f)	//rather than != 0 (just to prevent noise triggering animations)
@@ -91,6 +90,8 @@ public class character_test_anim_behaviour : MonoBehaviour
 		anim.SetBool ("walking", true);
 		anim.SetBool ("running", false);
 		anim.speed = PlayerSpeed () * animSpeedFactorWalking;
+		lf.currentPlayingAnimation = "walking";
+		rf.currentPlayingAnimation = "walking";
 	}
 
 	void AnimSetRunning()
@@ -98,10 +99,14 @@ public class character_test_anim_behaviour : MonoBehaviour
 		anim.SetBool ("walking", false);
 		anim.SetBool ("running", true);
 		anim.speed = PlayerSpeed () * animSpeedFactorRunning;
+		lf.currentPlayingAnimation = "running";
+		rf.currentPlayingAnimation = "running";
 	}
 
 	public void PlayFootstep()
 	{
+		// deprecated. only left in here to stop runtime complaints
+
 		/*if (cc.IsGrounded()) {
 			var audioSource = GetComponentInChildren<AudioSource> ();
 
@@ -138,14 +143,15 @@ public class character_test_anim_behaviour : MonoBehaviour
 	}
 
 	public void Event_LeftFootLift() {
-		//cc.leftFoot.transform.position = rb.transform.position + rb.velocity / 7 + Vector3.down * cc.GetComponentInParent<CapsuleCollider>().height / 2.2F - rb.transform.right;
-        //Debug.Log("Lifting left foot");
+		lf.transform.position = rb.transform.position + vectorToGround + rb.transform.forward * lf.distanceInFrontWhenRunning + rb.velocity * lf.TimeToLanding() / anim.speed;
+		lf.transform.rotation = cc.transform.rotation;
+		lf.SettleToGround ();
 	}
 
 	public void Event_RightFootLift() {
-
-		cc.rightFoot.transform.position = rb.transform.position + vectorToGround + rb.transform.forward * rf.distanceInFrontWhenRunning + rb.velocity * rf.TimeToLanding();
-        //Debug.Log("Lifting right foot");
+		rf.transform.position = rb.transform.position + vectorToGround + rb.transform.forward * rf.distanceInFrontWhenRunning + rb.velocity * rf.TimeToLanding() / anim.speed;
+		rf.transform.rotation = cc.transform.rotation;
+		rf.SettleToGround ();
 	}
 
 	public void Event_LeftFootLand() {
@@ -157,5 +163,6 @@ public class character_test_anim_behaviour : MonoBehaviour
 	}
 
 	public void NewEvent() {
+		// deprecated. only left in here to stop runtime complaints
 	}
 }

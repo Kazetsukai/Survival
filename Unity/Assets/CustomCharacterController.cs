@@ -8,6 +8,7 @@ public class CustomCharacterController : MonoBehaviour {
 	public float sprintSpeedFactor = 1.3F;
 	public float acceleration = 10F;
 	public float stepDownTolerance = 0.5F;
+	public float stepUpTolerance = 0.5F;
 	public float stumbleOneInBase = 900F;
 	public float stumbleDegAngleMultiplier = 20F;
 	public float maximumSlope = 50F;
