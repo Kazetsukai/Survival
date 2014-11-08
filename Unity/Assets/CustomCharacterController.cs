@@ -16,6 +16,10 @@ public class CustomCharacterController : MonoBehaviour {
 	public float stumbleSpeedFactor = 2F/3F;
 	public float stumbleSpeedExponent = 4F;
 
+    public float slopeStumbleConstant = 900F;
+    public float slopeStumbleCoefficient = 0.03F;
+    public float slopeStumbleExponent = 3F;
+
 	public GameObject leftFoot;
 	public GameObject rightFoot;
 

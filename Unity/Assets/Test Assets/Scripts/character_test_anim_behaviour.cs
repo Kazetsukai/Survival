@@ -89,7 +89,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 	{
 		anim.SetBool ("walking", true);
 		anim.SetBool ("running", false);
-		anim.speed = PlayerSpeed () * animSpeedFactorWalking;
+		anim.speed = Mathf.Min(PlayerSpeed (), 5F) * animSpeedFactorWalking;
 		lf.currentPlayingAnimation = "walking";
 		rf.currentPlayingAnimation = "walking";
 	}
@@ -98,7 +98,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 	{
 		anim.SetBool ("walking", false);
 		anim.SetBool ("running", true);
-		anim.speed = PlayerSpeed () * animSpeedFactorRunning;
+        anim.speed = Mathf.Min(PlayerSpeed(), 5F) * animSpeedFactorRunning;
 		lf.currentPlayingAnimation = "running";
 		rf.currentPlayingAnimation = "running";
 	}
@@ -128,8 +128,9 @@ public class character_test_anim_behaviour : MonoBehaviour
 		if (cc.IsGrounded()) {
 			var audioSource = GetComponentInChildren<AudioSource> ();
 			float speedStumbleMultiplier = 1 + Mathf.Pow((PlayerSpeed() / (cc.jogSpeed * cc.sprintSpeedFactor)), 5);
-			Debug.Log((1 / Mathf.Max (0, cc.stumbleOneInBase - cc.ObjectiveSlopeAngleDeg() * cc.stumbleDegAngleMultiplier)) * speedStumbleMultiplier * 100);
-			if (Random.Range (0.0f, 1.0f) < (1 / Mathf.Max (0, cc.stumbleOneInBase - cc.ObjectiveSlopeAngleDeg() * cc.stumbleDegAngleMultiplier)) * speedStumbleMultiplier) {
+            float angleStumbleChance = Mathf.Max (1, cc.slopeStumbleConstant - cc.slopeStumbleCoefficient * Mathf.Pow(cc.ObjectiveSlopeAngleDeg(), cc.slopeStumbleExponent)  );
+			Debug.Log(angleStumbleChance);
+			if (Random.Range (0.0f, 1.0f) < (speedStumbleMultiplier / angleStumbleChance)) {
 				audioSource.pitch = 1.0f;
 				audioSource.volume = 1.0f;
 				audioSource.PlayOneShot (stumbleSound);
