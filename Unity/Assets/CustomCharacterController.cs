@@ -139,7 +139,7 @@ public class CustomCharacterController : MonoBehaviour {
 					_movementVector = _movementVector / relativeSlopeSpeedMultiplier;
 				}
 			}
-			
+
 			// now we have the movementVector pointing in the right direction and at the right magnitude
 			// next is to work out the accelerationVector required to move the player in this new direction
 			Vector3 accelerationVector = (_movementVector - rb.velocity);
