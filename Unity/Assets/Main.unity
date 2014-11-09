@@ -494,6 +494,7 @@ MonoBehaviour:
   currentPlayingAnimation: 
   stepDownTolerance: .100000001
   stepUpTolerance: .349999994
+  player: {fileID: 2057535962}
 --- !u!1 &268770139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,6 +1285,7 @@ MonoBehaviour:
   currentPlayingAnimation: 
   stepDownTolerance: .100000001
   stepUpTolerance: .349999994
+  player: {fileID: 2057535962}
 --- !u!1 &890702309
 GameObject:
   m_ObjectHideFlags: 0

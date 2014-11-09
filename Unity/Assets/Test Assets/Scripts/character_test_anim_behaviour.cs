@@ -18,6 +18,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 	foot_target_behaviour lf;
 	foot_target_behaviour rf;
 
+
 	Vector3 vectorToGround = Vector3.zero;
 
 	void Start () 
@@ -103,68 +104,20 @@ public class character_test_anim_behaviour : MonoBehaviour
 		rf.currentPlayingAnimation = "running";
 	}
 
-	public void PlayFootstep()
-	{
-		// deprecated. only left in here to stop runtime complaints
-
-		/*if (cc.IsGrounded()) {
-			var audioSource = GetComponentInChildren<AudioSource> ();
-
-			if (Random.Range (0.0f, 1.0f) < 1 / cc.stumbleOneInBase) {
-				audioSource.pitch = 1.0f;
-				audioSource.volume = 1.0f;
-				audioSource.PlayOneShot (stumbleSound);
-				cc.isStumbling = true;
-			} else {
-				audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
-				audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
-				audioSource.PlayOneShot (footstepSound);
-				cc.isStumbling = false;
-			}
-		}*/
-	}
-
-	void HandleFootStep() {
-		if (cc.IsGrounded()) {
-			var audioSource = GetComponentInChildren<AudioSource> ();
-			float speedStumbleMultiplier = 1 + Mathf.Pow((PlayerSpeed() / (cc.jogSpeed * cc.sprintSpeedFactor)), 5);
-            float angleStumbleChance = Mathf.Max (1, cc.slopeStumbleConstant - cc.slopeStumbleCoefficient * Mathf.Pow(cc.ObjectiveSlopeAngleDeg(), cc.slopeStumbleExponent)  );
-			Debug.Log(angleStumbleChance);
-			if (Random.Range (0.0f, 1.0f) < (speedStumbleMultiplier / angleStumbleChance)) {
-				audioSource.pitch = 1.0f;
-				audioSource.volume = 1.0f;
-				audioSource.PlayOneShot (stumbleSound);
-				cc.isStumbling = true;
-			} else {
-				audioSource.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
-				audioSource.volume = 1.0f + Random.Range (-0.2f, 0.0f);
-				audioSource.PlayOneShot (footstepSound);
-				cc.isStumbling = false;
-			}
-		}
-	}
-
 	public void Event_LeftFootLift() {
-		lf.transform.position = rb.transform.position + vectorToGround + rb.transform.forward * lf.distanceInFrontWhenRunning + rb.velocity * lf.TimeToLanding() / anim.speed;
-		lf.transform.rotation = cc.transform.rotation;
-		lf.SettleToGround ();
+		lf.DetermineTarget ();
 	}
 
 	public void Event_RightFootLift() {
-		rf.transform.position = rb.transform.position + vectorToGround + rb.transform.forward * rf.distanceInFrontWhenRunning + rb.velocity * rf.TimeToLanding() / anim.speed;
-		rf.transform.rotation = cc.transform.rotation;
-		rf.SettleToGround ();
+		rf.DetermineTarget ();
 	}
 
 	public void Event_LeftFootLand() {
-		HandleFootStep ();
+		lf.HandleStep ();
 	}
 	
 	public void Event_RightFootLand() {
-		HandleFootStep ();
+		rf.HandleStep ();
 	}
 
-	public void NewEvent() {
-		// deprecated. only left in here to stop runtime complaints
-	}
 }
