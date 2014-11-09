@@ -116,4 +116,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 		rf.HandleStep ();
 	}
 
+	public void PlayFootstep() {}
+
+	public void NewEvent() {}
 }

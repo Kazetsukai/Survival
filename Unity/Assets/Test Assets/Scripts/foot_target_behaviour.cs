@@ -20,6 +20,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	Vector3 vectorToGround = Vector3.zero;
 	Animator anim;
 	Terrain footstepTerrain;
+	bool isGrounded;
 
 	// Use this for initialization
 	void Start () {
@@ -42,9 +43,12 @@ public class foot_target_behaviour : MonoBehaviour {
 		int layerMask = 1 << 8;
 		if (Physics.Raycast(transform.position, Vector3.down, out hit, 100, layerMask)) {
 			if (hit.distance < (stepDownTolerance + stepUpTolerance) * 2) {
+				isGrounded = true;
 				transform.position += Vector3.down * hit.distance;
 				objectiveSlopeAngle = Vector3.Angle (hit.normal, Vector3.up) * Mathf.Deg2Rad;
 				footstepTerrain = hit.collider.GetComponentInParent<Terrain>();
+			} else {
+				isGrounded = false;
 			}
 		}
 	}
@@ -55,7 +59,7 @@ public class foot_target_behaviour : MonoBehaviour {
 			sound.volume = 1.0f + Random.Range (-0.2f, 0.0f);
 			sound.PlayOneShot (footstepSound);
 			float speedStumbleMultiplier = 1 + Mathf.Pow ((cc.rigidbody.velocity.magnitude / (cc.jogSpeed * cc.sprintSpeedFactor)), 5);
-			float angleStumbleChance = Mathf.Max (1, footstepTerrain.SlopeStumbleConstant() - footstepTerrain.SlopeStumbleCoefficient() * Mathf.Pow (ObjectiveSlopeAngleDeg (), footstepTerrain.SlopeStumbleExponent()));
+			float angleStumbleChance = 1000;//Mathf.Max (1, footstepTerrain.SlopeStumbleConstant() - footstepTerrain.SlopeStumbleCoefficient() * Mathf.Pow (ObjectiveSlopeAngleDeg (), footstepTerrain.SlopeStumbleExponent()));
 			float lookingAtFeetMultiplier = Mathf.Min (Mathf.Max (5.5F - 0.05F * Vector3.Angle (Vector3.down, cam.transform.forward), 0.25F), 4F);
 			if (Random.Range (0.0f, 1.0f) < (speedStumbleMultiplier / (angleStumbleChance * lookingAtFeetMultiplier))) {
 				sound.pitch = 1.0f;
@@ -100,5 +104,9 @@ public class foot_target_behaviour : MonoBehaviour {
 		transform.position = cc.rigidbody.transform.position + vectorToGround + cc.rigidbody.transform.forward * (currentPlayingAnimation == "running" ? distanceInFrontWhenRunning : distanceInFrontWhenWalking) + cc.rigidbody.velocity * TimeToLanding() / anim.speed;
 		SettleToGround ();
 
+	}
+
+	public bool IsGrounded() {
+		return isGrounded;
 	}
 }

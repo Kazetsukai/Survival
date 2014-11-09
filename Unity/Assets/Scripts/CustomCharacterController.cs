@@ -43,9 +43,9 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		if (stumbleSteps > 0) {
+		/*if (stumbleSteps > 0) {
 			GUI.Box (new Rect (Screen.width /2 - 35, Screen.height /2 - 10, 70, 20), "STUMBLE");
-		}
+		}*/
 	}
 
 	void FixedUpdate() {
@@ -53,6 +53,16 @@ public class CustomCharacterController : MonoBehaviour {
 		// work out the bottom of the player
 		Vector3 bottomOfCapsule = transform.position - Vector3.up * cc.height / 2;
 
+		Vector3 vectorToNextFootStep = leftFoot.transform.position - bottomOfCapsule;
+		if (Vector3.Dot(transform.forward, vectorToNextFootStep) < 0) {
+			vectorToNextFootStep = rightFoot.transform.position - bottomOfCapsule;
+		}
+		if (vectorToNextFootStep.y > _movementVector.y + 0.05) {
+			Debug.Log("Step here");
+		} else {
+			Debug.Log ("No step");
+		}
+	
 		// raycast down to find the terrain below
 		int layerMask = 1 << 8; // terrain layer
 		Physics.Raycast(transform.position, Vector3.down, out hit, 1000, layerMask);
@@ -171,7 +181,12 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 	
 	public bool IsGrounded() {
-		return terrainCollisionCount > 0;
+		//return terrainCollisionCount > 0;
+		if (terrainCollisionCount > 0 || (leftFoot.GetComponent<foot_target_behaviour>().IsGrounded() && rightFoot.GetComponent<foot_target_behaviour>().IsGrounded())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	void OnCollisionEnter(Collision collision) {

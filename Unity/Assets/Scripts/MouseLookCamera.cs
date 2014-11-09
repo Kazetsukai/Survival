@@ -32,7 +32,7 @@ public class MouseLookCamera : MonoBehaviour {
 	
 	void Update ()
 	{
-		if (Input.GetAxis("Look") > 0 || player.GetComponent<CustomCharacterController>().IsStumbling())
+		if (Input.GetAxis("Look") > 0)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
 			
