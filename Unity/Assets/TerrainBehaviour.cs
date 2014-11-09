@@ -12,13 +12,13 @@ public class TerrainBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		_maps [0] = new int[10, 20, 20];
+		_maps [0] = new int[10, 10, 10];
 		
 		for (int d = 0; d < 10; d++)
 		{
-			for (int x = 0; x < 20; x++) 
+			for (int x = 0; x < 10; x++) 
 			{
-				for (int y = 0; y < 20; y++) 
+				for (int y = 0; y < 10; y++) 
 				{
 					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / 5f ? 1 : 0;
 					/*
@@ -150,15 +150,23 @@ public class TerrainBehaviour : MonoBehaviour {
 								
 							if (topUp)
 								northVert += Vector3.up;
+							else if (leftTopUp || rightTopUp || leftUp || rightUp)
+								northVert += Vector3.up / 2f;
 								
 							if (rightUp)
 								eastVert += Vector3.up;
+							else if (bottomRightUp || rightTopUp || topUp || bottomUp)
+								eastVert += Vector3.up / 2f;
 								
 							if (leftUp)
 								westVert += Vector3.up;
+							else if (leftTopUp || bottomLeftUp || topUp || bottomUp)
+								westVert += Vector3.up / 2f;
 								
 							if (bottomUp)
 								southVert += Vector3.up;
+							else if (bottomLeftUp || bottomRightUp || leftUp || rightUp)
+								southVert += Vector3.up / 2f;
 							
 							// ---------
 							// Top faces
@@ -378,7 +386,7 @@ public class TerrainBehaviour : MonoBehaviour {
 						uvs.Add (new Vector2 (0, 1));
 						indices.Add (vertices.Count - 1);
 						
-						vertices.Add (northWestVert);
+						vertices.Add (northVert);
 						uvs.Add (new Vector2 (1, 1));
 						indices.Add (vertices.Count - 1);
 						
@@ -386,8 +394,32 @@ public class TerrainBehaviour : MonoBehaviour {
 						uvs.Add (new Vector2 (0, 0));
 						indices.Add (vertices.Count - 1);
 						
-						// Top Side 2
 						vertices.Add (northEastVert + Vector3.down);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (northVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (northVert + Vector3.down);
+						uvs.Add (new Vector2 (1, 0));
+						indices.Add (vertices.Count - 1);
+						
+						// Top Side 2
+						vertices.Add (northVert);
+						uvs.Add (new Vector2 (0, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (northWestVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (northVert + Vector3.down);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (northVert + Vector3.down);
 						uvs.Add (new Vector2 (0, 0));
 						indices.Add (vertices.Count - 1);
 						
@@ -404,7 +436,7 @@ public class TerrainBehaviour : MonoBehaviour {
 						uvs.Add (new Vector2 (0, 1));
 						indices.Add (vertices.Count - 1);
 						
-						vertices.Add (northEastVert);
+						vertices.Add (eastVert);
 						uvs.Add (new Vector2 (1, 1));
 						indices.Add (vertices.Count - 1);
 						
@@ -412,8 +444,32 @@ public class TerrainBehaviour : MonoBehaviour {
 						uvs.Add (new Vector2 (0, 0));
 						indices.Add (vertices.Count - 1);
 						
-						// Right Side 2
 						vertices.Add (southEastVert + Vector3.down);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (eastVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (eastVert + Vector3.down);
+						uvs.Add (new Vector2 (1, 0));
+						indices.Add (vertices.Count - 1);
+						
+						// Right Side 2
+						vertices.Add (eastVert);
+						uvs.Add (new Vector2 (0, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (northEastVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (eastVert + Vector3.down);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (eastVert + Vector3.down);
 						uvs.Add (new Vector2 (0, 0));
 						indices.Add (vertices.Count - 1);
 						
