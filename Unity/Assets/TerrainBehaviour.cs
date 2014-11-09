@@ -91,360 +91,226 @@ public class TerrainBehaviour : MonoBehaviour {
 			{
 				for (int y = 0; y < Height; y++) 
 				{
-					float xOffset = x * 1.5f;
-					float zOffset = (y + (x % 2 == 0 ? 0.5f : 0.0f)) * Mathf.Sqrt (3);
-					float yOffset = d * 1;
-
+					int xOffset = x;
+					int zOffset = y;
+					int yOffset = d;
+					
 					if (IsFull(map, d, y, x)) {
 						
-						var noShift = (x+1) % 2;
-						var shift = x % 2;
-						
 						var up = IsFull (map, d+1, y, x);
+						var left = IsFull (map, d, y, x-1);
+						var right = IsFull (map, d, y, x+1);
 						var top = IsFull (map, d, y+1, x);
 						var bottom = IsFull (map, d, y-1, x);
+						var leftUp = IsFull (map, d+1, y, x-1);
 						var topUp = IsFull (map, d+1, y+1, x);
-						var leftTopUp = IsFull(map, d+1, y+noShift, x-1);
-						var rightTopUp = IsFull(map, d+1, y+noShift, x+1);
+						var leftTopUp = IsFull(map, d+1, y+1, x-1);
+						var rightUp = IsFull (map, d+1, y, x+1);
+						var rightTopUp = IsFull(map, d+1, y+1, x+1);
 						var bottomUp = IsFull (map, d+1, y-1, x);
-						var leftBottomUp = IsFull (map, d+1, y-shift, x-1);
-						var rightBottomUp = IsFull (map, d+1, y-shift, x+1);
+						var bottomLeftUp = IsFull (map, d+1, y-1, x-1);
+						var bottomRightUp = IsFull (map, d+1, y-1, x+1);
 						
-						Vector3 centreVert = new Vector3 (xOffset, yOffset, zOffset);
+						Vector3 centreVert;
+						Vector3 bottomRightVert;
+						Vector3 bottomLeftVert;
+						Vector3 topLeftVert;
+						Vector3 topRightVert;
+						Vector3 bottomRightDownVert;
+						Vector3 bottomLeftDownVert;
+						Vector3 topLeftDownVert;
+						Vector3 topRightDownVert;
 						
-						Vector3 northVert = 			centreVert + Rotate30(0) * distCentreToFlatEdge;
-						Vector3 northEastVert = 		centreVert + Rotate30(1) * distCentreToPointyEdge;
-						Vector3 eastNorthEastVert = 	centreVert + Rotate30(2) * distCentreToFlatEdge;
-						Vector3 eastVert = 				centreVert + Rotate30(3) * distCentreToPointyEdge;
-						Vector3 eastSouthEastVert = 	centreVert + Rotate30(4) * distCentreToFlatEdge;
-						Vector3 southEastVert = 		centreVert + Rotate30(5) * distCentreToPointyEdge;
-						Vector3 southVert = 			centreVert + Rotate30(6) * distCentreToFlatEdge;
-						Vector3 southWestVert = 		centreVert + Rotate30(7) * distCentreToPointyEdge;
-						Vector3 westSouthWestVert = 	centreVert + Rotate30(8) * distCentreToFlatEdge;
-						Vector3 westVert = 				centreVert + Rotate30(9) * distCentreToPointyEdge;
-						Vector3 westNorthWestVert = 	centreVert + Rotate30(10) * distCentreToFlatEdge;
-						Vector3 northWestVert = 		centreVert + Rotate30(11) * distCentreToPointyEdge;
-
+						bottomRightDownVert = new Vector3 (1 + xOffset, yOffset - 1, 0 + zOffset);
+						bottomLeftDownVert = new Vector3 (0 + xOffset, yOffset - 1, 0 + zOffset);
+						topLeftDownVert = new Vector3 (0 + xOffset, yOffset - 1, 1 + zOffset);
+						topRightDownVert = new Vector3 (1 + xOffset, yOffset - 1, 1 + zOffset);
+						topLeftVert = new Vector3 (0 + xOffset, 0 + yOffset, 1 + zOffset);
+						topRightVert = new Vector3 (1 + xOffset, 0 + yOffset, 1 + zOffset);
+						bottomLeftVert = new Vector3 (0 + xOffset, 0 + yOffset, 0 + zOffset);
+						bottomRightVert = new Vector3 (1 + xOffset, 0 + yOffset, 0 + zOffset);
+						centreVert = new Vector3 (0.5f + xOffset, 0 + yOffset, 0.5f + zOffset);
+						
 						if (!up)
-						{/*
-							if (topUp)
-							{
-								northVert += Vector3.up;
-							}
+						{
+							if (leftUp || topUp || rightUp || bottomUp || leftTopUp || bottomLeftUp || rightTopUp || bottomRightUp)
+								centreVert = new Vector3 (0.5f + xOffset, 0.5f + yOffset, 0.5f + zOffset);
 							
-							if (topUp || rightTopUp)
-							{
-								northEastVert += Vector3.up;
-							}
+							if (leftUp || topUp || leftTopUp)
+								topLeftVert = new Vector3 (0 + xOffset, 1 + yOffset, 1 + zOffset);
 							
-							if (rightTopUp)
-							{
-								eastNorthEastVert += Vector3.up;
-							}
+							if (leftUp || bottomUp || bottomLeftUp)
+								bottomLeftVert = new Vector3 (0 + xOffset, 1 + yOffset, 0 + zOffset);
 							
-							if (rightBottomUp || rightTopUp)
-							{
-								eastVert += Vector3.up;
-							}
+							if (rightUp || topUp || rightTopUp)
+								topRightVert = new Vector3 (1 + xOffset, 1 + yOffset, 1 + zOffset);
 							
-							if (rightBottomUp)
-							{
-								eastSouthEastVert += Vector3.up;
-							}
-							
-							if (bottomUp || rightBottomUp)
-							{
-								southEastVert += Vector3.up;
-							}
-							
-							if (bottomUp)
-							{
-								southVert += Vector3.up;
-							}
-							
-							if (leftBottomUp || bottomUp)
-							{
-								southWestVert += Vector3.up;
-							}
-							
-							if (leftBottomUp)
-							{
-								westSouthWestVert += Vector3.up;
-							}
-							
-							if (leftTopUp || leftBottomUp)
-							{
-								westVert += Vector3.up;
-							}
-							
-							if (leftTopUp)
-							{
-								westNorthWestVert += Vector3.up;
-							}
-							
-							if (topUp || leftTopUp)
-							{
-								northWestVert += Vector3.up;
-							}
-							
-							if (topUp || leftTopUp || leftBottomUp || bottomUp || rightBottomUp || rightTopUp)
-								centreVert.y += 0.5f;*/
-							/*centreVert.y = (northVert.y + 
-							                eastNorthEastVert.y + 
-							                eastSouthEastVert.y + 
-							                southVert.y + 
-							                westSouthWestVert.y + 
-							                westNorthWestVert.y) / 6.0f;*/
+							if (rightUp || bottomUp || bottomRightUp)
+								bottomRightVert = new Vector3 (1 + xOffset, 1 + yOffset, 0 + zOffset);
 							
 							// ---------
 							// Top faces
 							// ---------
 							
 							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
+							uvs.Add (new Vector2 (0.5f, 0.5f));
 							indices.Add (vertices.Count - 1);
 							
-							vertices.Add (northVert);
-							uvs.Add (UVify(northVert));
+							vertices.Add (bottomRightVert);
+							uvs.Add (new Vector2 (0, 0));
 							indices.Add (vertices.Count - 1);
 							
-							vertices.Add (northEastVert);
-							uvs.Add (UVify(northEastVert));
+							vertices.Add (bottomLeftVert);
+							uvs.Add (new Vector2 (1, 0));
 							indices.Add (vertices.Count - 1);
 							
-							//---
 							
 							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
+							uvs.Add (new Vector2 (0.5f, 0.5f));
 							indices.Add (vertices.Count - 1);
 							
-							vertices.Add (northEastVert);
-							uvs.Add (UVify(northEastVert));
+							vertices.Add (bottomLeftVert);
+							uvs.Add (new Vector2 (0, 0));
 							indices.Add (vertices.Count - 1);
 							
-							vertices.Add (eastNorthEastVert);
-							uvs.Add (UVify(eastNorthEastVert));
+							vertices.Add (topLeftVert);
+							uvs.Add (new Vector2 (0, 1));
 							indices.Add (vertices.Count - 1);
 							
-							//---
 							
 							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
+							uvs.Add (new Vector2 (0.5f, 0.5f));
 							indices.Add (vertices.Count - 1);
 							
-							vertices.Add (eastNorthEastVert);
-							uvs.Add (UVify(eastNorthEastVert));
+							vertices.Add (topLeftVert);
+							uvs.Add (new Vector2 (0, 1));
 							indices.Add (vertices.Count - 1);
 							
-							vertices.Add (eastVert);
-							uvs.Add (UVify(eastVert));
+							vertices.Add (topRightVert);
+							uvs.Add (new Vector2 (1, 1));
 							indices.Add (vertices.Count - 1);
 							
-							//---
 							
 							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
+							uvs.Add (new Vector2 (0.5f, 0.5f));
 							indices.Add (vertices.Count - 1);
 							
-							vertices.Add (eastVert);
-							uvs.Add (UVify(eastVert));
+							vertices.Add (topRightVert);
+							uvs.Add (new Vector2 (1, 1));
 							indices.Add (vertices.Count - 1);
 							
-							vertices.Add (eastSouthEastVert);
-							uvs.Add (UVify(eastSouthEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (eastSouthEastVert);
-							uvs.Add (UVify(eastSouthEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southEastVert);
-							uvs.Add (UVify(southEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southEastVert);
-							uvs.Add (UVify(southEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southVert);
-							uvs.Add (UVify(southVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southVert);
-							uvs.Add (UVify(southVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southWestVert);
-							uvs.Add (UVify(southWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southWestVert);
-							uvs.Add (UVify(southWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westSouthWestVert);
-							uvs.Add (UVify(westSouthWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westSouthWestVert);
-							uvs.Add (UVify(westSouthWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westVert);
-							uvs.Add (UVify(westVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westVert);
-							uvs.Add (UVify(westVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westNorthWestVert);
-							uvs.Add (UVify(westNorthWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westNorthWestVert);
-							uvs.Add (UVify(westNorthWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (northWestVert);
-							uvs.Add (UVify(northWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (northWestVert);
-							uvs.Add (UVify(northWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (northVert);
-							uvs.Add (UVify(northVert));
+							vertices.Add (bottomRightVert);
+							uvs.Add (new Vector2 (1, 0));
 							indices.Add (vertices.Count - 1);
 						}
-
+						
+						
 						// ----------
 						// Side faces
 						// ----------
 						
-						// S->SW
-						vertices.Add (southVert);
+						// Bottom Side 1
+						vertices.Add (bottomLeftVert);
+						uvs.Add (new Vector2 (0, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (bottomRightVert);
 						uvs.Add (new Vector2 (1, 1));
 						indices.Add (vertices.Count - 1);
 						
-						vertices.Add (southVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert + Vector3.down);
+						vertices.Add (bottomLeftDownVert);
 						uvs.Add (new Vector2 (0, 0));
 						indices.Add (vertices.Count - 1);
 						
-						// SW->WSW
-						vertices.Add (southWestVert);
+						// Bottom Side 2
+						vertices.Add (bottomLeftDownVert);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (bottomRightVert);
 						uvs.Add (new Vector2 (1, 1));
 						indices.Add (vertices.Count - 1);
 						
-						vertices.Add (southWestVert + Vector3.down);
+						vertices.Add (bottomRightDownVert);
 						uvs.Add (new Vector2 (1, 0));
 						indices.Add (vertices.Count - 1);
 						
-						vertices.Add (westSouthWestVert);
+						// Left Side 1
+						vertices.Add (topLeftVert);
 						uvs.Add (new Vector2 (0, 1));
 						indices.Add (vertices.Count - 1);
 						
-						vertices.Add (westSouthWestVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westSouthWestVert + Vector3.down);
-						uvs.Add (new Vector2 (0, 0));
-						indices.Add (vertices.Count - 1);
-						
-						
-						// WSW->W
-						vertices.Add (westSouthWestVert);
+						vertices.Add (bottomLeftVert);
 						uvs.Add (new Vector2 (1, 1));
 						indices.Add (vertices.Count - 1);
 						
-						vertices.Add (westSouthWestVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westSouthWestVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westVert + Vector3.down);
+						vertices.Add (topLeftDownVert);
 						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						// Left Side 2
+						vertices.Add (topLeftDownVert);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (bottomLeftVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (bottomLeftDownVert);
+						uvs.Add (new Vector2 (1, 0));
+						indices.Add (vertices.Count - 1);
+						
+						// Top Side 1
+						vertices.Add (topRightVert);
+						uvs.Add (new Vector2 (0, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (topLeftVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (topRightDownVert);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						// Top Side 2
+						vertices.Add (topRightDownVert);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (topLeftVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (topLeftDownVert);
+						uvs.Add (new Vector2 (1, 0));
+						indices.Add (vertices.Count - 1);
+						
+						// Right Side 1
+						vertices.Add (bottomRightVert);
+						uvs.Add (new Vector2 (0, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (topRightVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (bottomRightDownVert);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						// Right Side 2
+						vertices.Add (bottomRightDownVert);
+						uvs.Add (new Vector2 (0, 0));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (topRightVert);
+						uvs.Add (new Vector2 (1, 1));
+						indices.Add (vertices.Count - 1);
+						
+						vertices.Add (topRightDownVert);
+						uvs.Add (new Vector2 (1, 0));
 						indices.Add (vertices.Count - 1);
 					}
 				}

@@ -758,20 +758,6 @@ ModelImporter:
         floatParameter: 2
         intParameter: 1
         messageOptions: 0
-      - time: .0464996174
-        functionName: PlayFootstep
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: .502483964
-        functionName: PlayFootstep
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: .342568398
         functionName: Event_RightFootLand
         data: 
