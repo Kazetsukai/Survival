@@ -26,9 +26,11 @@ public class MouseLookBody : MonoBehaviour {
 	public float minimumY = -60F;
 	public float maximumY = 60F;
 	
+	public GameObject player;
+
 	void Update ()
 	{
-		if (Input.GetAxis("Look") == 0)
+		if (Input.GetAxis("Look") == 0 && !player.GetComponent<CustomCharacterController>().IsStumbling())
 		{
 			transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
 		}

@@ -4410,6 +4410,7 @@ MonoBehaviour:
   maximumX: 360
   minimumY: -60
   maximumY: 60
+  player: {fileID: 2057535962}
 --- !u!54 &2057535967
 Rigidbody:
   m_ObjectHideFlags: 0

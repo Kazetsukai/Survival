@@ -13,6 +13,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	float objectiveSlopeAngle;
 	RaycastHit hit;
 	CustomCharacterController cc;
+	Camera cam;
 	AudioSource sound;
 	public AudioClip footstepSound;
 	public AudioClip stumbleSound;
@@ -26,6 +27,7 @@ public class foot_target_behaviour : MonoBehaviour {
 		sound = GetComponent<AudioSource> ();
 		vectorToGround = Vector3.down * cc.GetComponentInParent<CapsuleCollider> ().height / 2F + Vector3.up * cc.stepUpTolerance;
 		anim = cc.GetComponentInChildren<Animator> ();
+		cam = cc.GetComponentInChildren<Camera> ();
 	}
 	
 	// Update is called once per frame
@@ -54,7 +56,8 @@ public class foot_target_behaviour : MonoBehaviour {
 			sound.PlayOneShot (footstepSound);
 			float speedStumbleMultiplier = 1 + Mathf.Pow ((cc.rigidbody.velocity.magnitude / (cc.jogSpeed * cc.sprintSpeedFactor)), 5);
 			float angleStumbleChance = Mathf.Max (1, footstepTerrain.SlopeStumbleConstant() - footstepTerrain.SlopeStumbleCoefficient() * Mathf.Pow (ObjectiveSlopeAngleDeg (), footstepTerrain.SlopeStumbleExponent()));
-			if (Random.Range (0.0f, 1.0f) < (speedStumbleMultiplier / angleStumbleChance)) {
+			float lookingAtFeetMultiplier = Mathf.Min (Mathf.Max (5.5F - 0.05F * Vector3.Angle (Vector3.down, cam.transform.forward), 0.25F), 4F);
+			if (Random.Range (0.0f, 1.0f) < (speedStumbleMultiplier / (angleStumbleChance * lookingAtFeetMultiplier))) {
 				sound.pitch = 1.0f;
 				sound.volume = 1.0f;
 				sound.PlayOneShot (stumbleSound);

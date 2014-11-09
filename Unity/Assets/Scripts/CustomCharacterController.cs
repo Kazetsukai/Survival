@@ -27,6 +27,7 @@ public class CustomCharacterController : MonoBehaviour {
 	CapsuleCollider cc;
 	Vector3 _movementVector = Vector3.zero;
 	int stumbleSteps = 0;
+	Camera cam;
 
 	// Use this for initialization
 	void Start () {
@@ -227,6 +228,10 @@ public class CustomCharacterController : MonoBehaviour {
 		} else {
 			stumbleSteps--;
 		}
+	}
+
+	public bool IsStumbling() {
+		return stumbleSteps > 0;
 	}
 }
 
