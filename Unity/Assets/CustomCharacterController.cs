@@ -9,15 +9,9 @@ public class CustomCharacterController : MonoBehaviour {
 	public float acceleration = 10F;
 	public float stepDownTolerance = 0.5F;
 	public float stepUpTolerance = 0.5F;
-	public float stumbleOneInBase = 900F;
-	public float stumbleDegAngleMultiplier = 20F;
 	public float maximumSlope = 50F;
 	public float stumbleSpeedFactor = 2F/3F;
 	public float stumbleSpeedExponent = 4F;
-
-    public float slopeStumbleConstant = 900F;
-    public float slopeStumbleCoefficient = 0.03F;
-    public float slopeStumbleExponent = 3F;
 
 	public GameObject leftFoot;
 	public GameObject rightFoot;
@@ -101,8 +95,12 @@ public class CustomCharacterController : MonoBehaviour {
 		objectiveSlopeAngle = Vector3.Angle (hit.normal, transform.up) * Mathf.Deg2Rad;
 
 		if (isGrounded) {
-			// turn off gravity to prevent collision drag
-			rb.useGravity = false;
+			// turn off gravity to prevent collision drag unless stumbling
+			if (stumbleSteps < 1) {
+				rb.useGravity = false;
+			} else {
+				rb.useGravity = true;
+			}
 
 			// generate new desired direction based on player input
 			float relativeSlopeSpeedMultiplier = 1F;
@@ -224,7 +222,11 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 
 	public void StableStep () {
-		stumbleSteps--;
+		if (rb.velocity.magnitude < 1) {
+			stumbleSteps = 0;
+		} else {
+			stumbleSteps--;
+		}
 	}
 }
 

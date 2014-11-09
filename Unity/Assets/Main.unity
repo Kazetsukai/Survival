@@ -307,6 +307,7 @@ GameObject:
   - 33: {fileID: 161837155}
   - 64: {fileID: 161837154}
   - 23: {fileID: 161837153}
+  - 114: {fileID: 161837156}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -366,6 +367,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 161837151}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &161837156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 161837151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &196880700
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +671,7 @@ GameObject:
   - 33: {fileID: 287840151}
   - 64: {fileID: 287840150}
   - 23: {fileID: 287840149}
+  - 114: {fileID: 287840152}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -717,6 +731,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 287840147}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &287840152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 287840147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Grass
 --- !u!1 &301956063
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +754,7 @@ GameObject:
   - 33: {fileID: 301956067}
   - 64: {fileID: 301956066}
   - 23: {fileID: 301956065}
+  - 114: {fileID: 301956068}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -787,6 +814,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 301956063}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &301956068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 301956063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Grass
 --- !u!1 &411706103
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +867,7 @@ GameObject:
   - 33: {fileID: 429057700}
   - 64: {fileID: 429057699}
   - 23: {fileID: 429057698}
+  - 114: {fileID: 429057701}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -887,6 +927,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 429057696}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &429057701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 429057696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &451847677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1085,7 @@ GameObject:
   - 33: {fileID: 488073596}
   - 64: {fileID: 488073595}
   - 23: {fileID: 488073594}
+  - 114: {fileID: 488073597}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -1092,6 +1145,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 488073592}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &488073597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 488073592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &557924599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,6 +1659,7 @@ GameObject:
   - 33: {fileID: 1077487508}
   - 64: {fileID: 1077487507}
   - 23: {fileID: 1077487506}
+  - 114: {fileID: 1077487509}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -1653,6 +1719,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1077487504}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1077487509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1077487504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &1087806997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,6 +1950,7 @@ GameObject:
   - 33: {fileID: 1280347281}
   - 64: {fileID: 1280347280}
   - 23: {fileID: 1280347279}
+  - 114: {fileID: 1280347282}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -1931,6 +2010,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1280347277}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1280347282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1280347277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &1293727026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,6 +2145,7 @@ GameObject:
   - 33: {fileID: 1421806904}
   - 64: {fileID: 1421806903}
   - 23: {fileID: 1421806902}
+  - 114: {fileID: 1421806905}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -2113,6 +2205,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1421806900}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1421806905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1421806900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &1424440488
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,6 +2429,7 @@ GameObject:
   - 33: {fileID: 1520174182}
   - 64: {fileID: 1520174181}
   - 23: {fileID: 1520174180}
+  - 114: {fileID: 1520174183}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -2384,6 +2489,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520174178}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1520174183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520174178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &1540399933
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,6 +4085,7 @@ GameObject:
   - 33: {fileID: 1960574215}
   - 64: {fileID: 1960574214}
   - 23: {fileID: 1960574213}
+  - 114: {fileID: 1960574216}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -4027,6 +4145,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1960574211}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1960574216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1960574211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &1989865178
 GameObject:
   m_ObjectHideFlags: 0
@@ -4038,6 +4168,7 @@ GameObject:
   - 33: {fileID: 1989865181}
   - 64: {fileID: 1989865180}
   - 23: {fileID: 1989865179}
+  - 114: {fileID: 1989865183}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -4097,6 +4228,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 724289566}
   m_RootOrder: 3
+--- !u!114 &1989865183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1989865178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Grass
 --- !u!1 &2005392259
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,6 +4251,7 @@ GameObject:
   - 33: {fileID: 2005392263}
   - 64: {fileID: 2005392262}
   - 23: {fileID: 2005392261}
+  - 114: {fileID: 2005392264}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -4167,6 +4311,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2005392259}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2005392264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2005392259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0579edc116181d4d85457ad060bd410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: Gravel
 --- !u!1 &2057535962
 GameObject:
   m_ObjectHideFlags: 0
@@ -4194,7 +4350,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2057535962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.0731049, y: 12.6158237, z: 4.88228989}
+  m_LocalPosition: {x: 33.3635101, y: 12.6158237, z: 4.88228989}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 451847678}
@@ -4219,14 +4375,9 @@ MonoBehaviour:
   acceleration: 6
   stepDownTolerance: .100000001
   stepUpTolerance: .349999994
-  stumbleOneInBase: 900
-  stumbleDegAngleMultiplier: 20
   maximumSlope: 90
   stumbleSpeedFactor: .666666687
   stumbleSpeedExponent: 4
-  slopeStumbleConstant: 900
-  slopeStumbleCoefficient: .00700000022
-  slopeStumbleExponent: 3
   leftFoot: {fileID: 251826277}
   rightFoot: {fileID: 856757109}
 --- !u!136 &2057535965
