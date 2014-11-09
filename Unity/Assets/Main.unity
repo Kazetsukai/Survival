@@ -898,8 +898,8 @@ GameObject:
   - 20: {fileID: 451847683}
   - 92: {fileID: 451847682}
   - 124: {fileID: 451847681}
-  - 114: {fileID: 451847680}
   - 81: {fileID: 451847679}
+  - 114: {fileID: 451847680}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -930,22 +930,21 @@ AudioListener:
 --- !u!114 &451847680
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: 9d4133d5d30b644bd87802a347eaccbe,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 451847677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ec6d04c9f3269a4a896c91d323204bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 2
-  sensitivityX: 10
-  sensitivityY: 10
-  minimumX: 0
+  sensitivityX: 15
+  sensitivityY: 15
+  minimumX: -360
   maximumX: 360
   minimumY: -60
   maximumY: 60
+  player: {fileID: 2057535962}
 --- !u!124 &451847681
 Behaviour:
   m_ObjectHideFlags: 0
@@ -4177,10 +4176,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 2057535963}
   - 54: {fileID: 2057535967}
-  - 114: {fileID: 2057535966}
   - 136: {fileID: 2057535965}
   - 114: {fileID: 2057535964}
   - 65: {fileID: 2057535968}
+  - 114: {fileID: 2057535966}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -4251,10 +4250,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2057535962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: b89ef0ef753f1914eb10f37e5a96f182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 1
   sensitivityX: 15
   sensitivityY: 15
   minimumX: -360

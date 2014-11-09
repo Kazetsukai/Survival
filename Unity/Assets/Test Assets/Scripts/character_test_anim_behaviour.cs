@@ -18,9 +18,6 @@ public class character_test_anim_behaviour : MonoBehaviour
 	foot_target_behaviour lf;
 	foot_target_behaviour rf;
 
-
-	Vector3 vectorToGround = Vector3.zero;
-
 	void Start () 
 	{
 		anim = GetComponent<Animator> ();
@@ -32,7 +29,6 @@ public class character_test_anim_behaviour : MonoBehaviour
 		lf.stepDownTolerance = cc.stepDownTolerance;
 		rf.stepUpTolerance = cc.stepUpTolerance;
 		rf.stepDownTolerance = cc.stepDownTolerance;
-		vectorToGround = Vector3.down * cc.GetComponentInParent<CapsuleCollider> ().height / 2F + Vector3.up * cc.stepUpTolerance;
 	}
 
 	float PlayerSpeed()
