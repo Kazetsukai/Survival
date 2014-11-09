@@ -61,6 +61,7 @@ public class foot_target_behaviour : MonoBehaviour {
 				sound.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
 				sound.volume = 1.0f + Random.Range (-0.2f, 0.0f);
 				sound.PlayOneShot (footstepSound);
+				cc.StableStep();
 			}
 		}
 	}

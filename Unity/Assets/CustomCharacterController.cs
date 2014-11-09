@@ -42,7 +42,9 @@ public class CustomCharacterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
+		if (stumbleSteps < 1) {
+			_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
+		}
 	}
 
 	void OnGUI() {
@@ -52,8 +54,7 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		//Debug.Log ("Velocity normal");
-		//Debug.Log (terrainCollisionCount);
+
 		// work out the bottom of the player
 		Vector3 bottomOfCapsule = transform.position - Vector3.up * cc.height / 2;
 
@@ -206,7 +207,24 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 
 	public void Stumble() {
-		stumbleSteps = 3;
+		if (stumbleSteps < 1) {
+			stumbleSteps = 3;
+			Vector3 stumbleDirection = new Vector3(Random.Range(-jogSpeed * walkSpeedFactor / 2, jogSpeed * walkSpeedFactor / 2), 0, Random.Range(-jogSpeed * walkSpeedFactor / 2, jogSpeed * walkSpeedFactor / 2));
+			rb.velocity = rb.velocity + stumbleDirection;
+			_movementVector = _movementVector + stumbleDirection;
+		} else {
+			Fall();
+		}
+	}
+
+	public void Fall() {
+		_movementVector = Vector3.zero;
+		rb.velocity = Vector3.zero;
+		stumbleSteps = 0;
+	}
+
+	public void StableStep () {
+		stumbleSteps--;
 	}
 }
 
