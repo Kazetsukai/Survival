@@ -12,15 +12,17 @@ public class TerrainBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		_maps [0] = new int[10, 20, 20];
+		_maps [0] = new int[10, 10, 10];
 		
 		for (int d = 0; d < 10; d++)
 		{
-			for (int x = 0; x < 20; x++) 
+			for (int x = 0; x < 10; x++) 
 			{
-				for (int y = 0; y < 20; y++) 
+				for (int y = 0; y < 10; y++) 
 				{
 					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / 10f ? 1 : 0;
+					if (x > 3 && d == 3)
+						_maps[0][d,y,x] = 0;
 					/*
 					if (d == 0)
 					{
@@ -70,7 +72,7 @@ public class TerrainBehaviour : MonoBehaviour {
 		return Quaternion.AngleAxis(30 * times, Vector3.up);
 	}
 
-	Vector2 UVify (Vector3 vert)
+	static Vector2 UVify (Vector3 vert)
 	{
 		return new Vector2(vert.x, vert.z);
 	}
@@ -124,7 +126,9 @@ public class TerrainBehaviour : MonoBehaviour {
 						Vector3 westVert = 				centreVert + Rotate30(9) * distCentreToPointyEdge;
 						Vector3 westNorthWestVert = 	centreVert + Rotate30(10) * distCentreToFlatEdge;
 						Vector3 northWestVert = 		centreVert + Rotate30(11) * distCentreToPointyEdge;
-
+						
+						float baseY = yOffset - 1;
+						
 						if (!up)
 						{
 							if (topUp)
@@ -189,252 +193,47 @@ public class TerrainBehaviour : MonoBehaviour {
 							// Top faces
 							// ---------
 							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, northVert, northEastVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, northEastVert, eastNorthEastVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, eastNorthEastVert, eastVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, eastVert, eastSouthEastVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, eastSouthEastVert, southEastVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, southEastVert, southVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, southVert, southWestVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, southWestVert, westSouthWestVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, westSouthWestVert, westVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, westVert, westNorthWestVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, westNorthWestVert, northWestVert);
+							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, northWestVert, northVert);	
 							
-							vertices.Add (northVert);
-							uvs.Add (UVify(northVert));
-							indices.Add (vertices.Count - 1);
+							// ---------
+							// Bottom faces
+							// ---------
 							
-							vertices.Add (northEastVert);
-							uvs.Add (UVify(northEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (northEastVert);
-							uvs.Add (UVify(northEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (eastNorthEastVert);
-							uvs.Add (UVify(eastNorthEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (eastNorthEastVert);
-							uvs.Add (UVify(eastNorthEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (eastVert);
-							uvs.Add (UVify(eastVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (eastVert);
-							uvs.Add (UVify(eastVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (eastSouthEastVert);
-							uvs.Add (UVify(eastSouthEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (eastSouthEastVert);
-							uvs.Add (UVify(eastSouthEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southEastVert);
-							uvs.Add (UVify(southEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southEastVert);
-							uvs.Add (UVify(southEastVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southVert);
-							uvs.Add (UVify(southVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southVert);
-							uvs.Add (UVify(southVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southWestVert);
-							uvs.Add (UVify(southWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (southWestVert);
-							uvs.Add (UVify(southWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westSouthWestVert);
-							uvs.Add (UVify(westSouthWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westSouthWestVert);
-							uvs.Add (UVify(westSouthWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westVert);
-							uvs.Add (UVify(westVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westVert);
-							uvs.Add (UVify(westVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westNorthWestVert);
-							uvs.Add (UVify(westNorthWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (westNorthWestVert);
-							uvs.Add (UVify(westNorthWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (northWestVert);
-							uvs.Add (UVify(northWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							//---
-							
-							vertices.Add (centreVert);
-							uvs.Add (UVify(centreVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (northWestVert);
-							uvs.Add (UVify(northWestVert));
-							indices.Add (vertices.Count - 1);
-							
-							vertices.Add (northVert);
-							uvs.Add (UVify(northVert));
-							indices.Add (vertices.Count - 1);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northEastVert, eastVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, eastVert, southEastVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southEastVert, southWestVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southWestVert, westVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, westVert, northWestVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northWestVert, northEastVert);				
 						}
 
 						// ----------
 						// Side faces
 						// ----------
 						
-						// S->SW
-						vertices.Add (southVert);
-						uvs.Add (new Vector2 (1, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert + Vector3.down);
-						uvs.Add (new Vector2 (0, 0));
-						indices.Add (vertices.Count - 1);
-						
-						// SW->WSW
-						vertices.Add (southWestVert);
-						uvs.Add (new Vector2 (1, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westSouthWestVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westSouthWestVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (southWestVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westSouthWestVert + Vector3.down);
-						uvs.Add (new Vector2 (0, 0));
-						indices.Add (vertices.Count - 1);
-						
-						
-						// WSW->W
-						vertices.Add (westSouthWestVert);
-						uvs.Add (new Vector2 (1, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westSouthWestVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westVert);
-						uvs.Add (new Vector2 (0, 1));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westSouthWestVert + Vector3.down);
-						uvs.Add (new Vector2 (1, 0));
-						indices.Add (vertices.Count - 1);
-						
-						vertices.Add (westVert + Vector3.down);
-						uvs.Add (new Vector2 (0, 0));
-						indices.Add (vertices.Count - 1);
+						GenerateSideQuad(vertices, uvs, indices, baseY, southVert, southWestVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, southWestVert, westSouthWestVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, westSouthWestVert, westVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, westVert, westNorthWestVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, westNorthWestVert, northWestVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, northWestVert, northVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, northVert, northEastVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, northEastVert, eastNorthEastVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, eastNorthEastVert, eastVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, eastVert, eastSouthEastVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, eastSouthEastVert, southEastVert);
+						GenerateSideQuad(vertices, uvs, indices, baseY, southEastVert, southVert);
 					}
 				}
 			}
@@ -451,6 +250,60 @@ public class TerrainBehaviour : MonoBehaviour {
 		mesh.UploadMeshData (false);
 
 		return mesh;
+	}
+	
+	static void GenerateTopFaceTriangle (List<Vector3> vertices, List<Vector2> uvs, List<int> indices, Vector3 centreVert, Vector3 p1, Vector3 p2)
+	{
+		vertices.Add (centreVert);
+		uvs.Add (UVify (centreVert));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (p1);
+		uvs.Add (UVify (p1));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (p2);
+		uvs.Add (UVify (p2));
+		indices.Add (vertices.Count - 1);
+	}
+	
+	static void GenerateBottomFaceTriangle (List<Vector3> vertices, List<Vector2> uvs, List<int> indices, float baseY, Vector3 centreVert, Vector3 p1, Vector3 p2)
+	{
+		vertices.Add (Drop(centreVert, baseY));
+		uvs.Add (UVify (centreVert));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (Drop(p2, baseY));
+		uvs.Add (UVify (p2));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (Drop(p1, baseY));
+		uvs.Add (UVify (p1));
+		indices.Add (vertices.Count - 1);
+	}
+
+	static void GenerateSideQuad (List<Vector3> vertices, List<Vector2> uvs, List<int> indices, float baseY, Vector3 p1, Vector3 p2)
+	{
+		vertices.Add (p1);
+		uvs.Add (new Vector2 (1, 1));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (Drop(p1, baseY));
+		uvs.Add (new Vector2 (1, 0));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (p2);
+		uvs.Add (new Vector2 (0, 1));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (p2);
+		uvs.Add (new Vector2 (0, 1));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (Drop(p1, baseY));
+		uvs.Add (new Vector2 (1, 0));
+		indices.Add (vertices.Count - 1);
+		vertices.Add (Drop (p2, baseY));
+		uvs.Add (new Vector2 (0, 0));
+		indices.Add (vertices.Count - 1);
+	}
+
+	static Vector3 Drop (Vector3 p1, float baseY)
+	{
+		p1.y = baseY;
+		return p1;
 	}
 	
 	int[][,,] _maps = new int[][,,] {
