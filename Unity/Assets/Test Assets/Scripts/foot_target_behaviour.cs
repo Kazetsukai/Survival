@@ -22,7 +22,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		cc = player.GetComponent<CustomCharacterController> ();
-		sound = GetComponentInChildren<AudioSource> ();
+		sound = GetComponent<AudioSource> ();
 		vectorToGround = Vector3.down * cc.GetComponentInParent<CapsuleCollider> ().height / 2F + Vector3.up * cc.stepUpTolerance;
 		anim = cc.GetComponentInChildren<Animator> ();
 	}
@@ -56,12 +56,11 @@ public class foot_target_behaviour : MonoBehaviour {
 				sound.pitch = 1.0f;
 				sound.volume = 1.0f;
 				sound.PlayOneShot (stumbleSound);
-				cc.isStumbling = true;
+				cc.Stumble();
 			} else {
 				sound.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
 				sound.volume = 1.0f + Random.Range (-0.2f, 0.0f);
 				sound.PlayOneShot (footstepSound);
-				cc.isStumbling = false;
 			}
 		}
 	}
@@ -92,7 +91,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	}
 
 	public void DetermineTarget() {
-		transform.position = cc.rigidbody.transform.position + vectorToGround + cc.rigidbody.transform.forward * distanceInFrontWhenRunning + cc.rigidbody.velocity * TimeToLanding() / anim.speed;
+		transform.position = cc.rigidbody.transform.position + vectorToGround + cc.rigidbody.transform.forward * (currentPlayingAnimation == "running" ? distanceInFrontWhenRunning : distanceInFrontWhenWalking) + cc.rigidbody.velocity * TimeToLanding() / anim.speed;
 		SettleToGround ();
 
 	}

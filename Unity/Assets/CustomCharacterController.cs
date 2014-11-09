@@ -12,7 +12,6 @@ public class CustomCharacterController : MonoBehaviour {
 	public float stumbleOneInBase = 900F;
 	public float stumbleDegAngleMultiplier = 20F;
 	public float maximumSlope = 50F;
-	public bool isStumbling = false;
 	public float stumbleSpeedFactor = 2F/3F;
 	public float stumbleSpeedExponent = 4F;
 
@@ -33,6 +32,7 @@ public class CustomCharacterController : MonoBehaviour {
 	RaycastHit hit;
 	CapsuleCollider cc;
 	Vector3 _movementVector = Vector3.zero;
+	int stumbleSteps = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -46,7 +46,7 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		if (isStumbling) {
+		if (stumbleSteps > 0) {
 			GUI.Box (new Rect (Screen.width /2 - 35, Screen.height /2 - 10, 70, 20), "STUMBLE");
 		}
 	}
@@ -203,6 +203,10 @@ public class CustomCharacterController : MonoBehaviour {
 
 	public float RelativeSlopeAngleDeg() {
 		return relativeSlopeAngle * Mathf.Rad2Deg;
+	}
+
+	public void Stumble() {
+		stumbleSteps = 3;
 	}
 }
 

@@ -431,6 +431,7 @@ GameObject:
   - 33: {fileID: 251826279}
   - 23: {fileID: 251826278}
   - 114: {fileID: 251826281}
+  - 82: {fileID: 251826282}
   m_Layer: 0
   m_Name: Left Foot Target
   m_TagString: Untagged
@@ -444,7 +445,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251826277}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -495,6 +496,66 @@ MonoBehaviour:
   stepDownTolerance: .100000001
   stepUpTolerance: .349999994
   player: {fileID: 2057535962}
+  footstepSound: {fileID: 8300000, guid: daf8a34d8c47b70489f0a775f3a8bd1c, type: 3}
+  stumbleSound: {fileID: 8300000, guid: 0696ee3e5263873428a89c09d70a8d45, type: 3}
+--- !u!82 &251826282
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251826277}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &268770139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1283,7 @@ GameObject:
   - 33: {fileID: 856757111}
   - 23: {fileID: 856757110}
   - 114: {fileID: 856757113}
+  - 82: {fileID: 856757114}
   m_Layer: 0
   m_Name: Right Foot Target
   m_TagString: Untagged
@@ -1235,9 +1297,9 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 856757109}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
@@ -1286,6 +1348,66 @@ MonoBehaviour:
   stepDownTolerance: .100000001
   stepUpTolerance: .349999994
   player: {fileID: 2057535962}
+  footstepSound: {fileID: 8300000, guid: daf8a34d8c47b70489f0a775f3a8bd1c, type: 3}
+  stumbleSound: {fileID: 8300000, guid: 0696ee3e5263873428a89c09d70a8d45, type: 3}
+--- !u!82 &856757114
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856757109}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &890702309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3959,10 +4081,9 @@ MonoBehaviour:
   stumbleOneInBase: 900
   stumbleDegAngleMultiplier: 20
   maximumSlope: 50
-  isStumbling: 0
   stumbleSpeedFactor: .666666687
   stumbleSpeedExponent: 4
-  slopeStumbleConstant: 900
+  slopeStumbleConstant: 400
   slopeStumbleCoefficient: .00700000022
   slopeStumbleExponent: 3
   leftFoot: {fileID: 251826277}
