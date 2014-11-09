@@ -9,20 +9,26 @@ public class TerrainBehaviour : MonoBehaviour {
 	static readonly Vector3 distCentreToFlatEdge = new Vector3(0, 0, Mathf.Sqrt (3) / 2.0f);
 	static readonly Vector3 distCentreToPointyEdge = new Vector3(0, 0, 1);
 	
+	public int MapWidth = 50;
+	public int MapHeight = 50;
+	public int MapDepth = 20;
+	
 	// Use this for initialization
 	void Start () {
 		
-		_maps [0] = new int[10, 10, 10];
+		_maps [0] = new int[MapDepth, MapHeight, MapWidth];
 		
-		for (int d = 0; d < 10; d++)
+		for (int d = 0; d < MapDepth; d++)
 		{
-			for (int x = 0; x < 10; x++) 
+			for (int x = 0; x < MapWidth; x++) 
 			{
-				for (int y = 0; y < 10; y++) 
+				for (int y = 0; y < MapHeight; y++) 
 				{
-					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / 10f ? 1 : 0;
-					if (x > 3 && d == 3)
-						_maps[0][d,y,x] = 0;
+					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / (10f + x / 10f) ? 1 : 0;
+					//if (x > 3 && d == 3)
+						//_maps[0][d,y,x] = 0;
+					if (d == 0)
+						_maps[0][d,y,x] = 1;	
 					/*
 					if (d == 0)
 					{
@@ -38,19 +44,57 @@ public class TerrainBehaviour : MonoBehaviour {
 			}
 		}
 		
-		int pos = 0;
 		foreach (var map in _maps) {
-			var mesh = GenerateMesh (map);
-			
-			var terrainPatch = (GameObject)Instantiate (TerrainPrototype);
-			terrainPatch.transform.position = terrainPatch.transform.position + Vector3.right * pos;
-			terrainPatch.GetComponent<MeshFilter> ().mesh = mesh;
-			terrainPatch.GetComponent<MeshCollider> ().sharedMesh = mesh;
-			
-			pos += 4 * map.GetLength(1);
+			foreach (var mapChunk in ChunkMap(map))
+			{
+				var mesh = GenerateMesh (mapChunk.Map);
+				
+				var terrainPatch = (GameObject)Instantiate (TerrainPrototype);
+				terrainPatch.transform.position = terrainPatch.transform.position + mapChunk.StartPos;
+				terrainPatch.GetComponent<MeshFilter> ().mesh = mesh;
+				terrainPatch.GetComponent<MeshCollider> ().sharedMesh = mesh;
+			}
 		}
 	}
+
+	public class MapChunk
+	{
+		public int[,,] Map;
+		public Vector3 StartPos;
+	}
+
+	IEnumerable<MapChunk> ChunkMap (int[,,] map)
+	{
+		var chunkSize = 10;
+		int posX = 0;
+		int posY = 0;
 	
+		for (int x = 0; x < map.GetLength(2); x += chunkSize-2)
+		{
+			for (int y = 0; y < map.GetLength (1); y += chunkSize-2)
+			{
+				var mapChunk = new int[map.GetLength (0), chunkSize, chunkSize];
+				for (int xI = 0; xI < chunkSize; xI++)
+				{
+					for (int yI = 0; yI < chunkSize; yI++)
+					{
+						for (int d = 0; d < map.GetLength(0); d++)
+						{
+							if (x + xI >= map.GetLength(2) || y + yI >= map.GetLength(1))
+								mapChunk[d, yI, xI] = 0;
+							else
+								mapChunk[d, yI, xI] = map[d, y+yI, x+xI];
+						}
+					}
+				}
+				
+				yield return new MapChunk() { StartPos = new Vector3(posX * (chunkSize-2) * 4 * 1.5f, 0, posY * (chunkSize-2) * Mathf.Sqrt (3) * 4), Map = mapChunk };
+				posY++;
+			}
+			posY = 0;
+			posX++;
+		}
+	}	
 	
 	// Update is called once per frame
 	void Update () {
@@ -89,9 +133,9 @@ public class TerrainBehaviour : MonoBehaviour {
 		
 		for (int d = 0; d < Depth; d++) 
 		{
-			for (int x = 0; x < Width; x++) 
+			for (int x = 1; x < Width-1; x++) 
 			{
-				for (int y = 0; y < Height; y++) 
+				for (int y = 1; y < Height-1; y++) 
 				{
 					float xOffset = x * 1.5f;
 					float zOffset = (y + (x % 2 == 0 ? 0.5f : 0.0f)) * Mathf.Sqrt (3);
@@ -205,18 +249,19 @@ public class TerrainBehaviour : MonoBehaviour {
 							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, westVert, westNorthWestVert);
 							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, westNorthWestVert, northWestVert);
 							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, northWestVert, northVert);	
-							
-							// ---------
-							// Bottom faces
-							// ---------
-							
-							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northEastVert, eastVert);
-							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, eastVert, southEastVert);
-							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southEastVert, southWestVert);
-							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southWestVert, westVert);
-							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, westVert, northWestVert);
-							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northWestVert, northEastVert);				
+											
 						}
+						
+						// ---------
+						// Bottom faces
+						// ---------
+						
+						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northEastVert, eastVert);
+						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, eastVert, southEastVert);
+						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southEastVert, southWestVert);
+						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southWestVert, westVert);
+						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, westVert, northWestVert);
+						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northWestVert, northEastVert);
 						
 						// ----------
 						// Side faces
