@@ -20,7 +20,7 @@ public class TerrainBehaviour : MonoBehaviour {
 			{
 				for (int y = 0; y < 20; y++) 
 				{
-					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / 5f ? 1 : 0;
+					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / 10f ? 1 : 0;
 					/*
 					if (d == 0)
 					{
@@ -126,75 +126,64 @@ public class TerrainBehaviour : MonoBehaviour {
 						Vector3 northWestVert = 		centreVert + Rotate30(11) * distCentreToPointyEdge;
 
 						if (!up)
-						{/*
+						{
 							if (topUp)
-							{
 								northVert += Vector3.up;
-							}
+							else if (leftTopUp || rightTopUp)
+								northVert += Vector3.up / 2f;
 							
 							if (topUp || rightTopUp)
-							{
 								northEastVert += Vector3.up;
-							}
 							
 							if (rightTopUp)
-							{
 								eastNorthEastVert += Vector3.up;
-							}
+							else if (topUp || rightBottomUp)
+								eastNorthEastVert += Vector3.up / 2f;
 							
 							if (rightBottomUp || rightTopUp)
-							{
 								eastVert += Vector3.up;
-							}
 							
 							if (rightBottomUp)
-							{
 								eastSouthEastVert += Vector3.up;
-							}
+							else if (bottomUp || rightTopUp)
+								eastSouthEastVert += Vector3.up / 2f;
 							
 							if (bottomUp || rightBottomUp)
-							{
 								southEastVert += Vector3.up;
-							}
 							
 							if (bottomUp)
-							{
 								southVert += Vector3.up;
-							}
+							else if (leftBottomUp || rightBottomUp)
+								southVert += Vector3.up / 2f;
 							
 							if (leftBottomUp || bottomUp)
-							{
 								southWestVert += Vector3.up;
-							}
 							
 							if (leftBottomUp)
-							{
 								westSouthWestVert += Vector3.up;
-							}
+							else if (leftTopUp || bottomUp)
+								westSouthWestVert += Vector3.up / 2f;
 							
 							if (leftTopUp || leftBottomUp)
-							{
 								westVert += Vector3.up;
-							}
 							
 							if (leftTopUp)
-							{
 								westNorthWestVert += Vector3.up;
-							}
+							else if (leftBottomUp || topUp)
+								westNorthWestVert += Vector3.up / 2f;
 							
 							if (topUp || leftTopUp)
-							{
 								northWestVert += Vector3.up;
-							}
 							
-							if (topUp || leftTopUp || leftBottomUp || bottomUp || rightBottomUp || rightTopUp)
-								centreVert.y += 0.5f;*/
-							/*centreVert.y = (northVert.y + 
+							//if (topUp || leftTopUp || leftBottomUp || bottomUp || rightBottomUp || rightTopUp)
+							//	centreVert.y += 0.5f;
+								
+							centreVert.y = (northVert.y + 
 							                eastNorthEastVert.y + 
 							                eastSouthEastVert.y + 
 							                southVert.y + 
 							                westSouthWestVert.y + 
-							                westNorthWestVert.y) / 6.0f;*/
+							                westNorthWestVert.y) / 6.0f;
 							
 							// ---------
 							// Top faces
