@@ -58,9 +58,9 @@ public class CustomCharacterController : MonoBehaviour {
 			vectorToNextFootStep = rightFoot.transform.position - bottomOfCapsule;
 		}
 		if (vectorToNextFootStep.y > _movementVector.y + 0.05) {
-			Debug.Log("Step here");
+			//Debug.Log("Step here");
 		} else {
-			Debug.Log ("No step");
+			//Debug.Log ("No step");
 		}
 	
 		// raycast down to find the terrain below
@@ -181,27 +181,19 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 	
 	public bool IsGrounded() {
-		//return terrainCollisionCount > 0;
-		if (terrainCollisionCount > 0 || (leftFoot.GetComponent<foot_target_behaviour>().IsGrounded() && rightFoot.GetComponent<foot_target_behaviour>().IsGrounded())) {
-			return true;
-		} else {
-			return false;
-		}
+		return terrainCollisionCount > 0;
 	}
 	
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.layer == 8) {
-			//Debug.Log("Hit the ground");
 			terrainCollisionCount += 1;
 		}
 	}
 	
 	void OnCollisionExit(Collision collision) {
 		if (collision.gameObject.layer == 8) {
-			//Debug.Log("Left the ground");
 			terrainCollisionCount -= 1;
 		}
-		
 	}
 
 	public float ObjectiveSlopeAngleRad() {
@@ -223,7 +215,7 @@ public class CustomCharacterController : MonoBehaviour {
 	public void Stumble() {
 		if (stumbleSteps < 1) {
 			stumbleSteps = 3;
-			Vector3 stumbleDirection = new Vector3(Random.Range(-jogSpeed * walkSpeedFactor / 2, jogSpeed * walkSpeedFactor / 2), 0, Random.Range(-jogSpeed * walkSpeedFactor / 2, jogSpeed * walkSpeedFactor / 2));
+			Vector3 stumbleDirection = new Vector3(Random.Range(-jogSpeed * walkSpeedFactor / 3, jogSpeed * walkSpeedFactor / 3), 0, Random.Range(-jogSpeed * walkSpeedFactor / 3, jogSpeed * walkSpeedFactor / 3));
 			rb.velocity = rb.velocity + stumbleDirection;
 			_movementVector = _movementVector + stumbleDirection;
 		} else {

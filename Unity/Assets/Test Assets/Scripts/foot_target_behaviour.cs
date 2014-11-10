@@ -19,7 +19,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	public AudioClip stumbleSound;
 	Vector3 vectorToGround = Vector3.zero;
 	Animator anim;
-	Terrain footstepTerrain;
+	TerrainInfo footstepTerrain;
 	bool isGrounded;
 
 	// Use this for initialization
@@ -46,7 +46,6 @@ public class foot_target_behaviour : MonoBehaviour {
 				isGrounded = true;
 				transform.position += Vector3.down * hit.distance;
 				objectiveSlopeAngle = Vector3.Angle (hit.normal, Vector3.up) * Mathf.Deg2Rad;
-				footstepTerrain = hit.collider.GetComponentInParent<Terrain>();
 			} else {
 				isGrounded = false;
 			}
@@ -59,7 +58,11 @@ public class foot_target_behaviour : MonoBehaviour {
 			sound.volume = 1.0f + Random.Range (-0.2f, 0.0f);
 			sound.PlayOneShot (footstepSound);
 			float speedStumbleMultiplier = 1 + Mathf.Pow ((cc.rigidbody.velocity.magnitude / (cc.jogSpeed * cc.sprintSpeedFactor)), 5);
-			float angleStumbleChance = 1000;//Mathf.Max (1, footstepTerrain.SlopeStumbleConstant() - footstepTerrain.SlopeStumbleCoefficient() * Mathf.Pow (ObjectiveSlopeAngleDeg (), footstepTerrain.SlopeStumbleExponent()));
+			footstepTerrain = hit.collider.GetComponentInParent<TerrainInfo>();
+			float angleStumbleChance = 1000;
+			if (footstepTerrain != null) {
+				angleStumbleChance = Mathf.Max (1, footstepTerrain.SlopeStumbleConstant - footstepTerrain.SlopeStumbleCoefficient * Mathf.Pow (ObjectiveSlopeAngleDeg (), footstepTerrain.SlopeStumbleExponent));
+			}
 			float lookingAtFeetMultiplier = Mathf.Min (Mathf.Max (5.5F - 0.05F * Vector3.Angle (Vector3.down, cam.transform.forward), 0.25F), 4F);
 			if (Random.Range (0.0f, 1.0f) < (speedStumbleMultiplier / (angleStumbleChance * lookingAtFeetMultiplier))) {
 				sound.pitch = 1.0f;
