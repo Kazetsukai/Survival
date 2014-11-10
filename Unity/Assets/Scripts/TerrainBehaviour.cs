@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public class TerrainBehaviour : MonoBehaviour {
 	
-	public GameObject TerrainPrototype;
-	
 	static readonly Vector3 distCentreToFlatEdge = new Vector3(0, 0, Mathf.Sqrt (3) / 2.0f);
 	static readonly Vector3 distCentreToPointyEdge = new Vector3(0, 0, 1);
 	
 	public int MapWidth = 50;
 	public int MapHeight = 50;
 	public int MapDepth = 20;
+	
+	public GameObject[] TerrainTypes;
 	
 	// Use this for initialization
 	void Start () {
@@ -24,11 +24,17 @@ public class TerrainBehaviour : MonoBehaviour {
 			{
 				for (int y = 0; y < MapHeight; y++) 
 				{
-					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / (10f + x / 10f) ? 1 : 0;
+					int terrainTypeI = (int)(Mathf.PerlinNoise((x+300+d) * 0.04f, (y+103+d) * 0.04f) * TerrainTypes.Length);
+					if (terrainTypeI >= TerrainTypes.Length)
+					{
+						terrainTypeI = 0;
+					}
+					
+					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / (10f + x / 10f) ? terrainTypeI : 0;
 					//if (x > 3 && d == 3)
 						//_maps[0][d,y,x] = 0;
 					if (d == 0)
-						_maps[0][d,y,x] = 1;	
+						_maps[0][d,y,x] = terrainTypeI;	
 					/*
 					if (d == 0)
 					{
@@ -47,12 +53,15 @@ public class TerrainBehaviour : MonoBehaviour {
 		foreach (var map in _maps) {
 			foreach (var mapChunk in ChunkMap(map))
 			{
-				var mesh = GenerateMesh (mapChunk.Map);
+				for (int i = 1; i < TerrainTypes.Length; i++)
+				{
+					var mesh = GenerateMesh (mapChunk.Map, i);
 				
-				var terrainPatch = (GameObject)Instantiate (TerrainPrototype);
-				terrainPatch.transform.position = terrainPatch.transform.position + mapChunk.StartPos;
-				terrainPatch.GetComponent<MeshFilter> ().mesh = mesh;
-				terrainPatch.GetComponent<MeshCollider> ().sharedMesh = mesh;
+					var terrainPatch = (GameObject)Instantiate (TerrainTypes[i]);
+					terrainPatch.transform.position = terrainPatch.transform.position + mapChunk.StartPos;
+					terrainPatch.GetComponent<MeshFilter> ().mesh = mesh;
+					terrainPatch.GetComponent<MeshCollider> ().sharedMesh = mesh;
+				}
 			}
 		}
 	}
@@ -121,7 +130,7 @@ public class TerrainBehaviour : MonoBehaviour {
 		return new Vector2(vert.x, vert.z);
 	}
 	
-	Mesh GenerateMesh(int[,,] map)
+	Mesh GenerateMesh(int[,,] map, int terrainType)
 	{
 		int Depth = map.GetLength(0);
 		int Height = map.GetLength(1);
@@ -141,7 +150,7 @@ public class TerrainBehaviour : MonoBehaviour {
 					float zOffset = (y + (x % 2 == 0 ? 0.5f : 0.0f)) * Mathf.Sqrt (3);
 					float yOffset = d * 1;
 					
-					if (IsFull(map, d, y, x)) {
+					if (map[d,y,x] == terrainType) {
 						
 						var noShift = (x+1) % 2;
 						var shift = x % 2;
