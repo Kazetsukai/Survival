@@ -883,8 +883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapWidth: 80
-  MapHeight: 150
-  MapDepth: 10
+  MapHeight: 80
+  MapDepth: 15
   TerrainTypes:
   - {fileID: 0}
   - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
@@ -3425,7 +3425,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 32
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2057535968
 BoxCollider:
   m_ObjectHideFlags: 0
