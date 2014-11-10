@@ -50,12 +50,15 @@ public class TerrainBehaviour : MonoBehaviour {
 			}
 		}
 		
+		int vertices = 0;
 		foreach (var map in _maps) {
 			foreach (var mapChunk in ChunkMap(map))
 			{
 				for (int i = 1; i < TerrainTypes.Length; i++)
 				{
 					var mesh = GenerateMesh (mapChunk.Map, i);
+				
+					vertices += mesh.vertexCount;
 				
 					var terrainPatch = (GameObject)Instantiate (TerrainTypes[i]);
 					terrainPatch.transform.position = terrainPatch.transform.position + mapChunk.StartPos;
@@ -64,6 +67,7 @@ public class TerrainBehaviour : MonoBehaviour {
 				}
 			}
 		}
+		Debug.Log (vertices);
 	}
 
 	public class MapChunk
@@ -156,8 +160,15 @@ public class TerrainBehaviour : MonoBehaviour {
 						var shift = x % 2;
 						
 						var up = IsFull (map, d+1, y, x);
+						var down = IsFull (map, d-1, y, x);
+						
 						var top = IsFull (map, d, y+1, x);
 						var bottom = IsFull (map, d, y-1, x);
+						var leftTop = IsFull (map, d, y+noShift, x-1);
+						var rightTop = IsFull (map, d, y+noShift, x+1);
+						var leftBottom = IsFull (map, d, y-shift, x-1);
+						var rightBottom = IsFull (map, d, y-shift, x+1);
+						
 						var topUp = IsFull (map, d+1, y+1, x);
 						var leftTopUp = IsFull(map, d+1, y+noShift, x-1);
 						var rightTopUp = IsFull(map, d+1, y+noShift, x+1);
@@ -245,7 +256,6 @@ public class TerrainBehaviour : MonoBehaviour {
 							// ---------
 							// Top faces
 							// ---------
-							
 							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, northVert, northEastVert);
 							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, northEastVert, eastNorthEastVert);
 							GenerateTopFaceTriangle (vertices, uvs, indices, centreVert, eastNorthEastVert, eastVert);
@@ -261,33 +271,52 @@ public class TerrainBehaviour : MonoBehaviour {
 											
 						}
 						
-						// ---------
-						// Bottom faces
-						// ---------
-						
-						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northEastVert, eastVert);
-						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, eastVert, southEastVert);
-						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southEastVert, southWestVert);
-						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southWestVert, westVert);
-						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, westVert, northWestVert);
-						GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northWestVert, northEastVert);
+						if (!down)
+						{
+							// ---------
+							// Bottom faces
+							// ---------
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northEastVert, eastVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, eastVert, southEastVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southEastVert, southWestVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, southWestVert, westVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, westVert, northWestVert);
+							GenerateBottomFaceTriangle (vertices, uvs, indices, baseY, centreVert, northWestVert, northEastVert);
+						}
 						
 						// ----------
 						// Side faces
 						// ----------
-						
-						GenerateSideQuad(vertices, uvs, indices, baseY, southVert, southWestVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, southWestVert, westSouthWestVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, westSouthWestVert, westVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, westVert, westNorthWestVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, westNorthWestVert, northWestVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, northWestVert, northVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, northVert, northEastVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, northEastVert, eastNorthEastVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, eastNorthEastVert, eastVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, eastVert, eastSouthEastVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, eastSouthEastVert, southEastVert);
-						GenerateSideQuad(vertices, uvs, indices, baseY, southEastVert, southVert);
+						if (!bottom)
+						{
+							GenerateSideQuad(vertices, uvs, indices, baseY, southEastVert, southVert);
+							GenerateSideQuad(vertices, uvs, indices, baseY, southVert, southWestVert);
+						}
+						if (!leftBottom)
+						{
+							GenerateSideQuad(vertices, uvs, indices, baseY, southWestVert, westSouthWestVert);
+							GenerateSideQuad(vertices, uvs, indices, baseY, westSouthWestVert, westVert);
+						}
+						if (!leftTop)
+						{
+							GenerateSideQuad(vertices, uvs, indices, baseY, westVert, westNorthWestVert);
+							GenerateSideQuad(vertices, uvs, indices, baseY, westNorthWestVert, northWestVert);
+						}
+						if (!top)
+						{
+							GenerateSideQuad(vertices, uvs, indices, baseY, northWestVert, northVert);
+							GenerateSideQuad(vertices, uvs, indices, baseY, northVert, northEastVert);
+						}
+						if (!rightTop)
+						{
+							GenerateSideQuad(vertices, uvs, indices, baseY, northEastVert, eastNorthEastVert);
+							GenerateSideQuad(vertices, uvs, indices, baseY, eastNorthEastVert, eastVert);
+						}
+						if (!rightBottom)
+						{
+							GenerateSideQuad(vertices, uvs, indices, baseY, eastVert, eastSouthEastVert);
+							GenerateSideQuad(vertices, uvs, indices, baseY, eastSouthEastVert, southEastVert);
+						}
 					}
 				}
 			}
