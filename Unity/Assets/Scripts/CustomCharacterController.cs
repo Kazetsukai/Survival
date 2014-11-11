@@ -15,6 +15,8 @@ public class CustomCharacterController : MonoBehaviour {
 
 	public GameObject leftFoot;
 	public GameObject rightFoot;
+	foot_target_behaviour lf;
+	foot_target_behaviour rf;
 
 	float altitude = 0;
 	float objectiveSlopeAngle = 0F;
@@ -33,12 +35,20 @@ public class CustomCharacterController : MonoBehaviour {
 	void Start () {
 		rb = GetComponentInParent<Rigidbody> ();
 		cc = GetComponent<CapsuleCollider> ();
+		lf = leftFoot.GetComponent<foot_target_behaviour> ();
+		rf = rightFoot.GetComponent<foot_target_behaviour> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (stumbleSteps < 1) {
-			_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
+		if (stumbleSteps < 1) { // can't control direction when stumbling
+			//if (lf.currentPlayingAnimation != "idle" && !(lf.IsInFront() && lf.IsGrounded() || rf.IsInFront() && rf.IsGrounded())) { // if you have no foot on the ground in front of you and you are not standing still
+			//	_movementVector = transform.forward * Mathf.Max((int)Input.GetAxis ("Vertical"), 0) + transform.right * (int)Input.GetAxis ("Horizontal"); // backwards acceleration is ignored
+			//} else if (lf.currentPlayingAnimation != "idle" && !(!lf.IsInFront() && lf.IsGrounded() || !rf.IsInFront() && rf.IsGrounded())) { // if you have no foot on the ground behind you and you are not standing still
+			//	_movementVector = transform.forward * Mathf.Min((int)Input.GetAxis ("Vertical"), 0) + transform.right * (int)Input.GetAxis ("Horizontal"); // forwards acceleration is ignored
+			//} else {
+				_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal"); // forwards acceleration is ignored
+			//}
 		}
 	}
 
@@ -166,6 +176,7 @@ public class CustomCharacterController : MonoBehaviour {
 				if (rb.velocity.y > 0) {
 					Vector3 newVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 					rb.velocity = newVelocity;
+					rb.useGravity = true;
 					//Debug.Log("I am stopping the player from walking up a cliff");
 				}
 			}

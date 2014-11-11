@@ -6,7 +6,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	public float distanceInFrontWhenWalking = 0.2F;
 	public float distanceInFrontWhenRunning = 0.1F;
 	public string animationEventName;
-	public string currentPlayingAnimation;
+	public string currentPlayingAnimation = "idle";
 	public float stepDownTolerance = 0.1F;
 	public float stepUpTolerance = 0.35F;
 	public GameObject player;
@@ -21,6 +21,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	Animator anim;
 	TerrainInfo footstepTerrain;
 	bool isGrounded;
+	bool isInFront = false;
 
 	// Use this for initialization
 	void Start () {
@@ -53,6 +54,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	}
 
 	public void HandleStep() {
+		isInFront = true;
 		if (cc.IsGrounded()) {
 			sound.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
 			sound.volume = 1.0f + Random.Range (-0.2f, 0.0f);
@@ -111,5 +113,13 @@ public class foot_target_behaviour : MonoBehaviour {
 
 	public bool IsGrounded() {
 		return isGrounded;
+	}
+
+	public void MoveToBack () {
+		isInFront = false;
+	}
+
+	public bool IsInFront() {
+		return isInFront;
 	}
 }

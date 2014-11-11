@@ -80,6 +80,8 @@ public class character_test_anim_behaviour : MonoBehaviour
 		anim.SetBool ("walking", false);
 		anim.SetBool ("running", false);
 		anim.speed = 1.0f;
+		lf.currentPlayingAnimation = "idle";
+		rf.currentPlayingAnimation = "idle";
 	}
 
 	void AnimSetWalking()
@@ -115,6 +117,15 @@ public class character_test_anim_behaviour : MonoBehaviour
 	public void Event_RightFootLand() {
 		rf.HandleStep ();
 	}
+
+	public void Event_LeftFootBack() {
+		lf.MoveToBack ();
+	}
+
+	public void Event_RightFootBack() {
+		rf.MoveToBack ();
+	}
+
 
 	public void PlayFootstep() {}
 

@@ -786,6 +786,20 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: .50000006
+        functionName: Event_RightFootBack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .013371082
+        functionName: Event_LeftFootBack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -905,6 +919,20 @@ ModelImporter:
         messageOptions: 0
       - time: .83120054
         functionName: Event_LeftFootLift
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .45106414
+        functionName: Event_LeftFootBack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .906562507
+        functionName: Event_RightFootBack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
