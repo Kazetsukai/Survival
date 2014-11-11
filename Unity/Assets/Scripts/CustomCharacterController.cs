@@ -226,7 +226,7 @@ public class CustomCharacterController : MonoBehaviour {
 	public void Stumble() {
 		if (stumbleSteps < 1) {
 			stumbleSteps = 3;
-			Vector3 stumbleDirection = new Vector3(Random.Range(-jogSpeed * walkSpeedFactor / 3, jogSpeed * walkSpeedFactor / 3), 0, Random.Range(-jogSpeed * walkSpeedFactor / 3, jogSpeed * walkSpeedFactor / 3));
+			Vector3 stumbleDirection = transform.right * Random.Range(-jogSpeed * walkSpeedFactor / 2, jogSpeed * walkSpeedFactor / 2);
 			rb.velocity = rb.velocity + stumbleDirection;
 			_movementVector = _movementVector + stumbleDirection;
 		} else {

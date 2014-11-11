@@ -888,9 +888,10 @@ MonoBehaviour:
   TerrainTypes:
   - {fileID: 0}
   - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
-  - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
-  - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
+  - {fileID: 100000, guid: 4f37edb9a26bef24091aa0ddd18832fa, type: 2}
+  - {fileID: 100000, guid: e1af88bcaa96ef940807e878b00b0663, type: 2}
   - {fileID: 100000, guid: 0b30ba82c125bac48bfb47a2f3f63343, type: 2}
+  - {fileID: 100000, guid: 62f05a634da55f14d9f967cff91fe0c9, type: 2}
 --- !u!1 &809708095
 GameObject:
   m_ObjectHideFlags: 0
