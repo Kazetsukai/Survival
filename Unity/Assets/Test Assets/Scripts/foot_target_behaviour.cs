@@ -30,6 +30,8 @@ public class foot_target_behaviour : MonoBehaviour {
 		vectorToGround = Vector3.down * cc.GetComponentInParent<CapsuleCollider> ().height / 2F + Vector3.up * cc.stepUpTolerance;
 		anim = cc.GetComponentInChildren<Animator> ();
 		cam = cc.GetComponentInChildren<Camera> ();
+		transform.position = player.transform.position;
+		SettleToGround ();
 	}
 	
 	// Update is called once per frame
