@@ -235,9 +235,7 @@ public class CustomCharacterController : MonoBehaviour {
 	}
 
 	public void Fall() {
-		_movementVector = Vector3.zero;
-		rb.velocity = Vector3.zero;
-		stumbleSteps = 0;
+		GetComponentInParent<Death> ().Die();
 	}
 
 	public void StableStep () {

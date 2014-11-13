@@ -21,14 +21,15 @@ public class GuiScript : MonoBehaviour {
 	void OnGUI()
 	{
 		var text = "Time: " + GetTime ().ToShortTimeString () + '\n' +
-						"Body water: " + (Math.Round (player.waterInBody, 2)) + "ml" + '\n' +
+						"Water in gut: " + (Math.Round (player.waterInGut, 2)) + "ml" + '\n' +
 						"Water in stomach:" + (Math.Round (player.waterInStomach, 2)) + "ml" + '\n' +
-						"Sugar in blood:" + (Math.Round (player.sugarInBlood, 2)) + "g" + '\n' +
+						"Sugar in gut:" + (Math.Round (player.sugarInGut, 2)) + "g" + '\n' +
 						"Sugar in stomach:" + (Math.Round (player.sugarInStomach, 2)) + "g" + '\n' +
-						"Protein in blood:" + (Math.Round (player.proteinInBlood, 2)) + "g" + '\n' +
+						"Protein in gut:" + (Math.Round (player.proteinInGut, 2)) + "g" + '\n' +
 						"Protein in stomach:" + (Math.Round (player.proteinInStomach, 2)) + "g" + '\n' +
-						"Fat in blood:" + (Math.Round (player.fatInBlood, 2)) + "g" + '\n' +
+						"Fat in gut:" + (Math.Round (player.fatInGut, 2)) + "g" + '\n' +
 						"Fat in stomach:" + (Math.Round (player.fatInStomach, 2)) + "g" + '\n' +
+						"Fibre in gut:" + (Math.Round (player.fibreInGut, 2)) + "g" + '\n' +
 						"Fibre in stomach:" + (Math.Round (player.fibreInStomach, 2)) + "g" + '\n';
 
 		GUI.Box (new Rect (10, 10, 200, 300), text, style);

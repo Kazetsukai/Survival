@@ -8,7 +8,12 @@ public class Metabolism : MonoBehaviour {
 	public float proteinInStomach = 120F;
 	public float fatInStomach = 80F;
 	public float fibreInStomach = 50F;
-	public float waterInBody = 44000F;
+	public float waterInGut = 200F;
+	public float sugarInGut = 90F;
+	public float proteinInGut = 120F;
+	public float fatInGut = 80F;
+	public float fibreInGut = 50F;
+	public float waterInBlood = 44000F;
 	public float sugarInBlood = 90F;
 	public float proteinInBlood = 120F;
 	public float fatInBlood = 50F;
@@ -31,27 +36,89 @@ public class Metabolism : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (waterInBody > 0) {
-			waterInBody -= Time.fixedDeltaTime * restingWaterLoss * timeCompression;
-		}
+
+		// work out how much total mass we have in the stomach
+		float totalStomachContents = waterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;
+
+		// work out the proportions of each food type in the stomach
+		float waterProportion = waterInStomach / totalStomachContents;
+		float sugarProportion = sugarInStomach / totalStomachContents;
+		float proteinProportion = proteinInStomach / totalStomachContents;
+		float fatProportion = fatInStomach / totalStomachContents;
+		float fibreProportion = fibreInStomach / totalStomachContents;
+
+		// work out the average digestion rate of all contents
+		float averageDigestionRate = (waterProportion * waterDigestionRate + sugarProportion * sugarDigestionRate + proteinProportion * proteinDigestionRate + fatProportion * fatDigestionRate + fibreProportion * fibreDigestionRate) / 5;
+
+		// if there is any water in the stomach
 		if (waterInStomach > 0) {
-			waterInStomach -= Time.fixedDeltaTime * waterDigestionRate * timeCompression;
-			waterInBody += Time.fixedDeltaTime * waterDigestionRate * timeCompression;
+			// work out how much is being digested this update
+			float waterBeingDigested = waterProportion * averageDigestionRate * Time.fixedDeltaTime * timeCompression;
+
+			// if the last bit of water is being digested, shift it all to the gut, otherwise shift the amount being digested
+			if (waterBeingDigested > waterInStomach) {
+				waterInGut += waterInStomach;
+				waterInStomach = 0;
+			} else {
+				waterInStomach -= waterBeingDigested;
+				waterInGut += waterBeingDigested;
+			}
 		}
+		// if there is any sugar in the stomach
 		if (sugarInStomach > 0) {
-			sugarInStomach -= Time.fixedDeltaTime * sugarDigestionRate * timeCompression;
-			sugarInBlood += Time.fixedDeltaTime * sugarDigestionRate * timeCompression;
+			// work out how much is being digested this update
+			float sugarBeingDigested = sugarProportion * averageDigestionRate * Time.fixedDeltaTime * timeCompression;
+
+			// if the last bit of sugar is being digested, shift it all to the gut, otherwise shift the amount being digested
+			if (sugarBeingDigested > sugarInStomach) {
+				sugarInGut += sugarInStomach;
+				sugarInStomach = 0;
+			} else {
+				sugarInStomach -= sugarBeingDigested;
+				sugarInGut += sugarBeingDigested;
+			}
 		}
+		// if there is any protein in the stomach
 		if (proteinInStomach > 0) {
-			proteinInStomach -= Time.fixedDeltaTime * proteinDigestionRate * timeCompression;
-			proteinInBlood += Time.fixedDeltaTime * proteinDigestionRate * timeCompression;
+			// work out how much is being digested this update
+			float proteinBeingDigested = proteinProportion * averageDigestionRate * Time.fixedDeltaTime * timeCompression;
+			
+			// if the last bit of protein is being digested, shift it all to the gut, otherwise shift the amount being digested
+			if (proteinBeingDigested > proteinInStomach) {
+				proteinInGut += proteinInStomach;
+				proteinInStomach = 0;
+			} else {
+				proteinInStomach -= proteinBeingDigested;
+				proteinInGut += proteinBeingDigested;
+			}
 		}
+		// if there is any fat in the stomach
 		if (fatInStomach > 0) {
-			fatInStomach -= Time.fixedDeltaTime * fatDigestionRate * timeCompression;
-			fatInBlood += Time.fixedDeltaTime * fatDigestionRate * timeCompression;
+			// work out how much is being digested this update
+			float fatBeingDigested = fatProportion * averageDigestionRate * Time.fixedDeltaTime * timeCompression;
+			
+			// if the last bit of fat is being digested, shift it all to the gut, otherwise shift the amount being digested
+			if (fatBeingDigested > fatInStomach) {
+				fatInGut += fatInStomach;
+				fatInStomach = 0;
+			} else {
+				fatInStomach -= fatBeingDigested;
+				fatInGut += fatBeingDigested;
+			}
 		}
+		// if there is any fibre in the stomach
 		if (fibreInStomach > 0) {
-			fibreInStomach -= Time.fixedDeltaTime * fibreDigestionRate * timeCompression;
+			// work out how much is being digested this update
+			float fibreBeingDigested = fibreProportion * averageDigestionRate * Time.fixedDeltaTime * timeCompression;
+			
+			// if the last bit of fibre is being digested, shift it all to the gut, otherwise shift the amount being digested
+			if (fibreBeingDigested > fibreInStomach) {
+				fibreInGut += fibreInStomach;
+				fibreInStomach = 0;
+			} else {
+				fibreInStomach -= fibreBeingDigested;
+				fibreInGut += fibreBeingDigested;
+			}
 		}
 	}
 }
