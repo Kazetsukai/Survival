@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -22,7 +22,8 @@ public class GuiScript : MonoBehaviour {
 	{
 		var text = "Time: " + GetTime ().ToShortTimeString () + '\n' +
 						"Water in gut: " + (Math.Round (player.waterInGut, 2)) + "ml" + '\n' +
-						"Water in stomach:" + (Math.Round (player.waterInStomach, 2)) + "ml" + '\n' +
+						"Liquid water in stomach:" + (Math.Round (player.liquidWaterInStomach, 2)) + "ml" + '\n' +
+						"Food water in stomach:" + (Math.Round (player.foodWaterInStomach, 2)) + "ml" + '\n' +
 						"Sugar in gut:" + (Math.Round (player.sugarInGut, 2)) + "g" + '\n' +
 						"Sugar in stomach:" + (Math.Round (player.sugarInStomach, 2)) + "g" + '\n' +
 						"Protein in gut:" + (Math.Round (player.proteinInGut, 2)) + "g" + '\n' +

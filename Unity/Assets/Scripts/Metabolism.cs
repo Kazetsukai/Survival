@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Metabolism : MonoBehaviour {
 
-	public float waterInStomach = 200F;
+	public float liquidWaterInStomach = 400F;
+	public float foodWaterInStomach = 200F;
 	public float sugarInStomach = 90F;
 	public float proteinInStomach = 120F;
 	public float fatInStomach = 80F;
@@ -19,12 +20,12 @@ public class Metabolism : MonoBehaviour {
 	public float fatInBlood = 50F;
 
 	float timeCompression = 15F;
-	float restingWaterLoss = 1600F / (24F * 60F * 60F);
-	float waterDigestionRate = 100F / 60F;
-	float sugarDigestionRate = 50F / 60F;
-	float proteinDigestionRate = 20F / 60F;
-	float fatDigestionRate = 10F / 60F;
-	float fibreDigestionRate = 30F / 50F;
+	float liquidWaterDigestionRate = 0.6F;
+	float foodWaterDigestionRate = 0.4F;
+	float sugarDigestionRate = 0.25F;
+	float proteinDigestionRate = 0.1F;
+	float fatDigestionRate = 0.05F;
+	float fibreDigestionRate = 0.15F;
 
 	// Use this for initialization
 	void Start () {
@@ -38,29 +39,43 @@ public class Metabolism : MonoBehaviour {
 	void FixedUpdate() {
 
 		// work out how much total mass we have in the stomach
-		float totalStomachContents = waterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;
+		float totalStomachContents = foodWaterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;
 
 		// work out the proportions of each food type in the stomach
-		float waterProportion = waterInStomach / totalStomachContents;
+		float waterProportion = foodWaterInStomach / totalStomachContents;
 		float sugarProportion = sugarInStomach / totalStomachContents;
 		float proteinProportion = proteinInStomach / totalStomachContents;
 		float fatProportion = fatInStomach / totalStomachContents;
 		float fibreProportion = fibreInStomach / totalStomachContents;
 
 		// work out the average digestion rate of all contents
-		float averageDigestionRate = (waterProportion * waterDigestionRate + sugarProportion * sugarDigestionRate + proteinProportion * proteinDigestionRate + fatProportion * fatDigestionRate + fibreProportion * fibreDigestionRate) / 5;
+		float averageDigestionRate = (waterProportion * foodWaterDigestionRate + sugarProportion * sugarDigestionRate + proteinProportion * proteinDigestionRate + fatProportion * fatDigestionRate + fibreProportion * fibreDigestionRate) / 5;
 
-		// if there is any water in the stomach
-		if (waterInStomach > 0) {
+		// if there is any liquid (non-food) water in the stomach
+		if (liquidWaterInStomach > 0) {
+			// work out how much is being digested this update
+			float liquidWaterBeingDigested = liquidWaterDigestionRate * Time.fixedDeltaTime * timeCompression;
+			
+			// if the last bit of water is being digested, shift it all to the gut, otherwise shift the amount being digested
+			if (liquidWaterBeingDigested > liquidWaterInStomach) {
+				waterInGut += liquidWaterInStomach;
+				liquidWaterInStomach = 0;
+			} else {
+				liquidWaterInStomach -= liquidWaterBeingDigested;
+				waterInGut += liquidWaterBeingDigested;
+			}
+		}
+		// if there is any food water in the stomach
+		if (foodWaterInStomach > 0) {
 			// work out how much is being digested this update
 			float waterBeingDigested = waterProportion * averageDigestionRate * Time.fixedDeltaTime * timeCompression;
 
 			// if the last bit of water is being digested, shift it all to the gut, otherwise shift the amount being digested
-			if (waterBeingDigested > waterInStomach) {
-				waterInGut += waterInStomach;
-				waterInStomach = 0;
+			if (waterBeingDigested > foodWaterInStomach) {
+				waterInGut += foodWaterInStomach;
+				foodWaterInStomach = 0;
 			} else {
-				waterInStomach -= waterBeingDigested;
+				foodWaterInStomach -= waterBeingDigested;
 				waterInGut += waterBeingDigested;
 			}
 		}

@@ -6205,7 +6205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f4d0f44eef63f419a8a9bf73f08605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterInStomach: 200
+  liquidWaterInStomach: 400
+  foodWaterInStomach: 200
   sugarInStomach: 90
   proteinInStomach: 120
   fatInStomach: 80
