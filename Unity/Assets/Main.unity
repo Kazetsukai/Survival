@@ -6205,17 +6205,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f4d0f44eef63f419a8a9bf73f08605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liquidWaterInStomach: 400
-  foodWaterInStomach: 200
-  sugarInStomach: 90
-  proteinInStomach: 120
-  fatInStomach: 80
-  fibreInStomach: 50
-  waterInGut: 200
-  sugarInGut: 90
-  proteinInGut: 120
-  fatInGut: 80
-  fibreInGut: 50
+  liquidWaterInStomach: 0
+  foodWaterInStomach: 0
+  sugarInStomach: 0
+  proteinInStomach: 0
+  fatInStomach: 0
+  fibreInStomach: 0
+  liquidWaterInGut: 200
+  foodWaterInGut: 0
+  sugarInGut: 0
+  proteinInGut: 0
+  fatInGut: 0
+  fibreInGut: 0
   waterInBlood: 44000
   sugarInBlood: 90
   proteinInBlood: 120

@@ -52,6 +52,8 @@ public class CustomCharacterController : MonoBehaviour {
 		}
 	}
 
+
+
 	void OnGUI() {
 		/*if (stumbleSteps > 0) {
 			GUI.Box (new Rect (Screen.width /2 - 35, Screen.height /2 - 10, 70, 20), "STUMBLE");
