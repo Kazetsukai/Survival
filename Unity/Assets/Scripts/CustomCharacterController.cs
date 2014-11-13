@@ -139,7 +139,7 @@ public class CustomCharacterController : MonoBehaviour {
 					relativeSlopeAngle = Vector3.Angle(lateralMovementVector, _movementVector) * Mathf.Deg2Rad;
 
 					// use the relativeSlopeAngle to work out relativeSlopeSpeedMultiplier
-					relativeSlopeSpeedMultiplier = 1 - Mathf.Min(Mathf.Pow ((_movementVector.y < 0 ? -RelativeSlopeAngleDeg() : RelativeSlopeAngleDeg()) / maximumSlope, 2), 1);
+					relativeSlopeSpeedMultiplier = 1 - Mathf.Min(Mathf.Pow ((_movementVector.y < 0 ? -RelativeSlopeAngleDeg() : RelativeSlopeAngleDeg()) / maximumSlope, 2), 0.999F);
 
 				}
 				// scale the vector to the speed as determined by the player inputs and the relativeSlopeSpeedMultiplier

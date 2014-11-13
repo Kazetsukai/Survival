@@ -1558,7 +1558,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba6a86f93e07ad4a963d11faa25e35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaterMillilitres: 44000
+  targetPlayer: {fileID: 2057535962}
+  style:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
 --- !u!114 &778956653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6028,6 +6087,7 @@ GameObject:
   - 114: {fileID: 2057535964}
   - 114: {fileID: 2057535966}
   - 114: {fileID: 2057535968}
+  - 114: {fileID: 2057535969}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -6134,6 +6194,31 @@ MonoBehaviour:
   MainCamera: {fileID: 451847677}
   DeathCamera: {fileID: 1414816481}
   CharacterAvatarObject: {fileID: 1640423592}
+--- !u!114 &2057535969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2057535962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f4d0f44eef63f419a8a9bf73f08605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterInStomach: 200
+  sugarInStomach: 90
+  proteinInStomach: 120
+  fatInStomach: 80
+  fibreInStomach: 50
+  waterInGut: 200
+  sugarInGut: 90
+  proteinInGut: 120
+  fatInGut: 80
+  fibreInGut: 50
+  waterInBlood: 44000
+  sugarInBlood: 90
+  proteinInBlood: 120
+  fatInBlood: 50
 --- !u!1 &2085840366
 GameObject:
   m_ObjectHideFlags: 0
