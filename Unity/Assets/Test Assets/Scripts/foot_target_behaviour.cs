@@ -19,7 +19,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	public AudioClip stumbleSound;
 	Vector3 vectorToGround = Vector3.zero;
 	Animator anim;
-	TerrainInfo footstepTerrain;
+	public TerrainInfo footstepTerrain;
 	bool isGrounded;
 	bool isInFront = false;
 

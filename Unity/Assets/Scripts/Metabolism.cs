@@ -65,9 +65,7 @@ public class Metabolism : MonoBehaviour {
 		// work out how much total mass we have in the stomach
 		totalStomachContents = foodWaterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;
 
-		if (totalStomachContents > 0) {
-
-			CalculateStomachContentProportions();
+		if (totalStomachContents > 0 || liquidWaterInStomach > 0) {
 
 			// if there is any liquid (non-food) water in the stomach
 			if (liquidWaterInStomach > 0) {
@@ -248,7 +246,6 @@ public class Metabolism : MonoBehaviour {
 				digestionPacket.foodWaterInGut = 0;
 			}
 			if (digestionPacket.sugarInGut > 0 && Time.time > digestionPacket.sugarReleaseTime) {
-				Debug.Log ("Releasing sugar (" + sugarInGut + " * " + sugarReleaseRate + " + " + digestionPacket.sugarInGut + " * " + digestionPacket.sugarReleaseRate + ")/" + (sugarInGut + digestionPacket.sugarInGut));
 
 				sugarReleaseRate = (sugarInGut * sugarReleaseRate + digestionPacket.sugarInGut * digestionPacket.sugarReleaseRate) / (sugarInGut + digestionPacket.sugarInGut);
 
@@ -292,19 +289,20 @@ public class Metabolism : MonoBehaviour {
 		fibreInStomach += 50F;
 
 		totalStomachContents = foodWaterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;
-		CalculateStomachContentProportions ();
+		CalculateStomachContentProportionsAndRates ();
 
-		Debug.Log ("currentSugarDigestionRate " + currentSugarDigestionRate);
 		digestionPackets.Add (new DigestionPacket (0, 200, currentFoodWaterDigestionRate, 90, currentSugarDigestionRate, 120, currentProteinDigestionRate, 80, currentFatDigestionRate, 50, currentFibreDigestionRate));
 	}
 
 	void Drink() {
 		liquidWaterInStomach += 400F;
 
+		totalStomachContents = foodWaterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;
+		CalculateStomachContentProportionsAndRates ();
 		digestionPackets.Add (new DigestionPacket (400, 0, currentFoodWaterDigestionRate, 0, currentSugarDigestionRate, 0, currentProteinDigestionRate, 0, currentFatDigestionRate, 0, currentFibreDigestionRate));
 	}
 
-	void CalculateStomachContentProportions() {
+	void CalculateStomachContentProportionsAndRates() {
 	
 		// work out the proportions of each food type in the stomach
 		float foodWaterProportion = foodWaterInStomach / totalStomachContents;
