@@ -27,6 +27,8 @@ public class GuiScript : MonoBehaviour {
 			"Food water in gut: " + (Math.Round (player.foodWaterInGut, 2)) + "ml" + '\n' +
 			"Liquid water in stomach:" + (Math.Round (player.liquidWaterInStomach, 2)) + "ml" + '\n' +
 			"Food water in stomach:" + (Math.Round (player.foodWaterInStomach, 2)) + "ml" + '\n' +
+			"Glycogen in liver:" + (Math.Round (player.glycogenInLiver, 2)) + "g" + '\n' +
+			"Insulin in blood:" + (Math.Round (player.insulinInBlood * 100000, 2)) + '\n' +
 			"Sugar in blood:" + (Math.Round (player.sugarInBlood, 2)) + "g" + '\n' +
 			"Sugar in gut:" + (Math.Round (player.sugarInGut, 2)) + "g" + '\n' +
 			"Sugar in stomach:" + (Math.Round (player.sugarInStomach, 2)) + "g" + '\n' +

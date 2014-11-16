@@ -6430,9 +6430,12 @@ MonoBehaviour:
   fatInGut: 0
   fibreInGut: 0
   waterInBlood: 44000
-  sugarInBlood: 90
+  sugarInBlood: 9
   proteinInBlood: 120
   fatInBlood: 50
+  phosphocreatineInMuscles: 120
+  glycogenInLiver: 80
+  insulinInBlood: 0
   bloodVolume: 3000
 --- !u!1 &2085840366
 GameObject:

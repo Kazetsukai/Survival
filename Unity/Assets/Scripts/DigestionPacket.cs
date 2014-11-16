@@ -42,7 +42,7 @@ public class DigestionPacket {
 
 		liquidWaterReleaseTime = Time.time + 60 / timeCompression;
 		foodWaterReleaseTime = Time.time + 1800 / timeCompression;
-		sugarReleaseTime = Time.time + 6 / timeCompression;
+		sugarReleaseTime = Time.time + 600 / timeCompression;
 		proteinReleaseTime = Time.time + 3600 / timeCompression;
 		fatReleaseTime = Time.time + 10800 / timeCompression;
 		fibreReleaseTime = Time.time + 3600 / timeCompression;

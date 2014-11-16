@@ -17,9 +17,15 @@ public class Metabolism : MonoBehaviour {
 	public float fatInGut = 80F;
 	public float fibreInGut = 50F;
 	public float waterInBlood = 44000F;
-	public float sugarInBlood = 90F;
+	public float sugarInBlood = 9F;
 	public float proteinInBlood = 120F;
 	public float fatInBlood = 50F;
+	public float phosphocreatineInMuscles = 120F;
+	public float glycogenInLiver = 120F;
+	public float insulinInBlood = 0F;
+	float insulinHalfLife = 300F;
+	float insulinReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F));
+	float targetSugarInBlood = 8.4F;
 	float foodWaterReleaseRate = 0;
 	float sugarReleaseRate = 0;
 	float proteinReleaseRate = 0;
@@ -53,10 +59,11 @@ public class Metabolism : MonoBehaviour {
 	float energyFromSugar = 17F;
 	float energyFromProtein = 17F;
 	float energyFromFat = 39F;
+	float proteinDepletionRate = 50F / (24F * 60F * 60F);
 
 	// Use this for initialization
 	void Start () {
-
+		Debug.Log (insulinReleaseAmount);
 	}
 	
 	// Update is called once per frame
@@ -70,12 +77,6 @@ public class Metabolism : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-
-		// Deplete water
-		waterInBlood -= waterDepletionRate * Time.fixedDeltaTime * timeCompression;
-
-		// Replenish blood
-		bloodVolume = Mathf.Min (bloodVolumeMax, bloodVolume + bloodReplenishmentRate * Time.fixedDeltaTime * timeCompression);
 
 		// Spend base energy
 		float energyRequired = energyDepletionRate * Time.fixedDeltaTime * timeCompression;
@@ -100,6 +101,33 @@ public class Metabolism : MonoBehaviour {
 				}
 			}
 		}
+
+		// Deplete water
+		waterInBlood -= waterDepletionRate * Time.fixedDeltaTime * timeCompression;
+
+		// Replenish blood
+		bloodVolume = Mathf.Min (bloodVolumeMax, bloodVolume + bloodReplenishmentRate * Time.fixedDeltaTime * timeCompression);
+
+		// Deplete protein
+		proteinInBlood -= proteinDepletionRate * Time.fixedDeltaTime * timeCompression;
+
+		// Deplete insulin
+		if (insulinInBlood > 0) {
+			insulinInBlood = insulinInBlood / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / insulinHalfLife));
+		} else {
+			insulinInBlood = -(Mathf.Abs(insulinInBlood) / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / insulinHalfLife)));
+		}
+
+		// Adjust insulin based on sugar levels in blood
+		if (targetSugarInBlood < sugarInBlood) {
+			insulinInBlood += insulinReleaseAmount * Time.fixedDeltaTime * timeCompression;
+		} else if (targetSugarInBlood > sugarInBlood) {
+			insulinInBlood -= insulinReleaseAmount * Time.fixedDeltaTime * timeCompression;
+		}
+
+		// Transfer sugar/glycogen between liver/blood
+		glycogenInLiver += insulinInBlood * Time.fixedDeltaTime * timeCompression;
+		sugarInBlood -= insulinInBlood * Time.fixedDeltaTime * timeCompression;
 
 		// work out how much total mass we have in the stomach
 		totalStomachContents = foodWaterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;
@@ -307,13 +335,15 @@ public class Metabolism : MonoBehaviour {
 				fatInGut += digestionPacket.fatInGut;
 				digestionPacket.fatInGut = 0;
 			}
-			if (digestionPacket.fibreInGut > 0 && Time.time > digestionPacket.fibreReleaseTime) {
-				//Debug.Log ("Releasing fibre");
-				
-				fibreReleaseRate = (fibreInGut * fibreReleaseRate + digestionPacket.fibreInGut * digestionPacket.fibreReleaseRate) / (fibreInGut + digestionPacket.fibreInGut);
-				
-				fibreInGut += digestionPacket.fibreInGut;
-				digestionPacket.fibreInGut = 0;
+			if (Time.time > digestionPacket.fibreReleaseTime) {
+				if (digestionPacket.fibreInGut > 0) {
+					//Debug.Log ("Releasing fibre");
+					
+					fibreReleaseRate = (fibreInGut * fibreReleaseRate + digestionPacket.fibreInGut * digestionPacket.fibreReleaseRate) / (fibreInGut + digestionPacket.fibreInGut);
+					
+					fibreInGut += digestionPacket.fibreInGut;
+					digestionPacket.fibreInGut = 0;
+				}
 				digestionPackets.Remove(digestionPacket);
 			}
 		}
