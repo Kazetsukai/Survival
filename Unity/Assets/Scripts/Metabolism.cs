@@ -21,6 +21,7 @@ public class Metabolism : MonoBehaviour {
 	public float proteinInBlood = 120F;
 	public float fatInBlood = 50F;
 	public float phosphocreatineInMuscles = 120F;
+	public float glycogenInMuscles = 280F;
 	public float glycogenInLiver = 120F;
 	public float insulinInBlood = 0F;
 	float insulinHalfLife = 300F;
@@ -122,12 +123,34 @@ public class Metabolism : MonoBehaviour {
 		if (targetSugarInBlood < sugarInBlood) {
 			insulinInBlood += insulinReleaseAmount * Time.fixedDeltaTime * timeCompression;
 		} else if (targetSugarInBlood > sugarInBlood) {
-			insulinInBlood -= insulinReleaseAmount * Time.fixedDeltaTime * timeCompression;
+			insulinInBlood -= insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * 3;
 		}
 
 		// Transfer sugar/glycogen between liver/blood
-		glycogenInLiver += insulinInBlood * Time.fixedDeltaTime * timeCompression;
-		sugarInBlood -= insulinInBlood * Time.fixedDeltaTime * timeCompression;
+		if (glycogenInLiver < 120F && insulinInBlood > 0 || glycogenInLiver > 0F && insulinInBlood < 0) {
+			glycogenInLiver += insulinInBlood * Time.fixedDeltaTime * timeCompression;
+			sugarInBlood -= insulinInBlood * Time.fixedDeltaTime * timeCompression;
+		}
+
+		// Increase phosphocreatine stores
+		float phosphoCreatineIncrease = (1F - phosphocreatineInMuscles / 120F) * 2.8F * Time.fixedDeltaTime * timeCompression;
+		if (phosphoCreatineIncrease / 3.7F < proteinInBlood) {
+			phosphocreatineInMuscles += phosphoCreatineIncrease;
+			proteinInBlood -= phosphoCreatineIncrease / 3.7F;
+		} else {
+			phosphocreatineInMuscles += proteinInBlood * 3.7F;
+			proteinInBlood = 0;
+		}
+
+		// Increase muscle glycogen stores from liver
+		float muscleGlycogenIncrease = Mathf.Max (0.0165F - glycogenInMuscles / 10000F, 0.002667F) * Time.fixedDeltaTime * timeCompression;
+		if (muscleGlycogenIncrease < glycogenInLiver) {
+			glycogenInLiver -= muscleGlycogenIncrease;
+			glycogenInMuscles += muscleGlycogenIncrease;
+		} else {
+			glycogenInMuscles += glycogenInLiver;
+			glycogenInLiver = 0;
+		}
 
 		// work out how much total mass we have in the stomach
 		totalStomachContents = foodWaterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;
@@ -326,6 +349,8 @@ public class Metabolism : MonoBehaviour {
 				
 				proteinInGut += digestionPacket.proteinInGut;
 				digestionPacket.proteinInGut = 0;
+			} else {
+				Debug.Log("Time to protein release: " + (digestionPacket.proteinReleaseTime - Time.time));
 			}
 			if (digestionPacket.fatInGut > 0 && Time.time > digestionPacket.fatReleaseTime) {
 				//Debug.Log ("Releasing fat");
@@ -335,19 +360,21 @@ public class Metabolism : MonoBehaviour {
 				fatInGut += digestionPacket.fatInGut;
 				digestionPacket.fatInGut = 0;
 			}
-			if (Time.time > digestionPacket.fibreReleaseTime) {
-				if (digestionPacket.fibreInGut > 0) {
-					//Debug.Log ("Releasing fibre");
-					
-					fibreReleaseRate = (fibreInGut * fibreReleaseRate + digestionPacket.fibreInGut * digestionPacket.fibreReleaseRate) / (fibreInGut + digestionPacket.fibreInGut);
-					
-					fibreInGut += digestionPacket.fibreInGut;
-					digestionPacket.fibreInGut = 0;
-				}
+			if (digestionPacket.fibreInGut > 0 && Time.time > digestionPacket.fibreReleaseTime)  {
+				//Debug.Log ("Releasing fibre");
+
+				fibreReleaseRate = (fibreInGut * fibreReleaseRate + digestionPacket.fibreInGut * digestionPacket.fibreReleaseRate) / (fibreInGut + digestionPacket.fibreInGut);
+
+				fibreInGut += digestionPacket.fibreInGut;
+				digestionPacket.fibreInGut = 0;
+			}
+		}
+		List<DigestionPacket> tempDigestionPackets = digestionPackets;
+		foreach (var digestionPacket in tempDigestionPackets) {
+			if (digestionPacket.liquidWaterInGut == 0 && digestionPacket.foodWaterInGut == 0 && digestionPacket.sugarInGut == 0 && digestionPacket.proteinInGut == 0 && digestionPacket.fatInGut == 0 && digestionPacket.fibreInGut == 0) {
 				digestionPackets.Remove(digestionPacket);
 			}
 		}
-		//Debug.Log ("Number of packets is " + digestionPackets.Count);
 	}
 
 	void Eat() {
