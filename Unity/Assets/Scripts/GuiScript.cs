@@ -21,6 +21,7 @@ public class GuiScript : MonoBehaviour {
 	void OnGUI()
 	{
 		var text = "Time: " + GetTime ().ToShortTimeString () + '\n' +
+			"Blood: " + (Math.Round (player.bloodVolume, 2)) + "ml" + '\n' +
 			"Water in blood: " + (Math.Round (player.waterInBlood, 2)) + "ml" + '\n' +
 			"Liquid water in gut: " + (Math.Round (player.liquidWaterInGut, 2)) + "ml" + '\n' +
 			"Food water in gut: " + (Math.Round (player.foodWaterInGut, 2)) + "ml" + '\n' +

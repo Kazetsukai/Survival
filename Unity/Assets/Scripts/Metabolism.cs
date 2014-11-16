@@ -27,6 +27,7 @@ public class Metabolism : MonoBehaviour {
 	float fibreReleaseRate = 0;
 
 
+
 	float totalStomachContents;
 	List<DigestionPacket> digestionPackets = new List<DigestionPacket>();
 
@@ -44,6 +45,14 @@ public class Metabolism : MonoBehaviour {
 	float currentFatDigestionRate;
 	float currentFibreDigestionRate;
 
+	public float bloodVolume = 3000F;
+	float bloodVolumeMax = 6000F;
+	float bloodReplenishmentRate = 0.08F * 6000F / (24F * 60F * 60F);
+	float waterDepletionRate = 1600F / (24F * 60F * 60F);
+	float energyDepletionRate = 7918F / (24F * 60F * 60F);
+	float energyFromSugar = 17F;
+	float energyFromProtein = 17F;
+	float energyFromFat = 39F;
 
 	// Use this for initialization
 	void Start () {
@@ -61,6 +70,36 @@ public class Metabolism : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+
+		// Deplete water
+		waterInBlood -= waterDepletionRate * Time.fixedDeltaTime * timeCompression;
+
+		// Replenish blood
+		bloodVolume = Mathf.Min (bloodVolumeMax, bloodVolume + bloodReplenishmentRate * Time.fixedDeltaTime * timeCompression);
+
+		// Spend base energy
+		float energyRequired = energyDepletionRate * Time.fixedDeltaTime * timeCompression;
+		float sugarRequired = energyRequired / energyFromSugar;
+		if (sugarRequired < sugarInBlood) {
+			sugarInBlood -= sugarRequired;
+		} else {
+			energyRequired -= sugarInBlood * energyFromSugar;
+			sugarInBlood = 0;
+			float proteinRequired = energyRequired / energyFromProtein;
+			if (proteinRequired < proteinInBlood) {
+				proteinInBlood -= proteinRequired;
+			} else {
+				energyRequired -= proteinInBlood * energyFromProtein;
+				proteinInBlood = 0;
+				float fatRequired = energyRequired / energyFromFat;
+				if (fatRequired < fatInBlood) {
+					fatInBlood -= fatRequired;
+				} else {
+					energyRequired -= fatInBlood * energyFromFat;
+					fatInBlood = 0;
+				}
+			}
+		}
 
 		// work out how much total mass we have in the stomach
 		totalStomachContents = foodWaterInStomach + sugarInStomach + proteinInStomach + fatInStomach + fibreInStomach;

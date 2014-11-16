@@ -537,6 +537,7 @@ MonoBehaviour:
   player: {fileID: 2057535962}
   footstepSound: {fileID: 8300000, guid: daf8a34d8c47b70489f0a775f3a8bd1c, type: 3}
   stumbleSound: {fileID: 8300000, guid: 0696ee3e5263873428a89c09d70a8d45, type: 3}
+  footstepTerrain: {fileID: 0}
 --- !u!82 &251826282
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2103,6 +2104,7 @@ MonoBehaviour:
   player: {fileID: 2057535962}
   footstepSound: {fileID: 8300000, guid: daf8a34d8c47b70489f0a775f3a8bd1c, type: 3}
   stumbleSound: {fileID: 8300000, guid: 0696ee3e5263873428a89c09d70a8d45, type: 3}
+  footstepTerrain: {fileID: 0}
 --- !u!82 &856757114
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6421,7 +6423,7 @@ MonoBehaviour:
   proteinInStomach: 0
   fatInStomach: 0
   fibreInStomach: 0
-  liquidWaterInGut: 200
+  liquidWaterInGut: 0
   foodWaterInGut: 0
   sugarInGut: 0
   proteinInGut: 0
@@ -6431,6 +6433,7 @@ MonoBehaviour:
   sugarInBlood: 90
   proteinInBlood: 120
   fatInBlood: 50
+  bloodVolume: 3000
 --- !u!1 &2085840366
 GameObject:
   m_ObjectHideFlags: 0
