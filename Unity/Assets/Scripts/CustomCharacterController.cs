@@ -13,6 +13,11 @@ public class CustomCharacterController : MonoBehaviour {
 	public float stumbleSpeedFactor = 2F/3F;
 	public float stumbleSpeedExponent = 4F;
 
+	Metabolism metabolism;
+
+	float energyRequirement = 0F;
+	float timeCompression = 15;
+
 	public GameObject leftFoot;
 	public GameObject rightFoot;
 	foot_target_behaviour lf;
@@ -37,6 +42,7 @@ public class CustomCharacterController : MonoBehaviour {
 		cc = GetComponent<CapsuleCollider> ();
 		lf = leftFoot.GetComponent<foot_target_behaviour> ();
 		rf = rightFoot.GetComponent<foot_target_behaviour> ();
+		metabolism = GetComponentInParent<Metabolism> ();
 	}
 	
 	// Update is called once per frame
@@ -148,12 +154,19 @@ public class CustomCharacterController : MonoBehaviour {
 				_movementVector = _movementVector.normalized * jogSpeed;
 				if (Input.GetAxis ("Vertical") > 0) {
 					if (Input.GetAxis ("Walk") > 0) {
+						energyRequirement = 0.5F;
 						_movementVector = _movementVector * walkSpeedFactor;
 					} else if (Input.GetAxis ("Sprint") > 0) {
+						energyRequirement = 5.58F;
 						_movementVector = _movementVector * sprintSpeedFactor;
+					} else {
+						energyRequirement = 0.9F;
 					}
 				} else {
 					_movementVector = _movementVector * walkSpeedFactor;
+					if (Input.GetAxis ("Vertical") < 0) {
+						energyRequirement = 0.5F;
+					}
 				}
 				if (_movementVector.y > 0) {
 					_movementVector = _movementVector * relativeSlopeSpeedMultiplier;
@@ -168,6 +181,9 @@ public class CustomCharacterController : MonoBehaviour {
 
 			// now we scale the accelerationVector to the acceleration value
 			accelerationVector = Vector3.ClampMagnitude(accelerationVector, acceleration * Time.fixedDeltaTime);
+
+			// draw energy from energy sources
+			accelerationVector *= (energyRequirement * Time.fixedDeltaTime * timeCompression - metabolism.DrawEnergy(energyRequirement * Time.fixedDeltaTime * timeCompression)) / energyRequirement;
 
 			// and apply the accelerationVector
 			rb.AddForce(accelerationVector, ForceMode.VelocityChange);

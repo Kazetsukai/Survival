@@ -46,6 +46,13 @@ public class Metabolism : MonoBehaviour {
 	float fatDigestionRate = 0.05F;
 	float fibreDigestionRate = 0.15F;
 
+	float proteinToPhosphocreatineRatio = 2.44F;
+	float phosphocreatineToEnergyRatio = 6.975F;
+	float glycogenToEnergyRatio = 5.79F;
+	float sugarToEnergyRatio = 17F;
+	float fatToEnergyRatio = 38F;
+
+	
 	float currentFoodWaterDigestionRate;
 	float currentSugarDigestionRate;
 	float currentProteinDigestionRate;
@@ -133,12 +140,12 @@ public class Metabolism : MonoBehaviour {
 		}
 
 		// Increase phosphocreatine stores
-		float phosphoCreatineIncrease = (1F - phosphocreatineInMuscles / 120F) * 2.8F * Time.fixedDeltaTime * timeCompression;
-		if (phosphoCreatineIncrease / 3.7F < proteinInBlood) {
+		float phosphoCreatineIncrease = (1F - phosphocreatineInMuscles / 120F) * 2.8F * Time.fixedDeltaTime; // no timecompression on this
+		if (phosphoCreatineIncrease / proteinToPhosphocreatineRatio < proteinInBlood) {
 			phosphocreatineInMuscles += phosphoCreatineIncrease;
-			proteinInBlood -= phosphoCreatineIncrease / 3.7F;
+			proteinInBlood -= phosphoCreatineIncrease / proteinToPhosphocreatineRatio;
 		} else {
-			phosphocreatineInMuscles += proteinInBlood * 3.7F;
+			phosphocreatineInMuscles += proteinInBlood * proteinToPhosphocreatineRatio;
 			proteinInBlood = 0;
 		}
 
@@ -416,5 +423,53 @@ public class Metabolism : MonoBehaviour {
 		currentFatDigestionRate = fatProportion * averageDigestionRate;
 		currentFibreDigestionRate = fibreProportion * averageDigestionRate;
 
+	}
+
+	public float DrawEnergy(float energyRequired) {
+		// calculate proportions
+		float totalFuelSource = phosphocreatineInMuscles + glycogenInMuscles;
+		float energyProportionFromPhosphocreatine = phosphocreatineInMuscles / totalFuelSource;
+		float energyProportionFromGlycogen = glycogenInMuscles / totalFuelSource;
+
+		// calculate amount of energy coming from each source
+		float energyFromPhosphocreatine = energyRequired * energyProportionFromPhosphocreatine;
+		float energyFromGlycogen = energyRequired * energyProportionFromGlycogen;
+
+		// calculate amount of mass of each source required
+		float massOfPhosphocreatineRequired = energyFromPhosphocreatine / phosphocreatineToEnergyRatio;
+		float massOfGlycogenRequired = energyFromGlycogen / glycogenToEnergyRatio;
+
+		// reduce PCr by as much of that mass is available
+		if (phosphocreatineInMuscles > massOfPhosphocreatineRequired) {
+			phosphocreatineInMuscles -= massOfPhosphocreatineRequired;
+			energyRequired -= energyFromPhosphocreatine;
+		} else {
+			energyRequired -= phosphocreatineInMuscles * energyProportionFromPhosphocreatine;
+			phosphocreatineInMuscles = 0;
+			energyFromGlycogen = energyRequired;
+			massOfGlycogenRequired = energyFromGlycogen / glycogenToEnergyRatio;
+		}
+		if (glycogenInMuscles > massOfGlycogenRequired) {
+			glycogenInMuscles -= massOfGlycogenRequired;
+			energyRequired -= energyFromGlycogen;
+		} else {
+			energyRequired -= glycogenInMuscles * energyProportionFromGlycogen;
+			glycogenInMuscles = 0;
+		}
+		if (sugarInBlood * sugarToEnergyRatio > energyRequired) {
+			sugarInBlood -= energyRequired / sugarToEnergyRatio;
+			energyRequired = 0;
+		} else {
+			energyRequired -= sugarInBlood * sugarToEnergyRatio;
+			sugarInBlood = 0;
+		}
+		if (fatInBlood * fatToEnergyRatio > energyRequired) {
+			fatInBlood -= energyRequired / fatToEnergyRatio;
+			energyRequired = 0;
+		} else {
+			energyRequired -= fatInBlood * fatToEnergyRatio;
+			fatInBlood = 0;
+		}
+		return energyRequired;
 	}
 }
