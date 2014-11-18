@@ -6461,21 +6461,21 @@ MonoBehaviour:
   GlycogenInMusclesGraph: {fileID: 1407909062}
   liquidWaterInStomach: 0
   foodWaterInStomach: 0
-  sugarInStomach: 0
+  glucoseInStomach: 90
   proteinInStomach: 0
   fatInStomach: 0
   fibreInStomach: 0
   liquidWaterInGut: 0
   foodWaterInGut: 0
-  sugarInGut: 0
+  glucoseInGut: 90
   proteinInGut: 0
   fatInGut: 0
   fibreInGut: 0
   waterInBlood: 44000
-  sugarInBlood: 9
+  glucoseInBlood: 9
   proteinInBlood: 120
   fatInBlood: 50
-  phosphocreatineInMuscles: 120
+  phosphocreatineInMuscles: 0
   glycogenInMuscles: 280
   glycogenInLiver: 80
   insulinInBlood: 0

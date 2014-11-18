@@ -182,9 +182,6 @@ public class CustomCharacterController : MonoBehaviour {
 			// now we scale the accelerationVector to the acceleration value
 			accelerationVector = Vector3.ClampMagnitude(accelerationVector, acceleration * Time.fixedDeltaTime);
 
-			// draw energy from energy sources
-			accelerationVector *= (energyRequirement * Time.fixedDeltaTime * timeCompression - metabolism.DrawEnergy(energyRequirement * Time.fixedDeltaTime * timeCompression)) / energyRequirement;
-
 			// and apply the accelerationVector
 			rb.AddForce(accelerationVector, ForceMode.VelocityChange);
 			
