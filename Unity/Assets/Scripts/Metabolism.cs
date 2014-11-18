@@ -63,7 +63,7 @@ public class Metabolism : MonoBehaviour {
 	float maxFatUtilisation = 0.2F;
 	float maxGlucoseUtilisation = 0.572F;
 	float maxGlycogenUtilisation = 0.228F;
-	float maxPhosphocreatineUtilisation = 6.6F
+	float maxPhosphocreatineUtilisation = 6.6F;
 
 	
 	float currentFoodWaterDigestionRate;
