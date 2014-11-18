@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Metabolism : MonoBehaviour {
 
+	public GraphingTool GlycogenInMusclesGraph;
+
 	public float liquidWaterInStomach = 400F;
 	public float foodWaterInStomach = 200F;
 	public float sugarInStomach = 90F;
@@ -381,6 +383,11 @@ public class Metabolism : MonoBehaviour {
 			if (digestionPacket.liquidWaterInGut == 0 && digestionPacket.foodWaterInGut == 0 && digestionPacket.sugarInGut == 0 && digestionPacket.proteinInGut == 0 && digestionPacket.fatInGut == 0 && digestionPacket.fibreInGut == 0) {
 				digestionPackets.Remove(digestionPacket);
 			}
+		}
+		
+		if (GlycogenInMusclesGraph != null)
+		{
+			GlycogenInMusclesGraph.LogDatum (glycogenInMuscles / 280f);
 		}
 	}
 
