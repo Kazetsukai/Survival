@@ -1753,10 +1753,10 @@ MonoBehaviour:
   TerrainTypes:
   - {fileID: 0}
   - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
-  - {fileID: 100000, guid: 4f37edb9a26bef24091aa0ddd18832fa, type: 2}
-  - {fileID: 100000, guid: e1af88bcaa96ef940807e878b00b0663, type: 2}
-  - {fileID: 100000, guid: 0b30ba82c125bac48bfb47a2f3f63343, type: 2}
-  - {fileID: 100000, guid: 62f05a634da55f14d9f967cff91fe0c9, type: 2}
+  - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
+  - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
+  - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
+  - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
 --- !u!1 &788957771
 GameObject:
   m_ObjectHideFlags: 0
@@ -6377,7 +6377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeedFactor: .400000006
   jogSpeed: 3
-  sprintSpeedFactor: 1.5
+  sprintSpeedFactor: 1.79999995
   acceleration: 6
   stepDownTolerance: .100000001
   stepUpTolerance: .349999994
@@ -6461,7 +6461,7 @@ MonoBehaviour:
   GlycogenInMusclesGraph: {fileID: 1407909062}
   liquidWaterInStomach: 0
   foodWaterInStomach: 0
-  glucoseInStomach: 90
+  glucoseInStomach: 0
   proteinInStomach: 0
   fatInStomach: 0
   fibreInStomach: 0
@@ -6475,10 +6475,13 @@ MonoBehaviour:
   glucoseInBlood: 9
   proteinInBlood: 120
   fatInBlood: 50
-  phosphocreatineInMuscles: 0
+  phosphocreatineInMuscles: 120
   glycogenInMuscles: 280
   glycogenInLiver: 80
-  insulinInBlood: 0
+  insulinInBlood: -700
+  walkingEnergy: .228
+  joggingEnergy: 1
+  sprintingEnergy: 7.5999999
   bloodVolume: 3000
 --- !u!1 &2085840366
 GameObject:

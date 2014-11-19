@@ -152,39 +152,42 @@ public class CustomCharacterController : MonoBehaviour {
 				}
 				// scale the vector to the speed as determined by the player inputs and the relativeSlopeSpeedMultiplier
 				_movementVector = _movementVector.normalized * jogSpeed;
-				if (Input.GetAxis ("Vertical") > 0) {
-					if (Input.GetAxis ("Walk") > 0) {
-						energyRequirement = 0.5F;
-						_movementVector = _movementVector * walkSpeedFactor;
-					} else if (Input.GetAxis ("Sprint") > 0) {
-						energyRequirement = 5.58F;
-						_movementVector = _movementVector * sprintSpeedFactor;
-					} else {
-						energyRequirement = 0.9F;
+			
+				// now we have the movementVector pointing in the right direction and at the right magnitude
+				// next is to work out the accelerationVector required to move the player in this new direction
+				// first we scale it according to energy requirements
+
+				// work out how much energy is required to move
+				energyRequirement = 0;
+				if (Input.GetAxis("Vertical") < 0) { // if you're moving backwards, you're walking, which is time scaled
+					energyRequirement = metabolism.walkingEnergy * Time.fixedDeltaTime;
+					_movementVector = _movementVector * walkSpeedFactor * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime);
+				} else if (Input.GetAxis("Vertical") > 0) { // if you're moving forwards
+					if (Input.GetAxis("Sprint") > 0) { // and sprinting
+						energyRequirement = metabolism.sprintingEnergy * Time.fixedDeltaTime; // sprinting energy
+						_movementVector = _movementVector * (1 + (sprintSpeedFactor - 1) * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime));
+					} else if (Input.GetAxis("Walk") > 0) { // and walking
+						energyRequirement = metabolism.walkingEnergy * Time.fixedDeltaTime; // walking energy
+						_movementVector = _movementVector * walkSpeedFactor * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime);
+					} else { // jogging
+						energyRequirement = metabolism.joggingEnergy * Time.fixedDeltaTime; // jogging energy
+						_movementVector = _movementVector * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime);
 					}
-				} else {
-					_movementVector = _movementVector * walkSpeedFactor;
-					if (Input.GetAxis ("Vertical") < 0) {
-						energyRequirement = 0.5F;
-					}
-				}
-				if (_movementVector.y > 0) {
-					_movementVector = _movementVector * relativeSlopeSpeedMultiplier;
-				} else {
-					_movementVector = _movementVector / relativeSlopeSpeedMultiplier;
+				} else if (Input.GetAxis("Horizontal") != 0) { // otherwise if you're walking sideways, you're walking
+					_movementVector = _movementVector * walkSpeedFactor * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime);
+					energyRequirement = metabolism.walkingEnergy * Time.fixedDeltaTime; // walking energy, timescaled
 				}
 			}
 
-			// now we have the movementVector pointing in the right direction and at the right magnitude
-			// next is to work out the accelerationVector required to move the player in this new direction
 			Vector3 accelerationVector = (_movementVector - rb.velocity);
 
 			// now we scale the accelerationVector to the acceleration value
 			accelerationVector = Vector3.ClampMagnitude(accelerationVector, acceleration * Time.fixedDeltaTime);
 
+
 			// and apply the accelerationVector
 			rb.AddForce(accelerationVector, ForceMode.VelocityChange);
-			
+
 			// we can't let people walk up slopes that are tpp steep just by walking sideways
 			if (ObjectiveSlopeAngleDeg() > maximumSlope) {
 				accelerationVector.y = Mathf.Min(0, accelerationVector.y);
@@ -192,13 +195,9 @@ public class CustomCharacterController : MonoBehaviour {
 					Vector3 newVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 					rb.velocity = newVelocity;
 					rb.useGravity = true;
-					//Debug.Log("I am stopping the player from walking up a cliff");
 				}
 			}
 			
-			//Debug.DrawRay(transform.position, rb.velocity, Color.green);
-			//Debug.DrawRay(transform.position, movementVector, Color.red);
-			//Debug.DrawRay(transform.position + rb.velocity, accelerationVector, Color.blue);
 
 		} else {
 			// player is off the ground, so apply gravity
