@@ -61,7 +61,7 @@ public class foot_target_behaviour : MonoBehaviour {
 			sound.pitch = 1.0f + Random.Range (-0.1f, 0.1f);
 			sound.volume = 1.0f + Random.Range (-0.2f, 0.0f);
 			sound.PlayOneShot (footstepSound);
-			float speedStumbleMultiplier = 1 + Mathf.Pow ((cc.rigidbody.velocity.magnitude / (cc.jogSpeed * cc.sprintSpeedFactor)), 5);
+			float speedStumbleMultiplier = 1 + Mathf.Pow ((cc.rigidbody.velocity.magnitude / (cc.sprintSpeed)), 5);
 			float angleStumbleChance = 1000;
 			int layerMask = 1 << 8;
 			if (Physics.Raycast(transform.position, Vector3.down, out hit, 100, layerMask)) {

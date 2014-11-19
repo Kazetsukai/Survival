@@ -3,9 +3,18 @@ using System.Collections;
 
 public class CustomCharacterController : MonoBehaviour {
 	
-	public float walkSpeedFactor = 0.7F;
-	public float jogSpeed = 4F;
-	public float sprintSpeedFactor = 1.3F;
+	public float slowWalkSpeed = 0.75F;
+	public float fastWalkSpeed = 1.5F;
+	public float slowRunSpeed = 3F;
+	public float fastRunSpeed = 4.5F;
+	public float sprintSpeed = 6F;
+
+	public float slowWalkEnergy = 0.114F;
+	public float fastWalkEnergy = 0.4F;
+	public float slowRunEnergy = 1F;
+	public float fastRunEnergy = 3F;
+	public float sprintEnergy = 7.6F;
+
 	public float acceleration = 10F;
 	public float stepDownTolerance = 0.5F;
 	public float stepUpTolerance = 0.5F;
@@ -22,6 +31,12 @@ public class CustomCharacterController : MonoBehaviour {
 	public GameObject rightFoot;
 	foot_target_behaviour lf;
 	foot_target_behaviour rf;
+
+	public bool walkingSlow = false;
+	public bool walkingFast = false;
+	public bool runningSlow = false;
+	public bool runningFast = false;
+	public bool sprinting = false;
 
 	float altitude = 0;
 	float objectiveSlopeAngle = 0F;
@@ -47,23 +62,49 @@ public class CustomCharacterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		walkingSlow = false;
+		walkingFast = false;
+		runningSlow = false;
+		runningFast = false;
+		sprinting = false;
+
 		if (stumbleSteps < 1) { // can't control direction when stumbling
-			//if (lf.currentPlayingAnimation != "idle" && !(lf.IsInFront() && lf.IsGrounded() || rf.IsInFront() && rf.IsGrounded())) { // if you have no foot on the ground in front of you and you are not standing still
-			//	_movementVector = transform.forward * Mathf.Max((int)Input.GetAxis ("Vertical"), 0) + transform.right * (int)Input.GetAxis ("Horizontal"); // backwards acceleration is ignored
-			//} else if (lf.currentPlayingAnimation != "idle" && !(!lf.IsInFront() && lf.IsGrounded() || !rf.IsInFront() && rf.IsGrounded())) { // if you have no foot on the ground behind you and you are not standing still
-			//	_movementVector = transform.forward * Mathf.Min((int)Input.GetAxis ("Vertical"), 0) + transform.right * (int)Input.GetAxis ("Horizontal"); // forwards acceleration is ignored
-			//} else {
-				_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal"); // forwards acceleration is ignored
-			//}
+			if (Input.GetAxis("Run") > 0) {
+				_movementVector = transform.forward;
+				if (Input.GetAxis("Fast") > 0) {
+					sprinting = true;
+				} else if (Input.GetAxis("Slow") > 0) {
+					runningSlow = true;
+				} else {
+					runningFast = true;
+				}
+			} else if (Input.GetAxis("Vertical") > 0) {
+				if (Input.GetAxis("Fast") > 0) {
+					_movementVector = transform.forward;
+					runningSlow = true;
+				} else if (Input.GetAxis("Slow") > 0) {
+					_movementVector = transform.forward + transform.right * (int)Input.GetAxis ("Horizontal");
+					walkingSlow = true;
+				} else {
+					_movementVector = transform.forward + transform.right * (int)Input.GetAxis ("Horizontal");
+					walkingFast = true;
+				}
+			} else {
+				_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
+				if (_movementVector != Vector3.zero) {
+					if (Input.GetAxis("Slow") > 0) {
+						walkingSlow = true;
+					} else {
+						walkingFast = true;
+					}
+				}
+			}
 		}
 	}
 
 
 
 	void OnGUI() {
-		/*if (stumbleSteps > 0) {
-			GUI.Box (new Rect (Screen.width /2 - 35, Screen.height /2 - 10, 70, 20), "STUMBLE");
-		}*/
 	}
 
 	void FixedUpdate() {
@@ -71,16 +112,6 @@ public class CustomCharacterController : MonoBehaviour {
 		// work out the bottom of the player
 		Vector3 bottomOfCapsule = transform.position - Vector3.up * cc.height / 2;
 
-		Vector3 vectorToNextFootStep = leftFoot.transform.position - bottomOfCapsule;
-		if (Vector3.Dot(transform.forward, vectorToNextFootStep) < 0) {
-			vectorToNextFootStep = rightFoot.transform.position - bottomOfCapsule;
-		}
-		if (vectorToNextFootStep.y > _movementVector.y + 0.05) {
-			//Debug.Log("Step here");
-		} else {
-			//Debug.Log ("No step");
-		}
-	
 		// raycast down to find the terrain below
 		int layerMask = 1 << 8; // terrain layer
 		Physics.Raycast(transform.position, Vector3.down, out hit, 1000, layerMask);
@@ -151,32 +182,103 @@ public class CustomCharacterController : MonoBehaviour {
 
 				}
 				// scale the vector to the speed as determined by the player inputs and the relativeSlopeSpeedMultiplier
-				_movementVector = _movementVector.normalized * jogSpeed;
+				_movementVector = _movementVector.normalized;
+				energyRequirement = 0;
+				if (sprinting) {
+					float unavailableEnergy = metabolism.DrawEnergy(sprintEnergy);
+					if (unavailableEnergy > 0) {
+						float availableEnergy = sprintEnergy - unavailableEnergy;
+						if (availableEnergy > fastRunEnergy) {
+							// can still run fast
+							float excess = availableEnergy - fastRunEnergy; // how much left we can still go faster by
+							_movementVector *= (fastRunSpeed + excess / (sprintSpeed - fastRunSpeed) * (sprintSpeed - fastRunSpeed));
+						} else if (availableEnergy > slowRunEnergy) {
+							// can still run slow
+							float excess = availableEnergy - slowRunEnergy; // how much left we can still go faster by
+							_movementVector *= (slowRunSpeed + excess / (fastRunSpeed - slowRunSpeed) * (fastRunSpeed - slowRunSpeed));
+						} else if (availableEnergy > fastWalkEnergy) {
+							// can still walk fast
+							float excess = availableEnergy - fastWalkEnergy; // how much left we can still go faster by
+							_movementVector *= (fastWalkSpeed + excess / (slowRunSpeed - fastWalkSpeed) * (slowRunSpeed - fastWalkSpeed));
+						} else if (availableEnergy > slowWalkEnergy) {
+							// can still walk slow
+							float excess = availableEnergy - slowWalkEnergy; // how much left we can still go faster by
+							_movementVector *= (slowWalkSpeed + excess / (fastWalkSpeed - slowWalkSpeed) * (fastWalkSpeed - slowWalkSpeed));
+						} else {
+							_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+						}
+					} else {
+						_movementVector *= sprintSpeed;
+					}
+				} else if (runningFast) {
+					float unavailableEnergy = metabolism.DrawEnergy(fastRunEnergy);
+					if (unavailableEnergy > 0) {
+						float availableEnergy = fastRunEnergy - unavailableEnergy;
+						if (availableEnergy > slowRunEnergy) {
+							// can still run slow
+							float excess = availableEnergy - slowRunEnergy; // how much left we can still go faster by
+							_movementVector *= (slowRunSpeed + excess / (fastRunSpeed - slowRunSpeed) * (fastRunSpeed - slowRunSpeed));
+						} else if (availableEnergy > fastWalkEnergy) {
+							// can still walk fast
+							float excess = availableEnergy - fastWalkEnergy; // how much left we can still go faster by
+							_movementVector *= (fastWalkSpeed + excess / (slowRunSpeed - fastWalkSpeed) * (slowRunSpeed - fastWalkSpeed));
+						} else if (availableEnergy > slowWalkEnergy) {
+							// can still walk slow
+							float excess = availableEnergy - slowWalkEnergy; // how much left we can still go faster by
+							_movementVector *= (slowWalkSpeed + excess / (fastWalkSpeed - slowWalkSpeed) * (fastWalkSpeed - slowWalkSpeed));
+						} else {
+							_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+						}
+					} else {
+						_movementVector *= fastRunSpeed;
+					}
+				} else if (runningSlow) {
+					float unavailableEnergy = metabolism.DrawEnergy(slowRunEnergy);
+					if (unavailableEnergy > 0) {
+						float availableEnergy = slowRunEnergy - unavailableEnergy;
+						if (availableEnergy > fastWalkEnergy) {
+							// can still walk fast
+							float excess = availableEnergy - fastWalkEnergy; // how much left we can still go faster by
+							_movementVector *= (fastWalkSpeed + excess / (slowRunSpeed - fastWalkSpeed) * (slowRunSpeed - fastWalkSpeed));
+						} else if (availableEnergy > slowWalkEnergy) {
+							// can still walk slow
+							float excess = availableEnergy - slowWalkEnergy; // how much left we can still go faster by
+							_movementVector *= (slowWalkSpeed + excess / (fastWalkSpeed - slowWalkSpeed) * (fastWalkSpeed - slowWalkSpeed));
+						} else {
+							_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+						}
+					} else {
+						_movementVector *= slowRunSpeed;
+					}
+				} else if (walkingFast) {
+					float unavailableEnergy = metabolism.DrawEnergy(fastWalkEnergy);
+					if (unavailableEnergy > 0) {
+						float availableEnergy = fastWalkEnergy - unavailableEnergy;
+						if (availableEnergy > slowWalkEnergy) {
+							// can still walk slow
+							float excess = availableEnergy - slowWalkEnergy; // how much left we can still go faster by
+							_movementVector *= (slowWalkSpeed + excess / (fastWalkSpeed - slowWalkSpeed) * (fastWalkSpeed - slowWalkSpeed));
+						} else {
+							_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+						}
+					} else {
+						_movementVector *= fastWalkSpeed;
+					}
+				} else if (walkingSlow) {
+					float unavailableEnergy = metabolism.DrawEnergy(slowWalkEnergy);
+					if (unavailableEnergy > 0) {
+						float availableEnergy = fastWalkEnergy - unavailableEnergy;
+						_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+					} else {
+						_movementVector *= slowWalkSpeed;
+					}
+				}
 			
 				// now we have the movementVector pointing in the right direction and at the right magnitude
 				// next is to work out the accelerationVector required to move the player in this new direction
 				// first we scale it according to energy requirements
 
 				// work out how much energy is required to move
-				energyRequirement = 0;
-				if (Input.GetAxis("Vertical") < 0) { // if you're moving backwards, you're walking, which is time scaled
-					energyRequirement = metabolism.walkingEnergy * Time.fixedDeltaTime;
-					_movementVector = _movementVector * walkSpeedFactor * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime);
-				} else if (Input.GetAxis("Vertical") > 0) { // if you're moving forwards
-					if (Input.GetAxis("Sprint") > 0) { // and sprinting
-						energyRequirement = metabolism.sprintingEnergy * Time.fixedDeltaTime; // sprinting energy
-						_movementVector = _movementVector * (1 + (sprintSpeedFactor - 1) * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime));
-					} else if (Input.GetAxis("Walk") > 0) { // and walking
-						energyRequirement = metabolism.walkingEnergy * Time.fixedDeltaTime; // walking energy
-						_movementVector = _movementVector * walkSpeedFactor * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime);
-					} else { // jogging
-						energyRequirement = metabolism.joggingEnergy * Time.fixedDeltaTime; // jogging energy
-						_movementVector = _movementVector * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime);
-					}
-				} else if (Input.GetAxis("Horizontal") != 0) { // otherwise if you're walking sideways, you're walking
-					_movementVector = _movementVector * walkSpeedFactor * metabolism.DrawEnergy(energyRequirement, Time.fixedDeltaTime);
-					energyRequirement = metabolism.walkingEnergy * Time.fixedDeltaTime; // walking energy, timescaled
-				}
 			}
 
 			Vector3 accelerationVector = (_movementVector - rb.velocity);
@@ -240,7 +342,7 @@ public class CustomCharacterController : MonoBehaviour {
 	public void Stumble() {
 		if (stumbleSteps < 1) {
 			stumbleSteps = 3;
-			Vector3 stumbleDirection = transform.right * Random.Range(-jogSpeed * walkSpeedFactor / 2, jogSpeed * walkSpeedFactor / 2);
+			Vector3 stumbleDirection = transform.right * Random.Range(-slowWalkSpeed, slowWalkSpeed);
 			rb.velocity = rb.velocity + stumbleDirection;
 			_movementVector = _movementVector + stumbleDirection;
 		} else {

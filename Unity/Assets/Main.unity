@@ -6375,9 +6375,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39355f2847526c449a50e2d8e8d0e2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeedFactor: .400000006
-  jogSpeed: 3
-  sprintSpeedFactor: 1.79999995
+  slowWalkSpeed: .75
+  fastWalkSpeed: 1.5
+  slowRunSpeed: 3
+  fastRunSpeed: 4.5
+  sprintSpeed: 6
+  slowWalkEnergy: .114
+  fastWalkEnergy: .400000006
+  slowRunEnergy: 1
+  fastRunEnergy: 3
+  sprintEnergy: 7.5999999
   acceleration: 6
   stepDownTolerance: .100000001
   stepUpTolerance: .349999994
@@ -6386,6 +6393,11 @@ MonoBehaviour:
   stumbleSpeedExponent: 4
   leftFoot: {fileID: 251826277}
   rightFoot: {fileID: 856757109}
+  walkingSlow: 0
+  walkingFast: 0
+  runningSlow: 0
+  runningFast: 0
+  sprinting: 0
 --- !u!136 &2057535965
 CapsuleCollider:
   m_ObjectHideFlags: 0

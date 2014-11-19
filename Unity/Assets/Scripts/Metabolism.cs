@@ -140,16 +140,10 @@ public class Metabolism : MonoBehaviour {
 		}
 
 		// Increase phosphocreatine stores
-		float exertionFactor = 1;
-		if (Input.GetAxis("Vertical") > 0) {
-			if (Input.GetAxis("Sprint") > 0) {
-				exertionFactor = 0;
-			} else if (Input.GetAxis("Walk") > 0) {
-				exertionFactor = 0.5F;
-			} else {
-				exertionFactor = 0;
-			}
-		} else if (Input.GetAxis("Vertical") < 0 || Input.GetAxis("Horizontal") != 0) {
+		float exertionFactor = 1F;
+		if (cc.walkingFast) {
+			exertionFactor = 0.25F;
+		} else if (cc.walkingSlow) {
 			exertionFactor = 0.5F;
 		}
 			
@@ -484,11 +478,11 @@ public class Metabolism : MonoBehaviour {
 		}
 	}
 
-	public float DrawEnergy(float totalEnergyRequired, float timeScale) {
+	public float DrawEnergy(float totalEnergyRequired) {
 		float energyRequired = totalEnergyRequired; // used to track how much energy is still unaccounted for
 
 		// work out how much energy we are taking from glycogen
-		float energyFromGlycogen = Mathf.Min (energyRequired, maxGlycogenUtilisation * timeScale);
+		float energyFromGlycogen = Mathf.Min (energyRequired, maxGlycogenUtilisation * Time.fixedDeltaTime);
 
 		// work out how much glycogen mass this is
 		float massFromGlycogen = energyRequired / glucoseToEnergyRatio;
@@ -497,16 +491,14 @@ public class Metabolism : MonoBehaviour {
 		if (massFromGlycogen <= glycogenInMuscles) {
 			glycogenInMuscles -= massFromGlycogen; // we have enough glycogen to meet the energy requirement
 			energyRequired -= energyFromGlycogen;
-			Debug.Log("Glycogen stores sufficient, providing " + energyFromGlycogen + " kJ");
 		} else {
 			// not enough energy in glycogen stores, so deplete them fully and draw further energy from fat
-			Debug.Log("Glycogen insufficient, providing " + glycogenInMuscles * glucoseToEnergyRatio + " kJ");
 			energyRequired -= glycogenInMuscles * glucoseToEnergyRatio;
 			glycogenInMuscles = 0;
 		}
 
 		// work out how much energy we are taking from fat
-		float energyFromFat = Mathf.Min (energyRequired, maxFatUtilisation * timeScale);
+		float energyFromFat = Mathf.Min (energyRequired, maxFatUtilisation * Time.fixedDeltaTime);
 
 		// work out how much fat mass this is
 		float massFromFat = energyRequired / fatToEnergyRatio;
@@ -515,16 +507,14 @@ public class Metabolism : MonoBehaviour {
 		if (massFromFat <= fatInBlood) {
 			fatInBlood -= massFromFat; // we have enough fat to meet the energy requirement
 			energyRequired -= energyFromFat;
-			Debug.Log("Fat stores sufficient, providing " + energyFromFat + " kJ");
 		} else {
 			// not enough energy in fat stores, so deplete them fully and draw further energy from glucose
-			Debug.Log("Fat insufficient, providing " + fatInBlood * fatToEnergyRatio + " kJ");
 			energyRequired -= fatInBlood * fatToEnergyRatio;
 			fatInBlood = 0;
 		}
 
 		// work out how much energy we are taking from glucose
-		float energyFromGlucose = Mathf.Min (energyRequired, maxGlucoseUtilisation * timeScale);
+		float energyFromGlucose = Mathf.Min (energyRequired, maxGlucoseUtilisation * Time.fixedDeltaTime);
 
 		// work out how much glucose mass this is
 		float massFromGlucose = energyRequired / glucoseToEnergyRatio;
@@ -533,16 +523,14 @@ public class Metabolism : MonoBehaviour {
 		if (massFromGlucose <= glucoseInBlood) {
 			glucoseInBlood -= massFromGlucose; // we have enough glucose to meet the energy requirement
 			energyRequired -= energyFromGlucose;
-			Debug.Log("Glucose stores sufficient, providing " + energyFromGlucose + " kJ");
 		} else {
 			// not enough energy in glucose stores, so deplete them fully and draw further energy from phosphocreatine
-			Debug.Log("Glucose insufficient, providing " + glucoseInBlood * glucoseToEnergyRatio + " kJ");
 			energyRequired -= glucoseInBlood * glucoseToEnergyRatio;
 			glucoseInBlood = 0;
 		}
 
 		// work out how much energy we are taking from phosphocreatine
-		float energyFromPhosphocreatine = Mathf.Min (energyRequired, maxPhosphocreatineUtilisation * timeScale);
+		float energyFromPhosphocreatine = Mathf.Min (energyRequired, maxPhosphocreatineUtilisation * Time.fixedDeltaTime);
 
 		// work out how much phosphocreatine mass this is
 		float massFromPhosphocreatine = energyRequired / phosphocreatineToEnergyRatio;
@@ -551,14 +539,11 @@ public class Metabolism : MonoBehaviour {
 		if (massFromPhosphocreatine <= phosphocreatineInMuscles) {
 			phosphocreatineInMuscles -= massFromPhosphocreatine; // we have enough glucose to meet the energy requirement
 			energyRequired -= energyFromPhosphocreatine;
-			Debug.Log("Phosphocreatine stores sufficient, providing " + energyFromPhosphocreatine + " kJ");
 		} else {
 			// not enough energy in phosphocreatine stores, so deplete them fully and return reporting how much energy we were able to secure
-			Debug.Log("Phosphocreatine insufficient, providing " + phosphocreatineInMuscles * phosphocreatineToEnergyRatio + " kJ");
 			energyRequired -= phosphocreatineInMuscles * phosphocreatineToEnergyRatio;
 			phosphocreatineInMuscles = 0;
 		}
-		Debug.Log ("Remaining energy " + energyRequired + " kJ from " + totalEnergyRequired + " kJ required");
-		return (totalEnergyRequired - energyRequired) / totalEnergyRequired;
+		return totalEnergyRequired - energyRequired; // return the amount of energy we couldn't provide
 	}
 }
