@@ -67,35 +67,44 @@ public class CustomCharacterController : MonoBehaviour {
 		runningSlow = false;
 		runningFast = false;
 		sprinting = false;
+	
 
 		if (stumbleSteps < 1) { // can't control direction when stumbling
 			if (Input.GetAxis("Run") > 0) {
-				_movementVector = transform.forward;
+				_movementVector = transform.forward; // no strafing when running
 				if (Input.GetAxis("Fast") > 0) {
-					sprinting = true;
+					sprinting = true; // pushing run and fast, sprinting
+					//Debug.Log("Sprinting");
 				} else if (Input.GetAxis("Slow") > 0) {
-					runningSlow = true;
+					runningSlow = true; // pushing run and slow, running slow
+					//Debug.Log("Running slow");
 				} else {
-					runningFast = true;
+					runningFast = true; // pushing run alone, running fast
+					//Debug.Log("Running fast");
 				}
 			} else if (Input.GetAxis("Vertical") > 0) {
 				if (Input.GetAxis("Fast") > 0) {
-					_movementVector = transform.forward;
-					runningSlow = true;
+					_movementVector = transform.forward; // no strafing when running
+					runningSlow = true; // pushing forward and fast, running slow
+					//Debug.Log("Running slow");
 				} else if (Input.GetAxis("Slow") > 0) {
-					_movementVector = transform.forward + transform.right * (int)Input.GetAxis ("Horizontal");
-					walkingSlow = true;
+					_movementVector = transform.forward + transform.right * (int)Input.GetAxis ("Horizontal"); // not running, strafing
+					walkingSlow = true; // pushing forward and slow, walking slow
+					//Debug.Log("Walking slow");
 				} else {
-					_movementVector = transform.forward + transform.right * (int)Input.GetAxis ("Horizontal");
-					walkingFast = true;
+					_movementVector = transform.forward + transform.right * (int)Input.GetAxis ("Horizontal"); // not running, strafing
+					walkingFast = true; // pushing forward alone, walking fast
+					//Debug.Log("Walking fast");
 				}
 			} else {
 				_movementVector = transform.forward * (int)Input.GetAxis ("Vertical") + transform.right * (int)Input.GetAxis ("Horizontal");
 				if (_movementVector != Vector3.zero) {
 					if (Input.GetAxis("Slow") > 0) {
 						walkingSlow = true;
+						//Debug.Log("Walking slow");
 					} else {
 						walkingFast = true;
+						//Debug.Log("Walking fast");
 					}
 				}
 			}
@@ -183,95 +192,127 @@ public class CustomCharacterController : MonoBehaviour {
 				}
 				// scale the vector to the speed as determined by the player inputs and the relativeSlopeSpeedMultiplier
 				_movementVector = _movementVector.normalized;
-				energyRequirement = 0;
 				if (sprinting) {
-					float unavailableEnergy = metabolism.DrawEnergy(sprintEnergy);
+					float unavailableEnergy = metabolism.DrawEnergy(sprintEnergy * Time.fixedDeltaTime);
+					//Debug.Log("Trying to sprint at " + sprintSpeed + " requiring " + sprintEnergy * Time.fixedDeltaTime + "kJ with " + (sprintEnergy * Time.fixedDeltaTime - unavailableEnergy) + "kJ available");
+
 					if (unavailableEnergy > 0) {
-						float availableEnergy = sprintEnergy - unavailableEnergy;
-						if (availableEnergy > fastRunEnergy) {
+						float availableEnergy = sprintEnergy * Time.fixedDeltaTime - unavailableEnergy;
+						if (availableEnergy > fastRunEnergy * Time.fixedDeltaTime) {
 							// can still run fast
-							float excess = availableEnergy - fastRunEnergy; // how much left we can still go faster by
-							_movementVector *= (fastRunSpeed + excess / (sprintSpeed - fastRunSpeed) * (sprintSpeed - fastRunSpeed));
-						} else if (availableEnergy > slowRunEnergy) {
+							//Debug.Log("Not enough energy to sprint, so running fast instead");
+							float excess = availableEnergy - fastRunEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (fastRunSpeed + (excess / (sprintEnergy - fastRunEnergy)) * (sprintSpeed - fastRunSpeed));
+							//Debug.Log("Scaling by " + (fastRunSpeed + (excess / (sprintEnergy - fastRunEnergy)) * (sprintSpeed - fastRunSpeed)));
+						} else if (availableEnergy > slowRunEnergy * Time.fixedDeltaTime) {
 							// can still run slow
-							float excess = availableEnergy - slowRunEnergy; // how much left we can still go faster by
-							_movementVector *= (slowRunSpeed + excess / (fastRunSpeed - slowRunSpeed) * (fastRunSpeed - slowRunSpeed));
-						} else if (availableEnergy > fastWalkEnergy) {
+							//Debug.Log("Not enough energy to sprint, so running slow instead");
+							float excess = availableEnergy - slowRunEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (slowRunSpeed + (excess / (fastRunEnergy - slowRunEnergy)) * (fastRunSpeed - slowRunSpeed));
+							//Debug.Log("Scaling by " + (slowRunSpeed + (excess / (fastRunEnergy - slowRunEnergy)) * (fastRunSpeed - slowRunSpeed)));
+						} else if (availableEnergy > fastWalkEnergy * Time.fixedDeltaTime) {
 							// can still walk fast
-							float excess = availableEnergy - fastWalkEnergy; // how much left we can still go faster by
-							_movementVector *= (fastWalkSpeed + excess / (slowRunSpeed - fastWalkSpeed) * (slowRunSpeed - fastWalkSpeed));
-						} else if (availableEnergy > slowWalkEnergy) {
+							//Debug.Log("Not enough energy to sprint, so walking fast instead");
+							float excess = availableEnergy - fastWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (fastWalkSpeed + (excess / (slowRunEnergy - fastWalkEnergy)) * (slowRunSpeed - fastWalkSpeed));
+							//Debug.Log("Scaling by " + (fastWalkSpeed + (excess / (slowRunEnergy - fastWalkEnergy)) * (slowRunSpeed - fastWalkSpeed)));
+						} else if (availableEnergy > slowWalkEnergy * Time.fixedDeltaTime) {
 							// can still walk slow
-							float excess = availableEnergy - slowWalkEnergy; // how much left we can still go faster by
-							_movementVector *= (slowWalkSpeed + excess / (fastWalkSpeed - slowWalkSpeed) * (fastWalkSpeed - slowWalkSpeed));
+							//Debug.Log("Not enough energy to sprint, so walking slow instead");
+							float excess = availableEnergy - slowWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (slowWalkSpeed + (excess / (fastWalkEnergy - slowWalkEnergy)) * (fastWalkSpeed - slowWalkSpeed));
+							//Debug.Log("Scaling by " + (slowWalkSpeed + (excess / (fastWalkEnergy - slowWalkEnergy)) * (fastWalkSpeed - slowWalkSpeed)));
 						} else {
-							_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+							//Debug.Log("Not enough energy to sprint, so walking even slower than slow");
+							_movementVector *= slowWalkSpeed * availableEnergy / (slowWalkEnergy * Time.fixedDeltaTime);
+							//Debug.Log("Scaling by " + slowWalkSpeed * availableEnergy / (slowWalkEnergy * Time.fixedDeltaTime));
 						}
 					} else {
+						//Debug.Log("Enough energy so sprinting at " + _movementVector.magnitude);
 						_movementVector *= sprintSpeed;
+						//Debug.Log("Scaling by " + sprintSpeed);
 					}
+					//Debug.Log(_movementVector.magnitude);
 				} else if (runningFast) {
-					float unavailableEnergy = metabolism.DrawEnergy(fastRunEnergy);
+					float unavailableEnergy = metabolism.DrawEnergy(fastRunEnergy * Time.fixedDeltaTime);
+					//Debug.Log("Trying to run fast at " + fastRunSpeed + " requiring " + fastRunEnergy * Time.fixedDeltaTime + "kJ with " + (fastRunEnergy * Time.fixedDeltaTime - unavailableEnergy) + "kJ available");
 					if (unavailableEnergy > 0) {
-						float availableEnergy = fastRunEnergy - unavailableEnergy;
-						if (availableEnergy > slowRunEnergy) {
+						float availableEnergy = fastRunEnergy * Time.fixedDeltaTime - unavailableEnergy;
+						if (availableEnergy > slowRunEnergy * Time.fixedDeltaTime) {
 							// can still run slow
-							float excess = availableEnergy - slowRunEnergy; // how much left we can still go faster by
-							_movementVector *= (slowRunSpeed + excess / (fastRunSpeed - slowRunSpeed) * (fastRunSpeed - slowRunSpeed));
-						} else if (availableEnergy > fastWalkEnergy) {
+							//Debug.Log("Not enough energy to run fast, so running slow instead");
+							float excess = availableEnergy - slowRunEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (slowRunSpeed + (excess / (fastRunEnergy - slowRunEnergy)) * (fastRunSpeed - slowRunSpeed));
+						} else if (availableEnergy > fastWalkEnergy * Time.fixedDeltaTime) {
 							// can still walk fast
-							float excess = availableEnergy - fastWalkEnergy; // how much left we can still go faster by
-							_movementVector *= (fastWalkSpeed + excess / (slowRunSpeed - fastWalkSpeed) * (slowRunSpeed - fastWalkSpeed));
-						} else if (availableEnergy > slowWalkEnergy) {
+							//Debug.Log("Not enough energy to run fast, so walking fast instead");
+							float excess = availableEnergy - fastWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (fastWalkSpeed + excess / (slowRunEnergy - fastWalkEnergy) * (slowRunSpeed - fastWalkSpeed));
+						} else if (availableEnergy > slowWalkEnergy * Time.fixedDeltaTime) {
 							// can still walk slow
-							float excess = availableEnergy - slowWalkEnergy; // how much left we can still go faster by
-							_movementVector *= (slowWalkSpeed + excess / (fastWalkSpeed - slowWalkSpeed) * (fastWalkSpeed - slowWalkSpeed));
+							//Debug.Log("Not enough energy to run fast, so walking slow instead");
+							float excess = availableEnergy - slowWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (slowWalkSpeed + excess / (fastWalkEnergy - slowWalkEnergy) * (fastWalkSpeed - slowWalkSpeed));
 						} else {
-							_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+							//Debug.Log("Not enough energy to run fast, so walking even slower than slow");
+							_movementVector *= slowWalkSpeed * availableEnergy / (slowWalkEnergy * Time.fixedDeltaTime);
 						}
 					} else {
 						_movementVector *= fastRunSpeed;
 					}
+					//Debug.Log(_movementVector.magnitude);
 				} else if (runningSlow) {
-					float unavailableEnergy = metabolism.DrawEnergy(slowRunEnergy);
+					float unavailableEnergy = metabolism.DrawEnergy(slowRunEnergy * Time.fixedDeltaTime);
+					//Debug.Log("Trying to run slow at " + slowRunSpeed + " requiring " + slowRunEnergy * Time.fixedDeltaTime + "kJ with " + (slowRunEnergy * Time.fixedDeltaTime - unavailableEnergy) + "kJ available");
 					if (unavailableEnergy > 0) {
-						float availableEnergy = slowRunEnergy - unavailableEnergy;
-						if (availableEnergy > fastWalkEnergy) {
+						float availableEnergy = slowRunEnergy * Time.fixedDeltaTime - unavailableEnergy;
+						if (availableEnergy > fastWalkEnergy * Time.fixedDeltaTime) {
 							// can still walk fast
-							float excess = availableEnergy - fastWalkEnergy; // how much left we can still go faster by
-							_movementVector *= (fastWalkSpeed + excess / (slowRunSpeed - fastWalkSpeed) * (slowRunSpeed - fastWalkSpeed));
-						} else if (availableEnergy > slowWalkEnergy) {
+							//Debug.Log("Not enough energy to run slow, so walking fast instead");
+							float excess = availableEnergy - fastWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (fastWalkSpeed + excess / (slowRunEnergy - fastWalkEnergy) * (slowRunSpeed - fastWalkSpeed));
+						} else if (availableEnergy > slowWalkEnergy * Time.fixedDeltaTime) {
 							// can still walk slow
-							float excess = availableEnergy - slowWalkEnergy; // how much left we can still go faster by
-							_movementVector *= (slowWalkSpeed + excess / (fastWalkSpeed - slowWalkSpeed) * (fastWalkSpeed - slowWalkSpeed));
+							//Debug.Log("Not enough energy to run slow, so walking slow instead");
+							float excess = availableEnergy - slowWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (slowWalkSpeed + excess / (fastWalkEnergy - slowWalkEnergy) * (fastWalkSpeed - slowWalkSpeed));
 						} else {
-							_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+							//Debug.Log("Not enough energy to run slow, so walking even slower than slow");
+							_movementVector *= slowWalkSpeed * availableEnergy / (slowWalkEnergy * Time.fixedDeltaTime);
 						}
 					} else {
 						_movementVector *= slowRunSpeed;
 					}
+					//Debug.Log(_movementVector.magnitude);
 				} else if (walkingFast) {
-					float unavailableEnergy = metabolism.DrawEnergy(fastWalkEnergy);
+					float unavailableEnergy = metabolism.DrawEnergy(fastWalkEnergy * Time.fixedDeltaTime);
+					//Debug.Log("Trying to walk fast at " + fastWalkSpeed + " requiring " + fastWalkEnergy * Time.fixedDeltaTime + "kJ with " + (fastWalkEnergy * Time.fixedDeltaTime - unavailableEnergy) + "kJ available");
 					if (unavailableEnergy > 0) {
-						float availableEnergy = fastWalkEnergy - unavailableEnergy;
-						if (availableEnergy > slowWalkEnergy) {
+						float availableEnergy = fastWalkEnergy * Time.fixedDeltaTime - unavailableEnergy;
+						if (availableEnergy > slowWalkEnergy * Time.fixedDeltaTime) {
 							// can still walk slow
-							float excess = availableEnergy - slowWalkEnergy; // how much left we can still go faster by
-							_movementVector *= (slowWalkSpeed + excess / (fastWalkSpeed - slowWalkSpeed) * (fastWalkSpeed - slowWalkSpeed));
+							//Debug.Log("Not enough energy to walk fast, so walking slow instead");
+							float excess = availableEnergy - slowWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+							_movementVector *= (slowWalkSpeed + excess / (fastWalkEnergy - slowWalkEnergy) * (fastWalkSpeed - slowWalkSpeed));
 						} else {
-							_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+							//Debug.Log("Not enough energy to walk fast, so walking even slower than slow");
+							_movementVector *= slowWalkSpeed * availableEnergy / (slowWalkEnergy * Time.fixedDeltaTime);
 						}
 					} else {
 						_movementVector *= fastWalkSpeed;
 					}
+					//Debug.Log(_movementVector.magnitude);
 				} else if (walkingSlow) {
-					float unavailableEnergy = metabolism.DrawEnergy(slowWalkEnergy);
+					float unavailableEnergy = metabolism.DrawEnergy(slowWalkEnergy * Time.fixedDeltaTime);
+					//Debug.Log("Trying to walk slow at " + slowWalkSpeed + " requiring " + slowWalkEnergy * Time.fixedDeltaTime + "kJ with " + (slowWalkEnergy * Time.fixedDeltaTime - unavailableEnergy) + "kJ available");
 					if (unavailableEnergy > 0) {
-						float availableEnergy = fastWalkEnergy - unavailableEnergy;
-						_movementVector *= slowWalkSpeed * availableEnergy / slowWalkEnergy;
+						float availableEnergy = slowWalkEnergy * Time.fixedDeltaTime - unavailableEnergy;
+						//Debug.Log("Not enough energy to walk slow, so walking even slower than slow");
+						_movementVector *= slowWalkSpeed * availableEnergy / (slowWalkEnergy * Time.fixedDeltaTime);
 					} else {
 						_movementVector *= slowWalkSpeed;
 					}
+					//Debug.Log(_movementVector.magnitude);
 				}
 			
 				// now we have the movementVector pointing in the right direction and at the right magnitude

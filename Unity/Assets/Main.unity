@@ -3749,7 +3749,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1242799052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65.0571213, y: 22.5379696, z: 84.5104065}
+  m_LocalPosition: {x: 76.7009125, y: 19.3180923, z: 94.8776093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2057535963}
@@ -6375,20 +6375,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39355f2847526c449a50e2d8e8d0e2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowWalkSpeed: .75
-  fastWalkSpeed: 1.5
-  slowRunSpeed: 3
-  fastRunSpeed: 4.5
+  slowWalkSpeed: 1.29999995
+  fastWalkSpeed: 2.29999995
+  slowRunSpeed: 3.29999995
+  fastRunSpeed: 4.19999981
   sprintSpeed: 6
   slowWalkEnergy: .114
   fastWalkEnergy: .400000006
   slowRunEnergy: 1
   fastRunEnergy: 3
   sprintEnergy: 7.5999999
-  acceleration: 6
+  acceleration: 4
   stepDownTolerance: .100000001
   stepUpTolerance: .349999994
-  maximumSlope: 40
+  maximumSlope: 27
   stumbleSpeedFactor: .666666687
   stumbleSpeedExponent: 4
   leftFoot: {fileID: 251826277}
@@ -6479,7 +6479,7 @@ MonoBehaviour:
   fibreInStomach: 0
   liquidWaterInGut: 0
   foodWaterInGut: 0
-  glucoseInGut: 90
+  glucoseInGut: 0
   proteinInGut: 0
   fatInGut: 0
   fibreInGut: 0
@@ -6490,10 +6490,7 @@ MonoBehaviour:
   phosphocreatineInMuscles: 120
   glycogenInMuscles: 280
   glycogenInLiver: 80
-  insulinInBlood: -700
-  walkingEnergy: .228
-  joggingEnergy: 1
-  sprintingEnergy: 7.5999999
+  insulinInBlood: -.00700000022
   bloodVolume: 3000
 --- !u!1 &2085840366
 GameObject:
