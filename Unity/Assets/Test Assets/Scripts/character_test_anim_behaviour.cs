@@ -38,8 +38,6 @@ public class character_test_anim_behaviour : MonoBehaviour
 
 	void Update () 
 	{
-
-
 		if (PlayerSpeed() > 0.1f)	//rather than != 0 (just to prevent noise triggering animations)
 		{
 			//Play walk animation when player speed is slow
@@ -73,6 +71,8 @@ public class character_test_anim_behaviour : MonoBehaviour
 		//{
 		//	anim.SetBool("jump", false);
 		//}
+
+
 	}
 
 	void AnimSetIdle()
