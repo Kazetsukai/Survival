@@ -23,6 +23,7 @@ public class Metabolism : MonoBehaviour {
 	public float proteinInBlood = 120F;
 	public float fatInBlood = 50F;
 	public float phosphocreatineInMuscles = 120F;
+	public float lactateSaturation = 100F;
 	public float glycogenInMuscles = 280F;
 	public float glycogenInLiver = 120F;
 	public float insulinInBlood = 0F;
@@ -58,8 +59,8 @@ public class Metabolism : MonoBehaviour {
 
 
 	float maxFatUtilisation = 0.2F;
-	float maxGlucoseUtilisation = 1F;
-	float maxGlycogenUtilisation = 1.8F;
+	float maxGlucoseUtilisation = 0.8F;
+	float maxGlycogenUtilisation = 2F;
 	float maxPhosphocreatineUtilisation = 4.6F;
 
 	
@@ -137,14 +138,7 @@ public class Metabolism : MonoBehaviour {
 		}
 
 		// Increase phosphocreatine stores
-		float exertionFactor = 1F;
-		/*if (cc.walkingSlow || cc.walkingFast) {
-			exertionFactor = 0.5F;
-		} else if (cc.runningSlow || cc.runningFast || cc.sprinting) {
-			exertionFactor = 0F;
-		}*/
-			
-		float phosphocreatineToRestore = Mathf.Max(Mathf.Min (120F - phosphocreatineInMuscles, 2F / 3F) * Time.fixedDeltaTime * exertionFactor, 0);
+		float phosphocreatineToRestore = Mathf.Max(Mathf.Min (120F - phosphocreatineInMuscles, 2F / 3F) * Time.fixedDeltaTime, 0);
 		float sugarRequiredToRestorePhosphocreatine = phosphocreatineToRestore * phosphocreatineToEnergyRatio / glucoseToEnergyRatio;
 		if (sugarRequiredToRestorePhosphocreatine < glucoseInBlood) {
 			glucoseInBlood -= sugarRequiredToRestorePhosphocreatine;
@@ -154,6 +148,8 @@ public class Metabolism : MonoBehaviour {
 			glucoseInBlood = 0;
 		}
 		
+		// Decrease lactate saturation
+		lactateSaturation = Mathf.Max (0, lactateSaturation - Time.fixedDeltaTime / 3600);
 
 		// Increase muscle glycogen stores from liver
 		float muscleGlycogenIncrease = Mathf.Max (0.0165F - glycogenInMuscles / 10000F, 0.002667F) * Time.fixedDeltaTime * timeCompression;
@@ -498,7 +494,9 @@ public class Metabolism : MonoBehaviour {
 		}
 
 		// work out how much energy we are taking from glycogen
-		float energyFromGlycogen = Mathf.Min (energyRequired, maxGlycogenUtilisation * Time.fixedDeltaTime);
+		float maximumAvailableEnergyFromGlycogen = maxGlycogenUtilisation * Time.fixedDeltaTime * (1 - 0.9F * lactateSaturation);
+		float energyFromGlycogen = Mathf.Min (energyRequired, maximumAvailableEnergyFromGlycogen);
+		lactateSaturation += 1F / 900F * Time.fixedDeltaTime * energyFromGlycogen / maximumAvailableEnergyFromGlycogen;
 		//Debug.Log ("I can take " + energyFromGlycogen + " kJ from glycogen");
 
 		// work out how much glycogen mass this is

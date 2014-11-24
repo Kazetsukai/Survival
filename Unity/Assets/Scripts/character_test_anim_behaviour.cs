@@ -88,7 +88,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 	{
 		anim.SetBool ("walking", true);
 		anim.SetBool ("running", false);
-		anim.speed = Mathf.Min(PlayerSpeed (), 5F) * animSpeedFactorWalking / (rb.velocity.y > 0 ? (0.0005F * Mathf.Pow(cc.RelativeSlopeAngleDeg(), 2) + 1) : 1);
+		anim.speed = Mathf.Min(PlayerSpeed (), 5F) * animSpeedFactorWalking / (rb.velocity.y != 0 ? (0.001F * Mathf.Pow(cc.RelativeSlopeAngleDeg(), 2) + 1) : 1);
 		lf.currentPlayingAnimation = "walking";
 		rf.currentPlayingAnimation = "walking";
 	}
@@ -97,7 +97,7 @@ public class character_test_anim_behaviour : MonoBehaviour
 	{
 		anim.SetBool ("walking", false);
 		anim.SetBool ("running", true);
-		anim.speed = Mathf.Min(PlayerSpeed(), 5F) * animSpeedFactorRunning;
+		anim.speed = Mathf.Min(PlayerSpeed(), 5F) * animSpeedFactorRunning / (rb.velocity.y != 0 ? (0.0005F * Mathf.Pow(cc.RelativeSlopeAngleDeg(), 2) + 1) : 1);
 		lf.currentPlayingAnimation = "running";
 		rf.currentPlayingAnimation = "running";
 	}

@@ -6905,6 +6905,7 @@ MonoBehaviour:
   proteinInBlood: 120
   fatInBlood: 50
   phosphocreatineInMuscles: 120
+  lactateSaturation: 0
   glycogenInMuscles: 280
   glycogenInLiver: 80
   insulinInBlood: -.00700000022
