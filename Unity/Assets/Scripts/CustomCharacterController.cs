@@ -24,18 +24,20 @@ public class CustomCharacterController : MonoBehaviour {
 
 	Metabolism metabolism;
 
-	float energyRequirement = 0F;
-	float timeCompression = 15;
-
 	public GameObject leftFoot;
 	public GameObject rightFoot;
-	foot_target_behaviour lf;
-	foot_target_behaviour rf;
+	FootTargetBehaviour lf;
+	FootTargetBehaviour rf;
 
+	[HideInInspector]
 	public bool walkingSlow = false;
+	[HideInInspector]
 	public bool walkingFast = false;
+	[HideInInspector]
 	public bool runningSlow = false;
+	[HideInInspector]
 	public bool runningFast = false;
+	[HideInInspector]
 	public bool sprinting = false;
 
 	float altitude = 0;
@@ -55,8 +57,8 @@ public class CustomCharacterController : MonoBehaviour {
 	void Start () {
 		rb = GetComponentInParent<Rigidbody> ();
 		cc = GetComponent<CapsuleCollider> ();
-		lf = leftFoot.GetComponent<foot_target_behaviour> ();
-		rf = rightFoot.GetComponent<foot_target_behaviour> ();
+		lf = leftFoot.GetComponent<FootTargetBehaviour> ();
+		rf = rightFoot.GetComponent<FootTargetBehaviour> ();
 		metabolism = GetComponentInParent<Metabolism> ();
 	}
 	

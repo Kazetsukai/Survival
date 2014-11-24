@@ -138,11 +138,11 @@ public class Metabolism : MonoBehaviour {
 
 		// Increase phosphocreatine stores
 		float exertionFactor = 1F;
-		if (cc.walkingSlow || cc.walkingFast) {
+		/*if (cc.walkingSlow || cc.walkingFast) {
 			exertionFactor = 0.5F;
 		} else if (cc.runningSlow || cc.runningFast || cc.sprinting) {
 			exertionFactor = 0F;
-		}
+		}*/
 			
 		float phosphocreatineToRestore = Mathf.Max(Mathf.Min (120F - phosphocreatineInMuscles, 2F / 3F) * Time.fixedDeltaTime * exertionFactor, 0);
 		float sugarRequiredToRestorePhosphocreatine = phosphocreatineToRestore * phosphocreatineToEnergyRatio / glucoseToEnergyRatio;

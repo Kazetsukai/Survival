@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class foot_target_behaviour : MonoBehaviour {
-
+public class FootTargetBehaviour : MonoBehaviour {
+	
 	public float distanceInFrontWhenWalking = 0.2F;
 	public float distanceInFrontWhenRunning = 0.1F;
+	[HideInInspector]
 	public string animationEventName;
+	[HideInInspector]
 	public string currentPlayingAnimation = "idle";
 	public float stepDownTolerance = 0.1F;
 	public float stepUpTolerance = 0.35F;
@@ -19,6 +21,7 @@ public class foot_target_behaviour : MonoBehaviour {
 	public AudioClip stumbleSound;
 	Vector3 vectorToGround = Vector3.zero;
 	Animator anim;
+	[HideInInspector]
 	public TerrainInfo footstepTerrain;
 	bool isGrounded;
 	bool isInFront = false;
@@ -41,7 +44,7 @@ public class foot_target_behaviour : MonoBehaviour {
 		// rotate around this
 		transform.RotateAround(transform.position, Vector3.Cross(Vector3.up, hit.normal), Vector3.Angle(hit.normal, Vector3.up));
 	}
-
+	
 	void SettleToGround() {
 		int layerMask = 1 << 8;
 		if (Physics.Raycast(transform.position, Vector3.down, out hit, 100, layerMask)) {
@@ -54,7 +57,7 @@ public class foot_target_behaviour : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void HandleStep() {
 		isInFront = true;
 		if (cc.IsGrounded()) {
@@ -85,12 +88,12 @@ public class foot_target_behaviour : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public float TimeToLanding () {
 		//float currentAnimationTime = 0;
 		//float timeToMyEvent = 1;
 		//float timeToLoop = 2;
-
+		
 		//if (timeToMyEvent > currentAnimationTime) {
 		//	return timeToMyEvent - currentAnimationTime;
 		//} else {
@@ -110,21 +113,21 @@ public class foot_target_behaviour : MonoBehaviour {
 	public float ObjectiveSlopeAngleDeg() {
 		return objectiveSlopeAngle * Mathf.Rad2Deg;
 	}
-
+	
 	public void DetermineTarget() {
 		transform.position = cc.rigidbody.transform.position + vectorToGround + cc.rigidbody.transform.forward * (currentPlayingAnimation == "running" ? distanceInFrontWhenRunning : distanceInFrontWhenWalking) + cc.rigidbody.velocity * TimeToLanding() / anim.speed;
 		SettleToGround ();
-
+		
 	}
-
+	
 	public bool IsGrounded() {
 		return isGrounded;
 	}
-
+	
 	public void MoveToBack () {
 		isInFront = false;
 	}
-
+	
 	public bool IsInFront() {
 		return isInFront;
 	}

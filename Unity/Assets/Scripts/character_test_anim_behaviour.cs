@@ -15,16 +15,16 @@ public class character_test_anim_behaviour : MonoBehaviour
 	public float speedThresholdRun = 2.5f;
 	public float framesBetweenStepsWalking = 10;
 	public float framesBetweenStepsRunning = 8;
-	foot_target_behaviour lf;
-	foot_target_behaviour rf;
+	FootTargetBehaviour lf;
+	FootTargetBehaviour rf;
 
 	void Start () 
 	{
 		anim = GetComponent<Animator> ();
 		cc = GetComponentInParent<CustomCharacterController> ();
         rb = GetComponentInParent<Rigidbody> ();
-		lf = cc.leftFoot.GetComponent<foot_target_behaviour> ();
-		rf = cc.rightFoot.GetComponent<foot_target_behaviour> ();
+		lf = cc.leftFoot.GetComponent<FootTargetBehaviour> ();
+		rf = cc.rightFoot.GetComponent<FootTargetBehaviour> ();
 		lf.stepUpTolerance = cc.stepUpTolerance;
 		lf.stepDownTolerance = cc.stepDownTolerance;
 		rf.stepUpTolerance = cc.stepUpTolerance;
