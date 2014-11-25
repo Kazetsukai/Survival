@@ -94,6 +94,8 @@ public class Metabolism : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		// Work out blood loss multiplier
+		float bloodLossMultiplier = bloodVolume / bloodVolumeMax;
 
 		// Spend base energy
 		SpendBaseEnergy ();
@@ -119,26 +121,26 @@ public class Metabolism : MonoBehaviour {
 
 		// Deplete insulin
 		if (insulinInBlood > 0) {
-			insulinInBlood = insulinInBlood / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / insulinHalfLife));
+			insulinInBlood = insulinInBlood / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / (insulinHalfLife / bloodLossMultiplier)));
 		} else {
-			insulinInBlood = -(Mathf.Abs(insulinInBlood) / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / insulinHalfLife)));
+			insulinInBlood = -(Mathf.Abs(insulinInBlood) / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / (insulinHalfLife / bloodLossMultiplier))));
 		}
 
 		// Adjust insulin based on sugar levels in blood
 		if (targetSugarInBlood < glucoseInBlood) {
-			insulinInBlood += insulinReleaseAmount * Time.fixedDeltaTime * timeCompression;
+			insulinInBlood += insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 		} else if (targetSugarInBlood > glucoseInBlood) {
-			insulinInBlood -= insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * 3;
+			insulinInBlood -= insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * 3 * bloodLossMultiplier;
 		}
 
 		// Transfer sugar/glycogen between liver/blood
 		if (glycogenInLiver < 120F && insulinInBlood > 0 || glycogenInLiver > 0F && insulinInBlood < 0) {
-			glycogenInLiver += insulinInBlood * Time.fixedDeltaTime * timeCompression;
-			glucoseInBlood -= insulinInBlood * Time.fixedDeltaTime * timeCompression;
+			glycogenInLiver += insulinInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
+			glucoseInBlood -= insulinInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 		}
 
 		// Increase phosphocreatine stores
-		float phosphocreatineToRestore = Mathf.Max(Mathf.Min (120F - phosphocreatineInMuscles, 2F / 3F) * Time.fixedDeltaTime, 0);
+		float phosphocreatineToRestore = Mathf.Max(Mathf.Min (120F - phosphocreatineInMuscles, 2F / 3F) * Time.fixedDeltaTime * bloodLossMultiplier, 0);
 		float sugarRequiredToRestorePhosphocreatine = phosphocreatineToRestore * phosphocreatineToEnergyRatio / glucoseToEnergyRatio;
 		if (sugarRequiredToRestorePhosphocreatine < glucoseInBlood) {
 			glucoseInBlood -= sugarRequiredToRestorePhosphocreatine;
@@ -149,10 +151,10 @@ public class Metabolism : MonoBehaviour {
 		}
 		
 		// Decrease lactate saturation
-		lactateSaturation = Mathf.Max (0, lactateSaturation - Time.fixedDeltaTime / 3600);
+		lactateSaturation = Mathf.Max (0, lactateSaturation - Time.fixedDeltaTime / 3600 * bloodLossMultiplier);
 
 		// Increase muscle glycogen stores from liver
-		float muscleGlycogenIncrease = Mathf.Max (0.0165F - glycogenInMuscles / 10000F, 0.002667F) * Time.fixedDeltaTime * timeCompression;
+		float muscleGlycogenIncrease = Mathf.Max (0.0165F - glycogenInMuscles / 10000F, 0.002667F) * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 		if (muscleGlycogenIncrease < glycogenInLiver) {
 			glycogenInLiver -= muscleGlycogenIncrease;
 			glycogenInMuscles += muscleGlycogenIncrease;
@@ -169,7 +171,7 @@ public class Metabolism : MonoBehaviour {
 			// if there is any liquid (non-food) water in the stomach
 			if (liquidWaterInStomach > 0) {
 				// work out how much is being digested this update
-				float liquidWaterBeingDigested = liquidWaterDigestionRate * Time.fixedDeltaTime * timeCompression;
+				float liquidWaterBeingDigested = liquidWaterDigestionRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 				
 				// if the last bit of water is being digested, shift it all to the gut, otherwise shift the amount being digested
 				if (liquidWaterBeingDigested > liquidWaterInStomach) {
@@ -181,7 +183,7 @@ public class Metabolism : MonoBehaviour {
 			// if there is any food water in the stomach
 			if (foodWaterInStomach > 0) {
 				// work out how much is being digested this update
-				float foodWaterBeingDigested = currentFoodWaterDigestionRate * Time.fixedDeltaTime * timeCompression;
+				float foodWaterBeingDigested = currentFoodWaterDigestionRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 
 				// if the last bit of water is being digested, shift it all to the gut, otherwise shift the amount being digested
 				if (foodWaterBeingDigested > foodWaterInStomach) {
@@ -193,7 +195,7 @@ public class Metabolism : MonoBehaviour {
 			// if there is any sugar in the stomach
 			if (glucoseInStomach > 0) {
 				// work out how much is being digested this update
-				float sugarBeingDigested = currentGlucoseDigestionRate * Time.fixedDeltaTime * timeCompression;
+				float sugarBeingDigested = currentGlucoseDigestionRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 
 				// if the last bit of sugar is being digested, shift it all to the gut, otherwise shift the amount being digested
 				if (sugarBeingDigested > glucoseInStomach) {
@@ -205,7 +207,7 @@ public class Metabolism : MonoBehaviour {
 			// if there is any protein in the stomach
 			if (proteinInStomach > 0) {
 				// work out how much is being digested this update
-				float proteinBeingDigested = currentProteinDigestionRate * Time.fixedDeltaTime * timeCompression;
+				float proteinBeingDigested = currentProteinDigestionRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 				
 				// if the last bit of protein is being digested, shift it all to the gut, otherwise shift the amount being digested
 				if (proteinBeingDigested > proteinInStomach) {
@@ -217,7 +219,7 @@ public class Metabolism : MonoBehaviour {
 			// if there is any fat in the stomach
 			if (fatInStomach > 0) {
 				// work out how much is being digested this update
-				float fatBeingDigested = currentFatDigestionRate * Time.fixedDeltaTime * timeCompression;
+				float fatBeingDigested = currentFatDigestionRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 				
 				// if the last bit of fat is being digested, shift it all to the gut, otherwise shift the amount being digested
 				if (fatBeingDigested > fatInStomach) {
@@ -229,7 +231,7 @@ public class Metabolism : MonoBehaviour {
 			// if there is any fibre in the stomach
 			if (fibreInStomach > 0) {
 				// work out how much is being digested this update
-				float fibreBeingDigested = currentFibreDigestionRate * Time.fixedDeltaTime * timeCompression;
+				float fibreBeingDigested = currentFibreDigestionRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 				
 				// if the last bit of fibre is being digested, shift it all to the gut, otherwise shift the amount being digested
 				if (fibreBeingDigested > fibreInStomach) {
@@ -248,7 +250,7 @@ public class Metabolism : MonoBehaviour {
 		// if there is any liquid water in the gut
 		if (liquidWaterInGut > 0) {
 			// work out how much is being released this update
-			float liquidWaterBeingReleased = liquidWaterDigestionRate * Time.fixedDeltaTime * timeCompression;
+			float liquidWaterBeingReleased = liquidWaterDigestionRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 			
 			// if the last bit of liquid water is being released, shift it all to the blood, otherwise shift the amount being released
 			if (liquidWaterBeingReleased > liquidWaterInGut) {
@@ -262,7 +264,7 @@ public class Metabolism : MonoBehaviour {
 		// if there is any food water in the gut
 		if (foodWaterInGut > 0) {
 			// work out how much is being released this update
-			float foodWaterBeingReleased = foodWaterReleaseRate * Time.fixedDeltaTime * timeCompression;
+			float foodWaterBeingReleased = foodWaterReleaseRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 			
 			// if the last bit of food water is being released, shift it all to the blood, otherwise shift the amount being released
 			if (foodWaterBeingReleased > foodWaterInGut) {
@@ -276,7 +278,7 @@ public class Metabolism : MonoBehaviour {
 		// if there is any sugar in the gut
 		if (glucoseInGut > 0) {
 			// work out how much is being released this update
-			float sugarBeingReleased = glucoseReleaseRate * Time.fixedDeltaTime * timeCompression;
+			float sugarBeingReleased = glucoseReleaseRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 			
 			// if the last bit of sugar is being released, shift it all to the blood, otherwise shift the amount being released
 			if (sugarBeingReleased > glucoseInGut) {
@@ -290,7 +292,7 @@ public class Metabolism : MonoBehaviour {
 		// if there is any protein in the gut
 		if (proteinInGut > 0) {
 			// work out how much is being released this update
-			float proteinBeingReleased = proteinReleaseRate * Time.fixedDeltaTime * timeCompression;
+			float proteinBeingReleased = proteinReleaseRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 			
 			// if the last bit of protein is being released, shift it all to the blood, otherwise shift the amount being released
 			if (proteinBeingReleased > proteinInGut) {
@@ -304,7 +306,7 @@ public class Metabolism : MonoBehaviour {
 		// if there is any fat in the gut
 		if (fatInGut > 0) {
 			// work out how much is being released this update
-			float fatBeingReleased = fatReleaseRate * Time.fixedDeltaTime * timeCompression;
+			float fatBeingReleased = fatReleaseRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 			
 			// if the last bit of fat is being released, shift it all to the blood, otherwise shift the amount being released
 			if (fatBeingReleased > fatInGut) {
@@ -318,7 +320,7 @@ public class Metabolism : MonoBehaviour {
 		// if there is any fibre in the gut
 		if (fibreInGut > 0) {
 			// work out how much is being released this update
-			float fibreBeingReleased = fibreReleaseRate * Time.fixedDeltaTime * timeCompression;
+			float fibreBeingReleased = fibreReleaseRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 			
 			// if the last bit of fibre is being released, shift it all to the blood, otherwise shift the amount being released
 			if (fibreBeingReleased > fibreInGut) {
@@ -331,6 +333,14 @@ public class Metabolism : MonoBehaviour {
 
 
 		foreach (var digestionPacket in digestionPackets) {
+			// slow down gut digestion according to blood loss levels
+			digestionPacket.liquidWaterReleaseTime += (1F - bloodLossMultiplier) * Time.fixedDeltaTime;
+			digestionPacket.foodWaterReleaseTime += (1F - bloodLossMultiplier) * Time.fixedDeltaTime;
+			digestionPacket.sugarReleaseTime += (1F - bloodLossMultiplier) * Time.fixedDeltaTime;
+			digestionPacket.proteinReleaseTime += (1F - bloodLossMultiplier) * Time.fixedDeltaTime;
+			digestionPacket.fatReleaseTime += (1F - bloodLossMultiplier) * Time.fixedDeltaTime;
+			digestionPacket.fibreReleaseTime += (1F - bloodLossMultiplier) * Time.fixedDeltaTime;
+
 			if (digestionPacket.liquidWaterInGut > 0 && Time.time > digestionPacket.liquidWaterReleaseTime) {
 				//Debug.Log ("Releasing liquid water");
 				liquidWaterInGut += digestionPacket.liquidWaterInGut;
