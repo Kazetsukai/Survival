@@ -40,7 +40,9 @@ public class CustomCharacterController : MonoBehaviour {
 	[HideInInspector]
 	public bool sprinting = false;
 
-	float altitude = 0;
+	float altitude = 0F;
+	float desiredSpeed = 0F;
+	float energyRequired = 0F;
 	float objectiveSlopeAngle = 0F;
 	float relativeSlopeAngle = 0F;
 	Rigidbody rb;
@@ -76,26 +78,39 @@ public class CustomCharacterController : MonoBehaviour {
 				_movementVector = transform.forward; // no strafing when running
 				if (Input.GetAxis("Fast") > 0) {
 					sprinting = true; // pushing run and fast, sprinting
+					desiredSpeed = sprintSpeed;
+					energyRequired = sprintEnergy;
+
 					//Debug.Log("Sprinting");
 				} else if (Input.GetAxis("Slow") > 0) {
 					runningSlow = true; // pushing run and slow, running slow
+					desiredSpeed = slowRunSpeed;
+					energyRequired = slowRunEnergy;
 					//Debug.Log("Running slow");
 				} else {
 					runningFast = true; // pushing run alone, running fast
+					desiredSpeed = fastRunSpeed;
+					energyRequired = fastRunEnergy;
 					//Debug.Log("Running fast");
 				}
 			} else if (Input.GetAxis("Vertical") > 0) {
 				if (Input.GetAxis("Fast") > 0) {
 					_movementVector = transform.forward; // no strafing when running
 					runningSlow = true; // pushing forward and fast, running slow
+					desiredSpeed = slowRunSpeed;
+					energyRequired = slowRunEnergy;
 					//Debug.Log("Running slow");
 				} else if (Input.GetAxis("Slow") > 0) {
 					_movementVector = transform.forward + transform.right * (int)Input.GetAxis ("Horizontal"); // not running, strafing
 					walkingSlow = true; // pushing forward and slow, walking slow
+					desiredSpeed = slowWalkSpeed;
+					energyRequired = slowWalkEnergy;
 					//Debug.Log("Walking slow");
 				} else {
 					_movementVector = transform.forward + transform.right * (int)Input.GetAxis ("Horizontal"); // not running, strafing
 					walkingFast = true; // pushing forward alone, walking fast
+					desiredSpeed = fastWalkSpeed;
+					energyRequired = fastWalkEnergy;
 					//Debug.Log("Walking fast");
 				}
 			} else {
@@ -103,9 +118,13 @@ public class CustomCharacterController : MonoBehaviour {
 				if (_movementVector != Vector3.zero) {
 					if (Input.GetAxis("Slow") > 0) {
 						walkingSlow = true;
+						desiredSpeed = slowWalkSpeed;
+						energyRequired = slowWalkEnergy;
 						//Debug.Log("Walking slow");
 					} else {
 						walkingFast = true;
+						desiredSpeed = fastWalkSpeed;
+						energyRequired = fastWalkEnergy;
 						//Debug.Log("Walking fast");
 					}
 				}
@@ -194,7 +213,57 @@ public class CustomCharacterController : MonoBehaviour {
 				}
 				// scale the vector to the speed as determined by the player inputs and the relativeSlopeSpeedMultiplier
 				_movementVector = _movementVector.normalized;
-				if (sprinting) {
+				float maxSpeed = sprintSpeed * metabolism.muscleMass / metabolism.muscleMassMax; // might make this hyperbolic at some stage
+				if (maxSpeed < desiredSpeed) {
+					Debug.Log ("Can't move as fast as desired");
+					if (maxSpeed < fastRunSpeed) {
+						if (maxSpeed < slowRunSpeed) {
+							if (maxSpeed < fastWalkSpeed) {
+								if (maxSpeed < slowWalkSpeed) {
+									energyRequired = slowWalkEnergy * maxSpeed * Time.fixedDeltaTime / slowWalkSpeed;
+									desiredSpeed = slowWalkSpeed * maxSpeed / slowWalkSpeed;
+								} else {
+									energyRequired = fastWalkEnergy * maxSpeed * Time.fixedDeltaTime / fastWalkSpeed;
+									desiredSpeed = fastWalkSpeed * maxSpeed / fastWalkSpeed;
+								}
+							} else {
+								energyRequired = slowRunEnergy * maxSpeed * Time.fixedDeltaTime / slowRunSpeed;
+								desiredSpeed = slowRunSpeed * maxSpeed / slowRunSpeed;
+							}
+						} else {
+							energyRequired = fastRunEnergy * maxSpeed * Time.fixedDeltaTime / fastRunSpeed;
+							desiredSpeed = fastRunSpeed * maxSpeed / fastRunSpeed;
+						}
+					} else {
+						energyRequired = sprintEnergy * maxSpeed * Time.fixedDeltaTime / sprintSpeed;
+						desiredSpeed = sprintSpeed * maxSpeed / sprintSpeed;
+					}
+				}
+
+				float unavailableEnergy = metabolism.DrawEnergy(energyRequired * Time.fixedDeltaTime);
+				if (unavailableEnergy > 0) {
+					float availableEnergy = energyRequired * Time.fixedDeltaTime - unavailableEnergy;
+					if (desiredSpeed > fastRunSpeed && availableEnergy > fastRunEnergy * Time.fixedDeltaTime) {
+						float excess = availableEnergy - fastRunEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+						_movementVector *= (fastRunSpeed + (excess / (sprintEnergy - fastRunEnergy)) * (sprintSpeed - fastRunSpeed));
+					} else if (desiredSpeed > slowRunSpeed && availableEnergy > slowRunEnergy * Time.fixedDeltaTime) {
+						float excess = availableEnergy - slowRunEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+						_movementVector *= (slowRunSpeed + (excess / (fastRunEnergy - slowRunEnergy)) * (fastRunSpeed - slowRunSpeed));
+					} else if (desiredSpeed > fastWalkSpeed && availableEnergy > fastWalkEnergy * Time.fixedDeltaTime) {
+						float excess = availableEnergy - fastWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+						_movementVector *= (fastWalkSpeed + (excess / (slowRunEnergy - fastWalkEnergy)) * (slowRunSpeed - fastWalkSpeed));
+					} else if (desiredSpeed > slowWalkSpeed && availableEnergy > slowWalkEnergy * Time.fixedDeltaTime) {
+						float excess = availableEnergy - slowWalkEnergy * Time.fixedDeltaTime; // how much left we can still go faster by
+						_movementVector *= (slowWalkSpeed + (excess / (fastWalkEnergy - slowWalkEnergy)) * (fastWalkSpeed - slowWalkSpeed));
+					} else {
+						_movementVector *= slowWalkSpeed * availableEnergy / (slowWalkEnergy * Time.fixedDeltaTime);
+					}
+				} else {
+					_movementVector *= desiredSpeed;
+				}
+				//Debug.Log(rb.velocity.magnitude);
+				/*if (sprinting) {
+
 					float unavailableEnergy = metabolism.DrawEnergy(sprintEnergy * Time.fixedDeltaTime);
 					//Debug.Log("Trying to sprint at " + sprintSpeed + " requiring " + sprintEnergy * Time.fixedDeltaTime + "kJ with " + (sprintEnergy * Time.fixedDeltaTime - unavailableEnergy) + "kJ available");
 
@@ -315,13 +384,10 @@ public class CustomCharacterController : MonoBehaviour {
 						_movementVector *= slowWalkSpeed;
 					}
 					//Debug.Log(_movementVector.magnitude);
-				}
+				}*/
 			
 				// now we have the movementVector pointing in the right direction and at the right magnitude
 				// next is to work out the accelerationVector required to move the player in this new direction
-				// first we scale it according to energy requirements
-
-				// work out how much energy is required to move
 			}
 
 			Vector3 accelerationVector = (_movementVector - rb.velocity);

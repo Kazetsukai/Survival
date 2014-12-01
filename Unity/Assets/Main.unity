@@ -6901,14 +6901,16 @@ MonoBehaviour:
   fatInGut: 0
   fibreInGut: 0
   waterInBlood: 44000
-  glucoseInBlood: 9
-  proteinInBlood: 120
-  fatInBlood: 50
-  phosphocreatineInMuscles: 120
+  glucoseInBlood: .899999976
+  proteinInBlood: .119999997
+  fatInBlood: .5
+  phosphocreatineInMuscles: .119999997
   lactateSaturation: 0
-  glycogenInMuscles: 280
-  glycogenInLiver: 80
+  glycogenInMuscles: .280000001
+  glycogenInLiver: .800000012
   insulinInBlood: -.00700000022
+  muscleMassMax: 35000
+  muscleMass: 35000
   bloodVolume: 3000
 --- !u!1 &2085840366
 GameObject:

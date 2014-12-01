@@ -27,10 +27,10 @@ public class Metabolism : MonoBehaviour {
 	public float glycogenInMuscles = 280F;
 	public float glycogenInLiver = 120F;
 	public float insulinInBlood = 0F;
-	float muscleMassMax = 35000F;
-	float muscleMass = 35000F;
+	public float muscleMassMax = 35000F;
+	public float muscleMass = 35000F;
 	float insulinHalfLife = 300F;
-	float insulinReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F));
+	float insulinReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F)) * 6;
 	float targetSugarInBlood = 8.4F;
 	float foodWaterReleaseRate = 0;
 	float glucoseReleaseRate = 0;
@@ -467,11 +467,11 @@ public class Metabolism : MonoBehaviour {
 					// Spend from muscle mass next - starving!
 					energyRequired -= proteinInBlood * proteinToEnergyRatio;
 					proteinInBlood = 0;
-					float muscleMassRequired = energyRequired / proteinToEnergyRatio; // calculate body mass reduction due to starvation
-					if (muscleMassRequired < energyRequired) {
+					float muscleMassRequired = (energyRequired / proteinToEnergyRatio) * 2; // calculate body mass reduction due to starvation
+					if (muscleMassRequired < muscleMass) {
 						muscleMass -= muscleMassRequired;
 					} else {
-						energyRequired -= muscleMass * proteinToEnergyRatio;
+						energyRequired -= (muscleMass * proteinToEnergyRatio) / 2;
 						muscleMass = 0;
 						// pretty sure you're dead by now
 						GetComponentInParent<Death>().Die();

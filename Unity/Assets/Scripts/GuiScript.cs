@@ -42,7 +42,8 @@ public class GuiScript : MonoBehaviour {
 			"Fat in stomach:" + (Math.Round (player.fatInStomach, 2)) + "g" + '\n' +
 			"Fibre in gut:" + (Math.Round (player.fibreInGut, 2)) + "g" + '\n' +
 			"Fibre in stomach:" + (Math.Round (player.fibreInStomach, 2)) + "g" + '\n' +
-			"Lactate system saturation:" + (Math.Round (player.lactateSaturation, 2)) + '\n';
+			"Lactate system saturation:" + (Math.Round (player.lactateSaturation, 2)) + '\n' +
+			"Muscle mass:" + (Math.Round (player.muscleMass, 2)) + 'g' + '\n';
 
 		GUI.Box (new Rect (10, 10, 200, 300), text, style);
 	}
