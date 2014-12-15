@@ -13,12 +13,12 @@ SceneSettings:
 --- !u!104 &2
 RenderSettings:
   m_Fog: 0
-  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
+  m_FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_FogMode: 3
   m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientLight: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 53412155bc1016547b1a77b2333c0380, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
@@ -546,17 +546,17 @@ Light:
   serializedVersion: 3
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .289999992
+  m_Intensity: .769999981
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_Softness: 2.57999992
-    m_SoftnessFade: 1.13999999
+    m_Strength: .393000007
+    m_Bias: 1.09800005
+    m_Softness: 4.5999999
+    m_SoftnessFade: 3.22000003
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
@@ -577,7 +577,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 268770139}
-  m_LocalRotation: {x: .643585682, y: -.532871544, z: -.170865223, w: .522159457}
+  m_LocalRotation: {x: -.616414964, y: .0091280574, z: -.340101987, w: -.710126758}
   m_LocalPosition: {x: -64.4000015, y: 69.0999985, z: 74.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2651,6 +2651,7 @@ GameObject:
   - 4: {fileID: 799320510}
   - 33: {fileID: 799320509}
   - 23: {fileID: 799320508}
+  - 64: {fileID: 799320511}
   - 95: {fileID: 799320507}
   m_Layer: 0
   m_Name: tree_branch_small_1
@@ -2716,6 +2717,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!64 &799320511
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: 9f4194cc8816baa4282f452b28a7568c,
+    type: 3}
+  m_PrefabInternal: {fileID: 1135272177}
+  m_GameObject: {fileID: 799320506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 9f4194cc8816baa4282f452b28a7568c, type: 3}
 --- !u!1 &809708095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,6 +2972,7 @@ GameObject:
   - 4: {fileID: 874254057}
   - 33: {fileID: 874254056}
   - 23: {fileID: 874254055}
+  - 64: {fileID: 874254058}
   - 95: {fileID: 874254054}
   m_Layer: 0
   m_Name: tree_branch_small_1
@@ -3022,6 +3038,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
+--- !u!64 &874254058
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: 9f4194cc8816baa4282f452b28a7568c,
+    type: 3}
+  m_PrefabInternal: {fileID: 1303040298}
+  m_GameObject: {fileID: 874254053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 9f4194cc8816baa4282f452b28a7568c, type: 3}
 --- !u!1 &890702309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4043,6 +4073,7 @@ GameObject:
   - 4: {fileID: 991783748}
   - 33: {fileID: 991783747}
   - 23: {fileID: 991783746}
+  - 64: {fileID: 991783749}
   - 95: {fileID: 991783745}
   m_Layer: 0
   m_Name: tree_branch_medium_1
@@ -4108,6 +4139,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!64 &991783749
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: e67452460aef42b44aed7f67844db674,
+    type: 3}
+  m_PrefabInternal: {fileID: 189502845}
+  m_GameObject: {fileID: 991783744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300002, guid: e67452460aef42b44aed7f67844db674, type: 3}
 --- !u!1 &995163606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4874,7 +4919,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1242799052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 76.7009125, y: 19.3180923, z: 94.8776093}
+  m_LocalPosition: {x: 47.4300003, y: 30.8299999, z: 105.139999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2057535963}
@@ -7327,6 +7372,7 @@ GameObject:
   - 4: {fileID: 1823144918}
   - 33: {fileID: 1823144921}
   - 23: {fileID: 1823144920}
+  - 64: {fileID: 1823144922}
   - 95: {fileID: 1823144919}
   m_Layer: 0
   m_Name: tree_branch_large_1
@@ -7391,6 +7437,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 456610520}
   m_GameObject: {fileID: 1823144917}
+  m_Mesh: {fileID: 4300000, guid: cc6200d260853c04bad9b54d50e647d0, type: 3}
+--- !u!64 &1823144922
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: cc6200d260853c04bad9b54d50e647d0,
+    type: 3}
+  m_PrefabInternal: {fileID: 456610520}
+  m_GameObject: {fileID: 1823144917}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: cc6200d260853c04bad9b54d50e647d0, type: 3}
 --- !u!1 &1852761929
 GameObject:
