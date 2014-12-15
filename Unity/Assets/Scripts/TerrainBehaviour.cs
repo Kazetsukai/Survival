@@ -216,12 +216,12 @@ public class TerrainBehaviour : MonoBehaviour {
 						var leftBottom = IsFull (map, d, y-shift, x-1);
 						var rightBottom = IsFull (map, d, y-shift, x+1);
 						
-						var topUp = IsFull (map, d+1, y+1, x);
-						var leftTopUp = IsFull(map, d+1, y+noShift, x-1);
-						var rightTopUp = IsFull(map, d+1, y+noShift, x+1);
-						var bottomUp = IsFull (map, d+1, y-1, x);
-						var leftBottomUp = IsFull (map, d+1, y-shift, x-1);
-						var rightBottomUp = IsFull (map, d+1, y-shift, x+1);
+						var topUp = IsFull (map, d+1, y+1, x) && !IsFull (map, d+2, y+1, x);
+						var leftTopUp = IsFull(map, d+1, y+noShift, x-1) && !IsFull (map, d+2, y+noShift, x-1);
+						var rightTopUp = IsFull(map, d+1, y+noShift, x+1) && !IsFull (map, d+2, y+noShift, x+1);
+						var bottomUp = IsFull (map, d+1, y-1, x) && !IsFull (map, d+2, y-1, x);
+						var leftBottomUp = IsFull (map, d+1, y-shift, x-1) && !IsFull (map, d+2, y-shift, x-1);
+						var rightBottomUp = IsFull (map, d+1, y-shift, x+1) && !IsFull (map, d+2, y-shift, x+1);
 						
 						Vector3 centreVert = new Vector3 (xOffset, yOffset, zOffset);
 						
