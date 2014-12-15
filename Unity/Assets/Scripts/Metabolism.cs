@@ -59,6 +59,7 @@ public class Metabolism : MonoBehaviour {
 
 
 	float maxFatUtilisation = 0.2F;
+	float maxMuscleUtilisation = 0.2F;
 	float maxGlucoseUtilisation = 0.8F;
 	float maxGlycogenUtilisation = 2F;
 	float maxPhosphocreatineUtilisation = 4.6F;
@@ -73,6 +74,7 @@ public class Metabolism : MonoBehaviour {
 	public float bloodVolume = 3000F;
 	float bloodVolumeMax = 6000F;
 	float bloodReplenishmentRate = 0.08F * 6000F / (24F * 60F * 60F);
+	float muscleMassRegenerationRate = 1F / 15F;
 	float waterDepletionRate = 1600F / (24F * 60F * 60F);
 	float energyDepletionRate = 7918F / (24F * 60F * 60F);
 	float proteinDepletionRate = 50F / (24F * 60F * 60F);
@@ -81,6 +83,7 @@ public class Metabolism : MonoBehaviour {
 	void Start () {
 		rb = GetComponentInParent<Rigidbody> ();
 		cc = GetComponentInParent<CustomCharacterController> ();
+		Eat ();
 	}
 	
 	// Update is called once per frame
@@ -117,6 +120,13 @@ public class Metabolism : MonoBehaviour {
 			if (muscleMass <= 0) {
 				GetComponentInParent<Death>().Die ();
 			}
+		}
+
+		// Regenerate muscle mass
+		if (muscleMass < muscleMassMax) {
+			float muscleMassToIncrease = Mathf.Min (proteinInBlood, (muscleMassMax - muscleMass), muscleMassRegenerationRate * Time.fixedDeltaTime * timeCompression);
+			proteinInBlood -= muscleMassToIncrease;
+			muscleMass += muscleMassToIncrease;
 		}
 
 		// Deplete insulin
@@ -487,6 +497,7 @@ public class Metabolism : MonoBehaviour {
 		// work out how much energy we are taking from phosphocreatine
 		float energyFromPhosphocreatine = Mathf.Min (energyRequired, maxPhosphocreatineUtilisation * Time.fixedDeltaTime);
 		//Debug.Log ("I can take " + energyFromPhosphocreatine + " kJ from phosphocreatine");
+		//Debug.Log ("The other value was " + (maxPhosphocreatineUtilisation * Time.fixedDeltaTime));
 		
 		// work out how much phosphocreatine mass this is
 		float massFromPhosphocreatine = energyFromPhosphocreatine / phosphocreatineToEnergyRatio;
@@ -560,6 +571,15 @@ public class Metabolism : MonoBehaviour {
 			energyRequired -= glucoseInBlood * glucoseToEnergyRatio;
 			glucoseInBlood = 0;
 			//Debug.Log("I do not have enough glucose available, so I will use what is available and now the remainder of the request is " + energyRequired);
+		}
+
+		if (energyRequired == totalEnergyRequired) {
+			//Debug.Log("Using muscle mass");
+			float energyFromMuscleMass = Mathf.Min (energyRequired, maxMuscleUtilisation * Time.fixedDeltaTime);
+			//Debug.Log("Energy from muscle mass = " + energyFromMuscleMass);
+			float massFromMuscle = (energyRequired / proteinToEnergyRatio) * 2;
+			muscleMass -= massFromMuscle;
+			energyRequired -= energyFromMuscleMass;
 		}
 
 		if (energyRequired < 0.001) {

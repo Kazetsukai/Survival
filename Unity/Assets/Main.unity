@@ -8322,7 +8322,7 @@ MonoBehaviour:
   glycogenInLiver: .800000012
   insulinInBlood: -.00700000022
   muscleMassMax: 35000
-  muscleMass: 35000
+  muscleMass: 34000
   bloodVolume: 3000
 --- !u!1001 &2065563670
 Prefab:
