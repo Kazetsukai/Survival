@@ -31,6 +31,7 @@ public class TerrainBehaviour : MonoBehaviour {
 					}
 					
 					_maps[0][d,y,x] = Mathf.PerlinNoise(x * 0.1f, y * 0.1f) > d / (10f + x / 10f) ? terrainTypeI : 0;
+						
 					//if (x > 3 && d == 3)
 						//_maps[0][d,y,x] = 0;
 					if (d == 0)
@@ -49,6 +50,52 @@ public class TerrainBehaviour : MonoBehaviour {
 				}
 			}
 		}
+		
+		// Dig the first corner down by four levels, except for a raised section in the corner
+		for (int x = 0; x < 15; x++)
+		{
+			for (int y = 0; y < 15; y++)
+			{
+				int d;
+				for (d = 5; d < MapDepth; d++)
+				{
+					if (_maps[0][d,y,x] == 0)
+					{
+						
+						if (x + y < 10)
+						{
+							_maps[0][d-1,y,x] = _maps[0][d-3,y,x];
+							_maps[0][d-2,y,x] = _maps[0][d-3,y,x];
+							_maps[0][d,y,x] = _maps[0][d-3,y,x];
+							_maps[0][d+1,y,x] = _maps[0][d-3,y,x];
+							_maps[0][d+2,y,x] = _maps[0][d-3,y,x];
+							_maps[0][d+3,y,x] = _maps[0][d-3,y,x];
+						}
+						else
+						{
+							_maps[0][d-1,y,x] = 0;
+							_maps[0][d-2,y,x] = 0;
+							_maps[0][d-3,y,x] = 0;
+							_maps[0][d-4,y,x] = 0;
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+		// Dig a cave
+		for (int i = 0; i < 10; i++)
+		{
+			int x = 2 + (i/3);
+			int y = 2 + i;
+			
+			_maps[0][1, y, x] = 0;
+			_maps[0][1+1, y, x] = 0;
+			_maps[0][1+2, y, x] = 0;
+		}
+		
+		
 		
 		int vertices = 0;
 		foreach (var map in _maps) {
