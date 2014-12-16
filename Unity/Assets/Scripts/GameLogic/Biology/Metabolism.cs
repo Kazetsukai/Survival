@@ -32,11 +32,11 @@ public class Metabolism : MonoBehaviour {
 	float insulinHalfLife = 300F;
 	float insulinReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F)) * 6;
 	float targetSugarInBlood = 8.4F;
-	float foodWaterReleaseRate = 0;
-	float glucoseReleaseRate = 0;
-	float proteinReleaseRate = 0;
-	float fatReleaseRate = 0;
-	float fibreReleaseRate = 0;
+	float foodWaterReleaseRate = 0F;
+	float glucoseReleaseRate = 0F;
+	float proteinReleaseRate = 0F;
+	float fatReleaseRate = 0F;
+	float fibreReleaseRate = 0F;
 
 	Rigidbody rb;
 	CustomCharacterController cc;
@@ -83,7 +83,13 @@ public class Metabolism : MonoBehaviour {
 	void Start () {
 		rb = GetComponentInParent<Rigidbody> ();
 		cc = GetComponentInParent<CustomCharacterController> ();
-		Eat ();
+		/*digestionPackets.Add (new DigestionPacket (0F, 200F, 0.01728395F, 90F, 0.007777778F, 120F, 0.01037037F, 80F, 0.00691358F, 50F, 0.004320988F));
+		digestionPackets [0].fatReleaseTime = Time.time;
+		digestionPackets [0].fibreReleaseTime = Time.time;
+		digestionPackets [0].foodWaterReleaseTime = Time.time;
+		digestionPackets [0].liquidWaterReleaseTime = Time.time;
+		digestionPackets [0].proteinReleaseTime = Time.time;
+		digestionPackets [0].sugarReleaseTime = Time.time;*/
 	}
 	
 	// Update is called once per frame
@@ -137,16 +143,17 @@ public class Metabolism : MonoBehaviour {
 		}
 
 		// Adjust insulin based on sugar levels in blood
-		if (targetSugarInBlood < glucoseInBlood) {
+		if (targetSugarInBlood < glucoseInBlood * 0.9F) {
 			insulinInBlood += insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
-		} else if (targetSugarInBlood > glucoseInBlood) {
+		} else if (targetSugarInBlood > glucoseInBlood * 1.1F) {
 			insulinInBlood -= insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * 3 * bloodLossMultiplier;
 		}
 
 		// Transfer sugar/glycogen between liver/blood
-		if (glycogenInLiver < 120F && insulinInBlood > 0 || glycogenInLiver > 0F && insulinInBlood < 0) {
+		if (insulinInBlood > 0 || glycogenInLiver > 0F && insulinInBlood < 0) {
 			glycogenInLiver += insulinInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
 			glucoseInBlood -= insulinInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
+			glycogenInLiver = Mathf.Min (glycogenInLiver, 120F);
 		}
 
 		// Increase phosphocreatine stores
@@ -289,7 +296,7 @@ public class Metabolism : MonoBehaviour {
 		if (glucoseInGut > 0) {
 			// work out how much is being released this update
 			float sugarBeingReleased = glucoseReleaseRate * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
-			
+
 			// if the last bit of sugar is being released, shift it all to the blood, otherwise shift the amount being released
 			if (sugarBeingReleased > glucoseInGut) {
 				glucoseInBlood += glucoseInGut;
@@ -418,7 +425,6 @@ public class Metabolism : MonoBehaviour {
 
 		totalStomachContents = foodWaterInStomach + glucoseInStomach + proteinInStomach + fatInStomach + fibreInStomach;
 		CalculateStomachContentProportionsAndRates ();
-
 		digestionPackets.Add (new DigestionPacket (0, 200, currentFoodWaterDigestionRate, 90, currentGlucoseDigestionRate, 120, currentProteinDigestionRate, 80, currentFatDigestionRate, 50, currentFibreDigestionRate));
 	}
 
