@@ -2448,7 +2448,7 @@ MonoBehaviour:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_TextColor: {r: 1, g: 0, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -8399,14 +8399,14 @@ MonoBehaviour:
   fatInGut: 0
   fibreInGut: 0
   waterInBlood: 44000
-  glucoseInBlood: 9
+  glucoseInBlood: 8.39999962
   proteinInBlood: 120
   fatInBlood: 50
   phosphocreatineInMuscles: 120
   lactateSaturation: 0
   glycogenInMuscles: 280
   glycogenInLiver: 200
-  insulinInBlood: .00100000005
+  insulinInBlood: -.00499999989
   muscleMassMax: 35000
   muscleMass: 35000
   bloodVolume: 6000

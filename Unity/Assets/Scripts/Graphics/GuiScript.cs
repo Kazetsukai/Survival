@@ -30,6 +30,7 @@ public class GuiScript : MonoBehaviour {
 			"Glycogen in liver:" + (Math.Round (player.glycogenInLiver, 2)) + "g" + '\n' +
 			"Glycogen in muscles:" + (Math.Round (player.glycogenInMuscles, 2)) + "g" + '\n' +
 			"Insulin in blood:" + (Math.Round (player.insulinInBlood * 100000, 2)) + '\n' +
+			"Glucagon in blood:" + (Math.Round (player.glucagonInBlood * 100000, 2)) + '\n' +
 			"Sugar in blood:" + (Math.Round (player.glucoseInBlood, 2)) + "g" + '\n' +
 			"Sugar in gut:" + (Math.Round (player.glucoseInGut, 2)) + "g" + '\n' +
 			"Sugar in stomach:" + (Math.Round (player.glucoseInStomach, 2)) + "g" + '\n' +

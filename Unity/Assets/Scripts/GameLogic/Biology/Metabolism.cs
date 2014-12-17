@@ -27,11 +27,18 @@ public class Metabolism : MonoBehaviour {
 	public float glycogenInMuscles = 280F;
 	public float glycogenInLiver = 120F;
 	public float insulinInBlood = 0F;
+	public float glucagonInBlood = 0F;
 	public float muscleMassMax = 35000F;
 	public float muscleMass = 35000F;
 	float insulinHalfLife = 300F;
-	float insulinReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F)) * 6;
+//	float insulinReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F));
+	float insulinReleaseAmount = 0.0001F;
+	float glucagonHalfLife = 15F * 6F;
+//	float glucagonReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F));
+	float glucagonReleaseAmount = 0.0001F;
 	float targetSugarInBlood = 8.4F;
+	float sugarInBloodHighLevel = 13F;
+	float sugarInBloodLowLevel = 7F;
 	float foodWaterReleaseRate = 0F;
 	float glucoseReleaseRate = 0F;
 	float proteinReleaseRate = 0F;
@@ -138,23 +145,34 @@ public class Metabolism : MonoBehaviour {
 		// Deplete insulin
 		if (insulinInBlood > 0) {
 			insulinInBlood = insulinInBlood / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / (insulinHalfLife / bloodLossMultiplier)));
-		} else {
-			insulinInBlood = -(Mathf.Abs(insulinInBlood) / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / (insulinHalfLife / bloodLossMultiplier))));
 		}
+
+		// Deplete glucagon
+		if (glucagonInBlood > 0) {
+			glucagonInBlood = glucagonInBlood / Mathf.Pow (2, (Time.fixedDeltaTime * timeCompression / (glucagonHalfLife / bloodLossMultiplier)));
+		}
+
+		float insulinReleaseMultiplier = (glucoseInBlood - targetSugarInBlood) / (sugarInBloodHighLevel - targetSugarInBlood);
+		float glucagonReleaseMultiplier = (targetSugarInBlood - glucoseInBlood) / (targetSugarInBlood - sugarInBloodLowLevel);
 
 		// Adjust insulin based on sugar levels in blood
-		if (targetSugarInBlood < glucoseInBlood * 0.9F) {
-			insulinInBlood += insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
-		} else if (targetSugarInBlood > glucoseInBlood * 1.1F) {
-			insulinInBlood -= insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * 3 * bloodLossMultiplier;
+		if (glucoseInBlood > targetSugarInBlood) {
+			insulinInBlood += insulinReleaseAmount * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier * insulinReleaseMultiplier;
+		} else if (glucoseInBlood < targetSugarInBlood) {
+			glucagonInBlood += glucagonReleaseAmount * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier * glucagonReleaseMultiplier;
 		}
 
-		// Transfer sugar/glycogen between liver/blood
-		if (insulinInBlood > 0 || glycogenInLiver > 0F && insulinInBlood < 0) {
-			glycogenInLiver += insulinInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
-			glucoseInBlood -= insulinInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
-			glycogenInLiver = Mathf.Min (glycogenInLiver, 120F);
-		}
+		// Transfer sugar/glycogen between liver/blood by insulin
+		float glucoseToTransfer = Mathf.Max (0, Mathf.Min (insulinInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier, glucoseInBlood));
+
+		glycogenInLiver += glucoseToTransfer;
+		glucoseInBlood -= glucoseToTransfer;
+
+		// Transfer sugar/glycogen between liver/blood by glucagon
+		glucoseToTransfer = Mathf.Max (0, Mathf.Min (glucagonInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier, glycogenInLiver));
+
+		glycogenInLiver -= glucoseToTransfer;
+		glucoseInBlood += glucoseToTransfer;
 
 		// Increase phosphocreatine stores
 		float phosphocreatineToRestore = Mathf.Max(Mathf.Min (120F - phosphocreatineInMuscles, 2F / 3F) * Time.fixedDeltaTime * bloodLossMultiplier, 0);
