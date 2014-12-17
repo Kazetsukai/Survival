@@ -31,11 +31,11 @@ public class Metabolism : MonoBehaviour {
 	public float muscleMassMax = 35000F;
 	public float muscleMass = 35000F;
 	float insulinHalfLife = 300F;
-//	float insulinReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F));
-	float insulinReleaseAmount = 0.0001F;
+	float insulinReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F)) * 6;
+//	float insulinReleaseAmount = 0.00001F;
 	float glucagonHalfLife = 15F * 6F;
-//	float glucagonReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/300F)) - (250F / 24F / 60F / 60F));
-	float glucagonReleaseAmount = 0.0001F;
+	float glucagonReleaseAmount = ((250F / 24F / 60F / 60F) * Mathf.Pow(2F, (1F/90F)) - (250F / 24F / 60F / 60F)) * 6;
+//	float glucagonReleaseAmount = 0.00001F;
 	float targetSugarInBlood = 8.4F;
 	float sugarInBloodHighLevel = 13F;
 	float sugarInBloodLowLevel = 7F;
@@ -90,13 +90,13 @@ public class Metabolism : MonoBehaviour {
 	void Start () {
 		rb = GetComponentInParent<Rigidbody> ();
 		cc = GetComponentInParent<CustomCharacterController> ();
-		/*digestionPackets.Add (new DigestionPacket (0F, 200F, 0.01728395F, 90F, 0.007777778F, 120F, 0.01037037F, 80F, 0.00691358F, 50F, 0.004320988F));
+		digestionPackets.Add (new DigestionPacket (0F, 200F, 0.01728395F, 90F, 0.007777778F, 120F, 0.01037037F, 80F, 0.00691358F, 50F, 0.004320988F));
 		digestionPackets [0].fatReleaseTime = Time.time;
 		digestionPackets [0].fibreReleaseTime = Time.time;
 		digestionPackets [0].foodWaterReleaseTime = Time.time;
 		digestionPackets [0].liquidWaterReleaseTime = Time.time;
 		digestionPackets [0].proteinReleaseTime = Time.time;
-		digestionPackets [0].sugarReleaseTime = Time.time;*/
+		digestionPackets [0].sugarReleaseTime = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -166,6 +166,7 @@ public class Metabolism : MonoBehaviour {
 		float glucoseToTransfer = Mathf.Max (0, Mathf.Min (insulinInBlood * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier, glucoseInBlood));
 
 		glycogenInLiver += glucoseToTransfer;
+		glycogenInLiver = Mathf.Min (glycogenInLiver, 120F);
 		glucoseInBlood -= glucoseToTransfer;
 
 		// Transfer sugar/glycogen between liver/blood by glucagon
@@ -189,13 +190,15 @@ public class Metabolism : MonoBehaviour {
 		lactateSaturation = Mathf.Max (0, lactateSaturation - Time.fixedDeltaTime / 3600 * bloodLossMultiplier);
 
 		// Increase muscle glycogen stores from liver
-		float muscleGlycogenIncrease = Mathf.Max (0.0165F - glycogenInMuscles / 10000F, 0.002667F) * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
-		if (muscleGlycogenIncrease < glycogenInLiver) {
-			glycogenInLiver -= muscleGlycogenIncrease;
-			glycogenInMuscles += muscleGlycogenIncrease;
-		} else {
-			glycogenInMuscles += glycogenInLiver;
-			glycogenInLiver = 0;
+		if (glycogenInMuscles < 300) {
+			float muscleGlycogenIncrease = Mathf.Max (0.0165F - glycogenInMuscles / 10000F, 0.002667F) * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier;
+			if (muscleGlycogenIncrease < glycogenInLiver) {
+				glycogenInLiver -= muscleGlycogenIncrease;
+				glycogenInMuscles += muscleGlycogenIncrease;
+			} else {
+				glycogenInMuscles += glycogenInLiver;
+				glycogenInLiver = 0;
+			}
 		}
 
 		// work out how much total mass we have in the stomach
