@@ -191,7 +191,8 @@ public class Metabolism : MonoBehaviour {
 
 		// Increase muscle glycogen stores from liver
 		if (glycogenInMuscles < 300) {
-			float muscleGlycogenIncrease = Mathf.Max (0.0165F - glycogenInMuscles / 10000F, 0.002667F) * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier * (0.5F * glycogenInLiver / 120F + (1F - 0.5F * glycogenInMuscles / 300F));
+			Debug.Log (0.5F * glycogenInLiver / 120F +	1 - 0.5F * glycogenInMuscles / 300F - 0.5F);
+			float muscleGlycogenIncrease = 0.002667F * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier * (0.5F * glycogenInLiver / 120F + (1F - 0.5F * glycogenInMuscles / 300F));
 			if (muscleGlycogenIncrease < glycogenInLiver) {
 				glycogenInLiver -= muscleGlycogenIncrease;
 				glycogenInMuscles += muscleGlycogenIncrease;
@@ -527,9 +528,6 @@ public class Metabolism : MonoBehaviour {
 	}
 
 	public float DrawEnergy(float totalEnergyRequired) {
-		exertionFactor -= (totalEnergyRequired / (7.6F * Time.fixedDeltaTime) - 0.5F) * Time.fixedDeltaTime * timeCompression / 600F;
-		exertionFactor = Mathf.Max (Mathf.Min (exertionFactor, 1), 0);
-
 		//Debug.Log ("I have been asked for " + totalEnergyRequired + " kJ");
 		float energyRequired = totalEnergyRequired; // used to track how much energy is still unaccounted for
 		// work out how much energy we are taking from phosphocreatine
@@ -626,6 +624,9 @@ public class Metabolism : MonoBehaviour {
 		if (energyRequired < 0.001) {
 			energyRequired = 0;
 		}
+		exertionFactor -= ((totalEnergyRequired - energyRequired) / (7.6F * Time.fixedDeltaTime) - 0.35F) * Time.fixedDeltaTime * timeCompression / 600F;
+		exertionFactor = Mathf.Max (Mathf.Min (exertionFactor, 1), 0.25F);
 		return energyRequired; // return the amount of energy we couldn't provide
+
 	}
 }
