@@ -267,6 +267,8 @@ public class CustomCharacterController : MonoBehaviour {
 				} else {
 					_movementVector *= desiredSpeed;
 				}
+			} else {
+				metabolism.DrawEnergy(0);
 			}
 
 			Vector3 accelerationVector = (_movementVector - rb.velocity);

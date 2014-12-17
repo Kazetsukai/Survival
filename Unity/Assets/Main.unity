@@ -8411,6 +8411,7 @@ MonoBehaviour:
   muscleMassMax: 35000
   muscleMass: 35000
   bloodVolume: 6000
+  exertionFactor: 1
 --- !u!1001 &2065563670
 Prefab:
   m_ObjectHideFlags: 0
