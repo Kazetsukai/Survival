@@ -443,6 +443,7 @@ GameObject:
   - 33: {fileID: 199884528}
   - 23: {fileID: 199884527}
   - 64: {fileID: 199884529}
+  - 114: {fileID: 199884530}
   m_Layer: 0
   m_Name: Icosphere_013
   m_TagString: Untagged
@@ -505,6 +506,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &199884530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 199884525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &229056121
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,6 +768,7 @@ GameObject:
   - 33: {fileID: 406486052}
   - 23: {fileID: 406486051}
   - 64: {fileID: 406486053}
+  - 114: {fileID: 406486054}
   m_Layer: 0
   m_Name: Icosphere_001
   m_TagString: Untagged
@@ -818,6 +831,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300028, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &406486054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406486049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &411706103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1073,7 @@ GameObject:
   - 124: {fileID: 451847681}
   - 81: {fileID: 451847679}
   - 114: {fileID: 451847680}
+  - 114: {fileID: 451847684}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1143,6 +1168,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!114 &451847684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 451847677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3316cecc87e14bb429ac001b52698166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxInteractDistance: 3
+  InteractBubbleSize: .800000012
 --- !u!1001 &456610520
 Prefab:
   m_ObjectHideFlags: 0
@@ -1239,6 +1277,7 @@ GameObject:
   - 23: {fileID: 486994121}
   - 64: {fileID: 486994124}
   - 95: {fileID: 486994120}
+  - 114: {fileID: 486994125}
   m_Layer: 0
   m_Name: boulder_lowpoly_1
   m_TagString: Untagged
@@ -1317,6 +1356,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: 32915d3f0ae5e784eb4dfc5de7c2ac3e, type: 3}
+--- !u!114 &486994125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 486994119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &527627577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,6 +1662,7 @@ GameObject:
   - 23: {fileID: 558475053}
   - 64: {fileID: 558475056}
   - 95: {fileID: 558475052}
+  - 114: {fileID: 558475057}
   m_Layer: 0
   m_Name: boulder_lowpoly_1
   m_TagString: Untagged
@@ -1690,6 +1741,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: 32915d3f0ae5e784eb4dfc5de7c2ac3e, type: 3}
+--- !u!114 &558475057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 558475051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &560436937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1939,7 @@ GameObject:
   - 33: {fileID: 605543072}
   - 23: {fileID: 605543071}
   - 64: {fileID: 605543073}
+  - 114: {fileID: 605543074}
   m_Layer: 0
   m_Name: Icosphere_010
   m_TagString: Untagged
@@ -1939,6 +2002,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300006, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &605543074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 605543069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615263818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,6 +2024,7 @@ GameObject:
   - 33: {fileID: 615263821}
   - 23: {fileID: 615263820}
   - 64: {fileID: 615263822}
+  - 114: {fileID: 615263823}
   m_Layer: 0
   m_Name: Icosphere_012
   m_TagString: Untagged
@@ -2012,6 +2087,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &615263823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 615263818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &623943724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2109,7 @@ GameObject:
   - 33: {fileID: 623943726}
   - 23: {fileID: 623943725}
   - 64: {fileID: 623943728}
+  - 114: {fileID: 623943729}
   m_Layer: 0
   m_Name: Icosphere_009
   m_TagString: Untagged
@@ -2085,6 +2172,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300008, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &623943729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 623943724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &643955516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,6 +2763,7 @@ GameObject:
   - 23: {fileID: 799320508}
   - 64: {fileID: 799320511}
   - 95: {fileID: 799320507}
+  - 114: {fileID: 799320512}
   m_Layer: 0
   m_Name: tree_branch_small_1
   m_TagString: Untagged
@@ -2743,6 +2842,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 9f4194cc8816baa4282f452b28a7568c, type: 3}
+--- !u!114 &799320512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 799320506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &809708095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,6 +3038,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 846318608}
   - 95: {fileID: 846318609}
+  - 114: {fileID: 846318610}
   m_Layer: 0
   m_Name: tree_lowpoly_1
   m_TagString: Untagged
@@ -2976,6 +3087,17 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &846318610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 846318607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &874254053
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,6 +3226,7 @@ GameObject:
   - 33: {fileID: 901205542}
   - 23: {fileID: 901205541}
   - 64: {fileID: 901205543}
+  - 114: {fileID: 901205544}
   m_Layer: 0
   m_Name: Icosphere_006
   m_TagString: Untagged
@@ -3166,6 +3289,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300014, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &901205544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 901205539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &907300109
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4223,7 @@ GameObject:
   - 23: {fileID: 991783746}
   - 64: {fileID: 991783749}
   - 95: {fileID: 991783745}
+  - 114: {fileID: 991783750}
   m_Layer: 0
   m_Name: tree_branch_medium_1
   m_TagString: Untagged
@@ -4167,6 +4302,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: e67452460aef42b44aed7f67844db674, type: 3}
+--- !u!114 &991783750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 991783744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995163606
 GameObject:
   m_ObjectHideFlags: 0
@@ -5528,6 +5674,7 @@ GameObject:
   - 23: {fileID: 1596998946}
   - 64: {fileID: 1596998949}
   - 95: {fileID: 1596998945}
+  - 114: {fileID: 1596998950}
   m_Layer: 0
   m_Name: boulder_lowpoly_1
   m_TagString: Untagged
@@ -5606,6 +5753,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: 32915d3f0ae5e784eb4dfc5de7c2ac3e, type: 3}
+--- !u!114 &1596998950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1596998944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1640423592
 GameObject:
   m_ObjectHideFlags: 0
@@ -7299,6 +7457,7 @@ GameObject:
   - 33: {fileID: 1778592010}
   - 23: {fileID: 1778592009}
   - 64: {fileID: 1778592011}
+  - 114: {fileID: 1778592012}
   m_Layer: 0
   m_Name: Icosphere_005
   m_TagString: Untagged
@@ -7361,6 +7520,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300016, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &1778592012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1778592007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1792755945
 GameObject:
   m_ObjectHideFlags: 0
@@ -7519,6 +7689,7 @@ GameObject:
   - 33: {fileID: 1877279148}
   - 23: {fileID: 1877279147}
   - 64: {fileID: 1877279149}
+  - 114: {fileID: 1877279150}
   m_Layer: 0
   m_Name: Icosphere_011
   m_TagString: Untagged
@@ -7581,6 +7752,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300004, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &1877279150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1877279145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1890379937
 GameObject:
   m_ObjectHideFlags: 0
@@ -7592,6 +7774,7 @@ GameObject:
   - 33: {fileID: 1890379940}
   - 23: {fileID: 1890379939}
   - 64: {fileID: 1890379941}
+  - 114: {fileID: 1890379942}
   m_Layer: 0
   m_Name: Icosphere_007
   m_TagString: Untagged
@@ -7654,6 +7837,17 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300012, guid: e574c08bf32707d49bbc1a224eed47a4, type: 3}
+--- !u!114 &1890379942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1890379937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acc06755a3bfd94ea2c1a89c491d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1892584790
 GameObject:
   m_ObjectHideFlags: 0
