@@ -433,7 +433,7 @@ public class Metabolism : MonoBehaviour {
 				digestionPacket.fibreInGut = 0;
 			}
 		}
-		List<DigestionPacket> tempDigestionPackets = digestionPackets;
+		List<DigestionPacket> tempDigestionPackets = new List<DigestionPacket>(digestionPackets);
 		foreach (var digestionPacket in tempDigestionPackets) {
 			if (digestionPacket.liquidWaterInGut == 0 && digestionPacket.foodWaterInGut == 0 && digestionPacket.sugarInGut == 0 && digestionPacket.proteinInGut == 0 && digestionPacket.fatInGut == 0 && digestionPacket.fibreInGut == 0) {
 				digestionPackets.Remove(digestionPacket);
