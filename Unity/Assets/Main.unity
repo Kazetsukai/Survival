@@ -1181,6 +1181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxInteractDistance: 3
   InteractBubbleSize: .800000012
+  SelectionMaterial: {fileID: 2100000, guid: e1947e64fc2b38149826ba907c11f503, type: 2}
+  SelectedObject: {fileID: 0}
 --- !u!1001 &456610520
 Prefab:
   m_ObjectHideFlags: 0
@@ -5091,7 +5093,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1242799052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 3, z: 17}
+  m_LocalPosition: {x: 30.9200001, y: 5.92000008, z: 54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2057535963}
