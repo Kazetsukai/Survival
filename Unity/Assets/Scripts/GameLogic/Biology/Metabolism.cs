@@ -191,7 +191,7 @@ public class Metabolism : MonoBehaviour {
 
 		// Increase muscle glycogen stores from liver
 		if (glycogenInMuscles < 300) {
-			Debug.Log (0.5F * glycogenInLiver / 120F +	1 - 0.5F * glycogenInMuscles / 300F - 0.5F);
+			//Debug.Log (0.5F * glycogenInLiver / 120F +	1 - 0.5F * glycogenInMuscles / 300F - 0.5F);
 			float muscleGlycogenIncrease = 0.002667F * Time.fixedDeltaTime * timeCompression * bloodLossMultiplier * (0.5F * glycogenInLiver / 120F + (1F - 0.5F * glycogenInMuscles / 300F));
 			if (muscleGlycogenIncrease < glycogenInLiver) {
 				glycogenInLiver -= muscleGlycogenIncrease;
