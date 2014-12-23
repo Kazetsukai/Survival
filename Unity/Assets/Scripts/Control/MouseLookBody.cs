@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts.Control;
 
 /// MouseLook rotates the transform based on the mouse delta.
 /// Minimum and Maximum values can be used to constrain the possible rotation
@@ -15,7 +16,7 @@ using System.Collections;
 /// - Add a MouseLook script to the camera.
 ///   -> Set the mouse look to use LookY. (You want the camera to tilt up and down like a head. The character already turns.)
 [AddComponentMenu("Camera-Control/Mouse Look")]
-public class MouseLookBody : MonoBehaviour {
+public class MouseLookBody : MonoBehaviour, IPausable {
 	
 	public float sensitivityX = 15F;
 	public float sensitivityY = 15F;
@@ -27,13 +28,18 @@ public class MouseLookBody : MonoBehaviour {
 	public float maximumY = 60F;
 	
 	public GameObject player;
+    private bool _paused;
+
 
 	void Update ()
 	{
-		if (Input.GetAxis("Look") == 0 && !player.GetComponent<CustomCharacterController>().IsStumbling())
-		{
-			transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
-		}
+        if (!_paused)
+        {
+            if (Input.GetAxis("Look") == 0 && !player.GetComponent<CustomCharacterController>().IsStumbling())
+            {
+                transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+            }
+        }
 	}
 	
 	void Start ()
@@ -42,4 +48,9 @@ public class MouseLookBody : MonoBehaviour {
 		if (GetComponent<Rigidbody>())
 			GetComponent<Rigidbody>().freezeRotation = true;
 	}
+
+    public void SetPause(bool pause)
+    {
+        _paused = pause;
+    }
 }

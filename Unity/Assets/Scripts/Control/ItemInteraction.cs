@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using Assets.Scripts.Control;
 
-public class ItemInteraction : MonoBehaviour {
+public class ItemInteraction : MonoBehaviour, IPausable {
 
 	public float MaxInteractDistance = 3.0f;
 	public float InteractBubbleSize = 0.8f;
@@ -11,6 +12,7 @@ public class ItemInteraction : MonoBehaviour {
     public GameObject SelectedObject;
 
     private GameObject _selectionObject;
+    private bool _paused;
 
 	// Use this for initialization
 	void Start () {
@@ -43,14 +45,31 @@ public class ItemInteraction : MonoBehaviour {
 
         ShowSelection(SelectedObject);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (!_paused)
         {
-            if (SelectedObject != null)
+            if (Input.GetButtonDown("Fire1"))
             {
-                var interaction = GetInteractions(SelectedObject).First();
-                if (interaction != null)
-                    interaction.Interact();
+                if (SelectedObject != null)
+                {
+                    var interaction = GetInteractions(SelectedObject).First();
+                    if (interaction != null)
+                        interaction.Interact();
+                }
             }
+
+            if (Input.GetButtonDown("Fire2"))
+            {
+                var inventory = Player.CurrentPlayer.GetComponent<Inventory>();
+                inventory.DropFirstItem();
+            }
+
+        }
+
+        // This, for obvious reasons, needs to be outside the pause check. (The inventory screen pauses this script)
+        if (Input.GetButtonDown("Fire3"))
+        {
+            var inventory = Player.CurrentPlayer.GetComponent<Inventory>();
+            inventory.ToggleInventoryDisplay();
         }
 	}
 
@@ -91,7 +110,7 @@ public class ItemInteraction : MonoBehaviour {
         if (selectedObject != null)
             mesh = GetMesh(selectedObject);
 
-        if (mesh != null)
+        if (!_paused && mesh != null)
         {
             _selectionObject.renderer.enabled = true;
 
@@ -121,4 +140,9 @@ public class ItemInteraction : MonoBehaviour {
 		}
 
 	}
+
+    public void SetPause(bool pause)
+    {
+        _paused = pause;
+    }
 }
