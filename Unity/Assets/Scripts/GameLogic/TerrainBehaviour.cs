@@ -10,12 +10,15 @@ public class TerrainBehaviour : MonoBehaviour {
 	public int MapWidth = 50;
 	public int MapHeight = 50;
 	public int MapDepth = 20;
-	
+
+	public GameObject Terrain;	//Create terrain empty object to hold all the generated terrain objects in (so that unity hierarchy does not fill up)
 	public GameObject[] TerrainTypes;
 	
 	// Use this for initialization
-	void Start () {
-		
+	void Start () {		
+
+		Terrain = new GameObject("Terrain");
+
 		_maps [0] = new int[MapDepth, MapHeight, MapWidth];
 		
 		for (int d = 0; d < MapDepth; d++)
@@ -108,6 +111,7 @@ public class TerrainBehaviour : MonoBehaviour {
 					vertices += mesh.vertexCount;
 				
 					var terrainPatch = (GameObject)Instantiate (TerrainTypes[i]);
+					terrainPatch.transform.parent = Terrain.transform; //Add the terrain patch to the Terrain hierarchy object
 					terrainPatch.transform.position = terrainPatch.transform.position + mapChunk.StartPos;
 					terrainPatch.GetComponent<MeshFilter> ().mesh = mesh;
 					terrainPatch.GetComponent<MeshCollider> ().sharedMesh = mesh;

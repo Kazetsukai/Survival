@@ -2770,6 +2770,7 @@ MonoBehaviour:
   MapWidth: 80
   MapHeight: 80
   MapDepth: 15
+  Terrain: {fileID: 0}
   TerrainTypes:
   - {fileID: 0}
   - {fileID: 100000, guid: 32691664da028c843b55773e2d188043, type: 2}
