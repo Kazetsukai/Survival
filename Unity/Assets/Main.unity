@@ -2300,11 +2300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f741d22a5b3bb4045be75cbf29ec3aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2057535962}
-  LeadDistance: .300000012
-  LeadSpeedFactor: .00999999978
-  LeadReturnFactor: .100000001
-  LeadStartThresholdSpeed: .100000001
 --- !u!114 &625598156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6059,15 +6054,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1640423592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4692897839d6b474e84409de2697cb90, type: 3}
+  m_Script: {fileID: 11500000, guid: 757269bbdeaa67c4e8461ce3d414c263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   footstepSound: {fileID: 8300000, guid: daf8a34d8c47b70489f0a775f3a8bd1c, type: 3}
   stumbleSound: {fileID: 8300000, guid: 0696ee3e5263873428a89c09d70a8d45, type: 3}
-  walkAnimSpeedThreshold: .00999999978
   animSpeedFactorWalking: .899999976
   animSpeedFactorRunning: .300000012
-  runThresholdSpeed: 2.5
+  animSpeedThresholdWalking: .00999999978
+  animSpeedThresholdRunning: 2.29999995
   framesBetweenStepsWalking: 10
   framesBetweenStepsRunning: 8
 --- !u!82 &1640423596
