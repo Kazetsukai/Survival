@@ -12,7 +12,18 @@ public class CarryableItem : MonoBehaviour, IInteraction {
     {
         PlayerInventory.CarryItem(this);
 
-        gameObject.SetActive(false);
+        if (collider != null)
+            collider.enabled = false;
+
+        if (rigidbody != null)
+        {
+            rigidbody.isKinematic = true;
+            rigidbody.velocity = Vector3.zero;
+        }
+
+        transform.localScale = Vector3.one * 10;
+        transform.localRotation = Quaternion.identity;
+        transform.localPosition = Vector3.zero;
     }
 
 

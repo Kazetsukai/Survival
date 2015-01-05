@@ -2372,6 +2372,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5401902, guid: f35b94470d08fe64fa3d510bc758a175, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: f35b94470d08fe64fa3d510bc758a175, type: 2}
   m_RootGameObject: {fileID: 991783744}
   m_IsPrefabParent: 0
@@ -4362,7 +4363,6 @@ GameObject:
   - 33: {fileID: 991783747}
   - 23: {fileID: 991783746}
   - 136: {fileID: 991783745}
-  - 114: {fileID: 991783749}
   - 114: {fileID: 991783750}
   m_Layer: 0
   m_Name: Medium Tree Branch
@@ -4427,18 +4427,6 @@ Transform:
   - {fileID: 605543070}
   m_Father: {fileID: 846318608}
   m_RootOrder: 7
---- !u!114 &991783749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11423924, guid: f35b94470d08fe64fa3d510bc758a175,
-    type: 2}
-  m_PrefabInternal: {fileID: 658118663}
-  m_GameObject: {fileID: 991783744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ee2ee6ec10dfc419568a494cacaea8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &991783750
 MonoBehaviour:
   m_ObjectHideFlags: 0

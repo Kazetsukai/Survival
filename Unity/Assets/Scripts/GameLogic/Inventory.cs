@@ -18,6 +18,8 @@ public class Inventory : MonoBehaviour
 
         Debug.Log("Carried " + item.name);
 
+        item.transform.parent = InventoryScreen.transform;
+
         return true;
     }
 
