@@ -5216,7 +5216,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1242799052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.9200001, y: 1.14999998, z: 54}
+  m_LocalPosition: {x: 49.1599998, y: 1.14999998, z: 35.7000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2057535963}
@@ -7627,6 +7627,69 @@ Transform:
   - {fileID: 809708096}
   m_Father: {fileID: 1179667799}
   m_RootOrder: 1
+--- !u!1 &1763313820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1763313823}
+  - 114: {fileID: 1763313822}
+  - 114: {fileID: 1763313821}
+  m_Layer: 0
+  m_Name: vineSplineTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1763313821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1763313820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b154883273c2845f39445c8015d81639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {x: 1, y: 0, z: 0}
+  - {x: .909007311, y: -2.99664593, z: -.789691925}
+  - {x: 1.67474079, y: -.121202141, z: 3.8801918}
+  - {x: 4.95164776, y: .12840566, z: 0}
+  modes: 0000000000000000
+  loop: 0
+--- !u!114 &1763313822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1763313820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2cdd158732c4661ba3c2b49fe9ebc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spline: {fileID: 1763313821}
+  frequency: 35
+  lookForward: 1
+  items:
+  - {fileID: 400000, guid: 4a5679450ff30834a8955b55cb9912bd, type: 3}
+--- !u!4 &1763313823
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1763313820}
+  m_LocalRotation: {x: 0, y: 0, z: .6983338, w: .715772271}
+  m_LocalPosition: {x: 46.1920013, y: -2.35700011, z: 35.1860008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &1778592007
 GameObject:
   m_ObjectHideFlags: 0
