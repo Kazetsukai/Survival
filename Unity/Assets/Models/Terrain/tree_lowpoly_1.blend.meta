@@ -19,6 +19,23 @@ ModelImporter:
     100026: Icosphere_012
     100028: Icosphere_013
     100030: //RootNode
+    100032: Cube
+    100034: branch
+    100036: branch_001
+    100038: branch_002
+    100040: branch_003
+    100042: leaves
+    100044: leaves_001
+    100046: leaves_002
+    100048: leaves_003
+    100050: leaves_004
+    100052: leaves_005
+    100054: leaves_006
+    100056: leaves_007
+    100058: leaves_008
+    100060: leaves_009
+    100062: trunk
+    100064: vine
     400000: Icosphere
     400002: Icosphere_000
     400004: Icosphere_001
@@ -35,6 +52,23 @@ ModelImporter:
     400026: Icosphere_012
     400028: Icosphere_013
     400030: //RootNode
+    400032: Cube
+    400034: branch
+    400036: branch_001
+    400038: branch_002
+    400040: branch_003
+    400042: leaves
+    400044: leaves_001
+    400046: leaves_002
+    400048: leaves_003
+    400050: leaves_004
+    400052: leaves_005
+    400054: leaves_006
+    400056: leaves_007
+    400058: leaves_008
+    400060: leaves_009
+    400062: trunk
+    400064: vine
     2300000: Icosphere
     2300002: Icosphere_000
     2300004: Icosphere_001
@@ -50,6 +84,24 @@ ModelImporter:
     2300024: Icosphere_011
     2300026: Icosphere_012
     2300028: Icosphere_013
+    2300030: Cube
+    2300032: branch
+    2300034: branch_001
+    2300036: branch_002
+    2300038: branch_003
+    2300040: leaves
+    2300042: leaves_001
+    2300044: leaves_002
+    2300046: leaves_003
+    2300048: leaves_004
+    2300050: leaves_005
+    2300052: leaves_006
+    2300054: leaves_007
+    2300056: leaves_008
+    2300058: leaves_009
+    2300060: trunk
+    2300062: vine
+    2300064: //RootNode
     3300000: Icosphere
     3300002: Icosphere_000
     3300004: Icosphere_001
@@ -65,6 +117,24 @@ ModelImporter:
     3300024: Icosphere_011
     3300026: Icosphere_012
     3300028: Icosphere_013
+    3300030: Cube
+    3300032: branch
+    3300034: branch_001
+    3300036: branch_002
+    3300038: branch_003
+    3300040: leaves
+    3300042: leaves_001
+    3300044: leaves_002
+    3300046: leaves_003
+    3300048: leaves_004
+    3300050: leaves_005
+    3300052: leaves_006
+    3300054: leaves_007
+    3300056: leaves_008
+    3300058: leaves_009
+    3300060: trunk
+    3300062: vine
+    3300064: //RootNode
     4300000: Icosphere_013
     4300002: Icosphere_012
     4300004: Icosphere_011
@@ -80,6 +150,23 @@ ModelImporter:
     4300024: Icosphere_002
     4300026: Icosphere_000
     4300028: Icosphere_001
+    4300030: Cube
+    4300032: vine
+    4300034: leaves_005
+    4300036: leaves_003
+    4300038: leaves_002
+    4300040: leaves_004
+    4300042: leaves_008
+    4300044: leaves
+    4300046: leaves_009
+    4300048: leaves_006
+    4300050: leaves_007
+    4300052: leaves_001
+    4300054: branch
+    4300056: branch_003
+    4300058: branch_002
+    4300060: branch_001
+    4300062: trunk
     6400000: Icosphere
     6400002: Icosphere_000
     6400004: Icosphere_001
@@ -95,6 +182,24 @@ ModelImporter:
     6400024: Icosphere_011
     6400026: Icosphere_012
     6400028: Icosphere_013
+    6400030: Cube
+    6400032: branch
+    6400034: branch_001
+    6400036: branch_002
+    6400038: branch_003
+    6400040: leaves
+    6400042: leaves_001
+    6400044: leaves_002
+    6400046: leaves_003
+    6400048: leaves_004
+    6400050: leaves_005
+    6400052: leaves_006
+    6400054: leaves_007
+    6400056: leaves_008
+    6400058: leaves_009
+    6400060: trunk
+    6400062: vine
+    6400064: //RootNode
     7400000: Default Take
     9500000: //RootNode
   materials:
