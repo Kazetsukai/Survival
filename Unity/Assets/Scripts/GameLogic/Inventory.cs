@@ -37,7 +37,6 @@ public class Inventory : MonoBehaviour
         if (item.rigidbody != null)
         {
             item.rigidbody.isKinematic = true;
-            item.rigidbody.velocity = Vector3.zero;
         }
 
         return true;
