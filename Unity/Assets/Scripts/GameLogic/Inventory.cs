@@ -15,12 +15,43 @@ public class Inventory : MonoBehaviour
     public bool CarryItem(CarryableItem item)
     {
         _inventory.Add(item);
+        var index = _inventory.Count;
 
         Debug.Log("Carried " + item.name);
 
         item.transform.parent = InventoryScreen.transform;
 
+        ConvertToLayer(item.gameObject, InventoryScreen.layer);
+
+        var uiScale = 130;
+        var x = ((index % 6) - 3) * uiScale;
+        var y = (1 - (index / 6)) * uiScale;
+
+        item.transform.localScale = Vector3.one * 50;
+        item.transform.localRotation = Quaternion.identity;
+        item.transform.localPosition = new Vector3(x, y, -50);
+
+        if (item.collider != null)
+            item.collider.enabled = false;
+
+        if (item.rigidbody != null)
+        {
+            item.rigidbody.isKinematic = true;
+            item.rigidbody.velocity = Vector3.zero;
+        }
+
         return true;
+    }
+
+    private void ConvertToLayer(GameObject gameObject, int newLayer)
+    {
+        gameObject.layer = newLayer;
+        
+        var count = gameObject.transform.childCount;
+        for (int i = 0; i < count; i++)
+        {
+            ConvertToLayer(gameObject.transform.GetChild(i).gameObject, newLayer);
+        }
     }
 
     void Update()
