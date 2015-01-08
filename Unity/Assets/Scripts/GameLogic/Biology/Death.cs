@@ -23,7 +23,9 @@ public class Death : MonoBehaviour {
 		UpdateVelocities(CharacterAvatarObject.transform);
 		
 		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		{
 			Die ();
+		}
 	}
 
 	void UpdateVelocities (Transform transform)
