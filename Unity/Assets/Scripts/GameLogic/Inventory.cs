@@ -98,7 +98,10 @@ public class Inventory : MonoBehaviour
 
         InventoryScreen.SetActive(state);
 
-        foreach (var s in ScriptsToPause.Cast<IPausable>())
-            s.SetPause(state);
+        foreach (var s in ScriptsToPause) 
+		{
+			if (s is IPausable)
+				(s as IPausable).SetPause (state);
+		}
     }
 }
