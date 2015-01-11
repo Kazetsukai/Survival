@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CarryableItem : MonoBehaviour, IInteraction {
 
-    public bool AllowPickup { get; set; }
+    public bool AllowPickup = true;
     public Vector2 InventoryPosition { get; set; }
 
     public Inventory PlayerInventory
