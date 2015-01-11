@@ -14,15 +14,28 @@ public class Inventory : MonoBehaviour
 
     public bool CarryItem(CarryableItem item)
     {
+		//Disable item physics
+		if (item.collider != null)
+			item.collider.enabled = false;
+		
+		if (item.rigidbody != null)
+		{
+			item.rigidbody.isKinematic = true;
+		}
+
+		//Add item to inventory
         _inventory.Add(item);
         var index = _inventory.Count;
 
         Debug.Log("Carried " + item.name);
 
+		//Set item parent to be the inventory screen
         item.transform.parent = InventoryScreen.transform;
 
+		//Move item to inventory screen layer
         ConvertToLayer(item.gameObject, InventoryScreen.layer);
 
+		//Set position, rotation, scale of newly-added item in the inventory screen
         var uiScale = 130;
         var x = ((index % 6) - 3) * uiScale;
         var y = (1 - (index / 6)) * uiScale;
@@ -30,14 +43,6 @@ public class Inventory : MonoBehaviour
         item.transform.localScale = Vector3.one * 50;
         item.transform.localRotation = Quaternion.identity;
         item.transform.localPosition = new Vector3(x, y, -50);
-
-        if (item.collider != null)
-            item.collider.enabled = false;
-
-        if (item.rigidbody != null)
-        {
-            item.rigidbody.isKinematic = true;
-        }
 
         return true;
     }
