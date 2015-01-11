@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
 
         item.transform.localScale = Vector3.one * 50;
         item.transform.localRotation = Quaternion.identity;
-        item.transform.localPosition = new Vector3(x, y, -50);
+        item.InventoryPosition = new Vector2(x, y);
 
         return true;
     }
